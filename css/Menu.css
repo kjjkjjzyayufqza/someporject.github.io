@@ -4,6 +4,10 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+$prime: #00FF80
+$second: #0c1016
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -8141,6 +8145,7 @@ body {
   line-height: 1.8;
   font-weight: normal;
   background: #fafafa;
+  /*background: #161415 url(../image/bg2.jpg) no-repeat;*/
   color: gray; }
   body.offcanvas {
     overflow-x: hidden; }
@@ -8219,7 +8224,10 @@ h1, h2, h3, h4, h5,
   right: 0;
   overflow-y: hidden;
   z-index: 1001;
-  background: #fff;
+  background: #202020;
+  /*background: #161415 url(../image/sky1.jpg) no-repeat;*/
+  background-size:30% 100%;
+  background-attachment:fixed;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
@@ -8252,7 +8260,7 @@ h1, h2, h3, h4, h5,
       font-weight: 500;
       line-height: 1.5; }
       #colorlib-aside #colorlib-main-menu ul li a {
-        color: black;
+        color: white;
         text-decoration: none;
         position: relative;
         padding: 10px 0;
@@ -8428,3 +8436,151 @@ h1, h2, h3, h4, h5,
     .colorlib-nav-toggle {
       opacity: 1;
       visibility: visible; } }
+
+
+
+/*new button*/
+
+span{
+  position: relative;
+  display: inline-flex;
+  width: 100px;
+  height: 55px;
+  /*margin: 0 15px; */
+  perspective: 1000px;
+}
+span a{
+  font-size: 16px;
+  letter-spacing: 5px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform .25s;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+span a:before,
+span a:after{
+  position: absolute;
+  content: "Details";
+  height: 50px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+span a:before{
+  color: #fff;
+  background: #000;
+  transform: rotateY(0deg) translateZ(25px);
+}
+span a:after{
+  color: #000;
+  transform: rotateX(90deg) translateZ(25px);
+}
+span a:hover{
+  transform: translateZ(-25px) rotateX(-90deg);
+}
+
+/*new anime*/
+
+.brand {
+  
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+  
+}
+.brand:before {
+  
+  background-size: 100% 100%;
+  content: "EDE";
+  line-height: 205px;
+  color: #ff004e;
+  font-size: 20px;
+  font-family: "HEAVITAS", "Helvetica Rounded", Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: absolute;
+  
+  z-index: 99999 !important;
+}
+
+.logo{
+  animation: 5s linear infinite;
+  animation-name: rotate-0;
+  animation-delay: 0s;
+  transform-origin: 50% 50%;
+  transform: rotate(0deg);
+  
+}
+
+
+svg path{
+  positon:absolute;
+  fill:none;
+  stroke-width:2;
+  top:0;
+  left:0;
+  /*mix-blend-mode: multiply;*/
+  transform-origin: 50% 50%;
+  transform: rotate(0deg) ;
+  animation: 60s linear infinite;
+}
+
+.logo svg path:nth-child(1) {
+  opacity: 1;
+  animation-name: rotate-1;
+  animation-delay: .5s;
+}
+.logo svg path:nth-child(2) {
+  opacity: .5;
+  animation-name: rotate-2;
+  animation-delay: .6s;
+}
+.logo svg path:nth-child(3) {
+  opacity: .8;
+  animation-name: rotate-3;
+  animation-delay: .7s;
+}
+
+
+@keyframes scale-1 {
+  0%{
+    transform: scale(1);
+  }50% {
+    transform: scale(.9);
+  }100% {
+    transform: scale(1);
+  } 
+}
+
+@keyframes rotate-0 {
+  from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+} 
+
+@keyframes rotate-1 {
+  from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-2 {
+  from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes rotate-3 {
+  from { transform: rotate(0deg); }
+    to { transform: rotate(0deg); }
+}
+
+/*new anime2*/
+
+

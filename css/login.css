@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400|Lora");
 
 body {
-  /*background: #cbc0d3; */
-  background: #161415 url(../image/background6.jpg) no-repeat;
+  background: #CBE0E5; 
+  /*background: #161415 url(../image/background6.jpg) no-repeat;*/
   background-size:100% 100%;
   background-attachment:fixed;
 }
@@ -29,7 +29,8 @@ body {
   position: absolute;
   top: -10%;
   left: 5%;
-  background: #eac7cc;
+  /*background: #eac7cc;*/
+  background: #202020;
   width: 320px;
   height: 500px;
   border-radius: 20px;
@@ -103,7 +104,7 @@ span {
 .flower {
   position: absolute;
   width: 150px;
-  height: 150px;
+  height: 140px;
   top: 45%;
   left: 27%;
   opacity: 0.8;
@@ -184,16 +185,18 @@ form {
 .sumbit {
   margin-top: 25px;
   padding: 12px;
-  border-color: #ce7d88;
+  /*border-color: #ce7d88;*/
+  border-color: #D5EC18;
 }
 
 .sumbit:hover {
-  background: #cbc0d3;
+  /*background: #cbc0d3;*/
+  background: #202020;
   border-color: #bfb1c9;
 }
 
 input {
-  background: #eac7cc;
+  background: #202020;
   width: 65%;
   color: #ce7d88;
   border: none;
@@ -223,7 +226,8 @@ input:focus::placeholder {
 
 label {
   font-family: "Open Sans", sans-serif;
-  color: #ce7d88;
+  /*color: #ce7d88;*/
+  color: #18ECC5;
   font-size: 0.8em;
   letter-spacing: 1px;
 }
@@ -242,6 +246,7 @@ input[type=checkbox] {
 }
 
 .checkbox input[type=checkbox]:checked + label {
-  color: #ce7d88;
+  /*color: #ce7d88;*/
+  color: #18EC52;
   transition: 0.5s all ease;
 }
