@@ -1,25 +1,26 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
   	<title>Menu</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/Menu.css">
-	<link rel="stylesheet" href="css/search.css">
 
-</head>
-<body>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/Menu.css">
+
+	</head>
+	<body>
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="Menu_Customer.html">Home</a></li>
-					<li><a href="Personal_Profile.html">Personal Profile</a></li>
-					<li><a href="Create_Delivery.html">Create Delivery</a></li>
-					<li><a href="Track_Delivery.html">Track Delivery</a></li>
-					<li><a href="Contact.html">Contact</a></li>
+					<li class="colorlib-active"><a href="Menu_Staff.html">Home</a></li>
+					<li><a href="Personal_Profile_Staff.html">Personal Profile</a></li>
+					<li><a href="Check_AirwayBill.html">Check Airway Bill</a></li>
+					<li><a href="Update_Delivery.html">Update Delivery</a></li>
+					<li><a href="Generate_Report.html">Generate Report</a></li>
 				</ul>
 			</nav>
 		</aside> 
@@ -29,18 +30,8 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-								<h1 class="h2">Track Delivery</h1>
+							<h1 class="h2">Delivery Detail</h1>
 						</div>
-						<div class="col-md-2 my-4">
-							<h2 class="h4">Shipment ID: </h2>
-						</div>
-						<form id="tfnewsearch" method="get" action="">
-								<input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-						</form>
-					</div>
-				</div>
-				<div class="container-fluid px-3 px-md-0 ">
-					<div class="row">
 						<div class="col-md-6">
 							<h2 class="h4">Air Waybill’s Number :</h2>
 							<h2 class="h4">Sender’s Name :</h2>
@@ -56,40 +47,26 @@
 							<h2 class="h4"></h2>
 							<h2 class="h4"></h2>
 						</div>
+						<div class="col-md-6 my-5">
+							<form id="tfnewsearch" method="get" action="">
+								<h2 class="h4">Price: <input type="text" /></h2><br />
+								<input type="submit" value="Confirm" />
+								<input type="button" value="Reject" />
+							</form>
+						</div>
 					</div>
-				</div>
-				<div class="row my-5">
-					<table class="table table-hover">
-						<tr>
-							<th>Record’s Datetime</th>
-							<th>Shipment Status</th>
-							<th>Current Location</th>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-					</table>
 				</div>
 			</section>
 		</div>
 	</div>
-  <script src="js/jquery.min.js"></script>
+
+	</section>
+
+	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
 
 	</body>
 </html>
-
-
 
