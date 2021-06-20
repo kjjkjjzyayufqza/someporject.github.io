@@ -12,8 +12,8 @@
 	</head>
 	<body>
 	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-	<i class="fa fa-user" aria-hidden="true"></i>  Staff - Joe Chan |
-	<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
+	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
+	<a class="text-white font-weight-bold" href="index.html">Logout</a>
 
 </div>
 	<div id="colorlib-page">
@@ -21,11 +21,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Staff.html">Home</a></li>
-					<li class="colorlib-active"><a href="Personal_Profile_Staff.html">Personal Profile</a></li>
-					<li><a href="Update_AirwayBill.html">Update Airway Bill</a></li>
-					<li><a href="Update_Delivery.html">Update Delivery</a></li>
-					<li><a href="Generate_Report.html">Generate Report</a></li>
+					<li ><a href="Menu_Customer.php">Home</a></li>
+					<li class="colorlib-active"><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
+					<li><a href="Create_Delivery.php">Create Delivery</a></li>
+					<li><a href="Track_Delivery.php">Track Delivery</a></li>
+					<li><a href="Contact.php">Contact</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -51,61 +51,45 @@
 			</nav>
 		</aside> 
 
+	<?php
+
+	require_once("conn.php");
+	$sql = "SELECT * from Customer";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+	?>
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Update Profile</h1>
+							<h1 class="h2">View Profile</h1>
+						</div>
+						<div class="col-md-3">
+							<h2 class="h4">Name</h2>
+							<h2 class="h4">Email</h2>
+							<h2 class="h4">Phone</h2>
+							<h2 class="h4">Address</h2>
+							<h2 class="h4">Account Create Date</h2>
 						</div>
 						<div class="col-md-6">
-							<div class="row mt-3">
-								<div class="col-12 col-sm-4">
-									<h2 class="h5">Email</h2>
-								</div>
-								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-							</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">First name</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
+							<?php
+								$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
+								while($rc = mysqli_fetch_assoc($rs)){
+									for($i = 0; $i < 5 ; $i++){
+										printf('<h2 class="h4">%s</h2>', $rc[$array[$i]]);
+									}
+								}
+							?>
 						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Last name</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Phone</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-						</div>
-						</div>
-						<div class="col-md-6">
-
-						</div>
-						
-						
-						<div class="col-sm-2">
-							<br /><a href="Personal_Profile_Staff.html"><button type="button" >Back</button></a>
-							<button type="button" >Clear</button>
-							<button type="button" >Submit</button>
-						</div>
+					
 					</div>
+						<br /><a href="Update_Profile_Customer.php"><button type="button" >Update</button></a>
+						<a href="Change_Password_Profile_Customer.php"><button type="button" >Change Password</button></a>
+						<a href="Delete_Account_Profile.php"><button type="button" >Delete Account</button></a>
 				</div>
-				
 			</section>
+			
 		</div>
 	</div>
 

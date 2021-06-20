@@ -11,9 +11,9 @@
 
 	</head>
 	<body>
-		<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-	<i class="fa fa-user" aria-hidden="true"></i>  Staff - Joe Chan |
-	<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
+	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
+	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
+	<a class="text-white font-weight-bold" href="index.html">Logout</a>
 
 </div>
 	<div id="colorlib-page">
@@ -21,11 +21,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Staff.html">Home</a></li>
-					<li><a href="Personal_Profile_Staff.html">Personal Profile</a></li>
-					<li><a href="Update_AirwayBill.html">Update Airway Bill</a></li>
-					<li><a href="Update_Delivery.html">Update Delivery</a></li>
-					<li class="colorlib-active"><a href="Generate_Report.html">Generate Report</a></li>
+					<li class="colorlib-active"><a href="Menu_Customer.php">Home</a></li>
+					<li><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
+					<li><a href="Create_Delivery.php">Create Delivery</a></li>
+					<li><a href="Track_Delivery.php">Track Delivery</a></li>
+					<li><a href="Contact.php">Contact</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -50,30 +50,22 @@
 				</ul>
 			</nav>
 		</aside> 
+
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
-					<div class="row my-5">
+					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Report</h1>
+							<h1 class="h2">EDE Express</h1>
+							<p>The main business of the Eastern Delivery Express Limited (ED) is to provide 
+								delivery services from Hong Kong to three countries that are Australia, Shanghai China and Japan. The services include Express Document Envelope and Express 
+								Freight (package). The headquarters of the Company is situated in Hong Kong. 
+								The Company has two Operations Centres in Hong Kong and one Operation 
+								Centre in each of the countries. In addition, EDE has an extensive service 
+								network, which includes 15 Express Centres situating in major business districts 
+								in Hong Kong. 
+							</p>
 						</div>
-						<table class="table table-hover">
-							<tr>
-								<th>Airway Bill No</th>
-								<th>Sender Name</th>
-								<th>Receiver Name</th>
-								<th>Date</th>
-								<th></th>
-							</tr>
-
-							<tr>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td><span><a href="Report_Detail.html"></a></span></td>
-							</tr>
-						</table>
 					</div>
 				</div>
 			</section>

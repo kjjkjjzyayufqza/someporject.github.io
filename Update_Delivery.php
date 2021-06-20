@@ -4,27 +4,26 @@
   	<title>Menu</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
+	<link rel="stylesheet" href="css/search.css">
 
 	</head>
 	<body>
 	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 		<i class="fa fa-user" aria-hidden="true"></i>  Staff - Joe Chan |
-		<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
+		<a class="text-white font-weight-bold" href="index.html">Logout</a>
 	</div>
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Staff.html">Home</a></li>
-					<li><a href="Personal_Profile_Staff.html">Personal Profile</a></li>
-					<li class="colorlib-active"><a href="Update_AirwayBill.html">Update Airway Bill</a></li>
-					<li><a href="Update_Delivery.html">Update Delivery</a></li>
-					<li><a href="Generate_Report.html">Generate Report</a></li>
+					<li><a href="Menu_Staff.php">Home</a></li>
+					<li><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
+					<li><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li class="colorlib-active"><a href="Update_Delivery.php">Update Delivery</a></li>
+					<li><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -49,30 +48,69 @@
 				</ul>
 			</nav>
 		</aside> 
-
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
-					<div class="row my-5">
+					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Airway Bill</h1>
+								<h1 class="h2">Track Delivery</h1>
 						</div>
-						<table class="table table-hover">
-							<tr>
-								<th>Airway Bill No</th>
-								<th>Sender Name</th>
-								<th>Date</th>
-								<th></th>
-							</tr>
-
-							<tr>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td><span><a href="AirwayBill_Detail.html"></a></span></td>
-							</tr>
-						</table>
+						<div class="col-md-2 my-4">
+							<h2 class="h4">Airway Bill No: </h2>
+						</div>
+						<form id="tfnewsearch" method="get" action="">
+								<input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+						</form>
 					</div>
+				</div>
+				<div class="container-fluid px-3 px-md-0 ">
+					<div class="row">
+						<div class="col-md-6">
+							<h2 class="h4">Airwaybill’s Number :</h2>
+							<h2 class="h4">Shipment Status :</h2>
+							<h2 class="h4">Current Location :</h2>
+						</div>
+
+						<div class="col-md-6">
+							<form id= method="get" action="">
+								<h2 class="h4">xxxxxx</h2>
+								<h2 class="h3">
+									<select name="status" id="status">
+										<option value="Waiting for Confirmation">Waiting for Confirmation</option>
+										<option value="Confirmed">Confirmed</option>
+										<option value="In Transit">In Transit</option>
+										<option value="Delivering">Delivering</option>
+										<option value="Completed">Completed</option>
+									</select>
+								</h2>
+								<h2 class="h5"><input type="text" /></h2>
+								<h2 class="h4"><input type="submit" class="float-right mx-5" value="Update" /></h2>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="row my-5">
+					<table class="table table-hover">
+						<tr>
+							<th>Record’s Datetime</th>
+							<th>Shipment Status</th>
+							<th>Current Location</th>
+						</tr>
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+					</table>
 				</div>
 			</section>
 		</div>

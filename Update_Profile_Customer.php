@@ -13,7 +13,7 @@
 	<body>
 	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
-	<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
+	<a class="text-white font-weight-bold" href="index.html">Logout</a>
 
 </div>
 	<div id="colorlib-page">
@@ -21,11 +21,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Customer.html">Home</a></li>
-					<li class="colorlib-active"><a href="Personal_Profile_Customer.html">Personal Profile</a></li>
-					<li><a href="Create_Delivery.html">Create Delivery</a></li>
-					<li><a href="Track_Delivery.html">Track Delivery</a></li>
-					<li><a href="Contact.html">Contact</a></li>
+					<li><a href="Menu_Customer.php">Home</a></li>
+					<li class="colorlib-active"><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
+					<li><a href="Create_Delivery.php">Create Delivery</a></li>
+					<li><a href="Track_Delivery.php">Track Delivery</a></li>
+					<li><a href="Contact.php">Contact</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -51,54 +51,68 @@
 			</nav>
 		</aside> 
 
+
+		
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2">Change Password</h1>
-						</div>
-						<div class="col-md-6">
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Original</h2>
+					<form action="updateProfile.php" method="post">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2">Update Profile</h1>
 							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+							<div class="col-md-6">
+								<div class="row mt-3">
+									<div class="col-12 col-sm-4">
+										<h2 class="h5">Name</h2>
+									</div>
+									<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="text" class="form-control" name="name" value="">
+								</div>
+								</div>
+							<div class="row mt-3">
+								<div class="col-12 col-sm-4">
+									<h2 class="h5">Email</h2>
+								</div>
+								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="text" class="form-control" name="email" value="">
+								</div>
 							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">New</h2>
+							<div class="row mt-3">
+								<div class="col-12 col-sm-4">
+									<h2 class="h5">Phone</h2>
+								</div>
+								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="text" class="form-control" name="phone" value="">
+								</div>
 							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+							<div class="row mt-3">
+								<div class="col-12 col-sm-4">
+									<h2 class="h5">Address</h2>
+								</div>
+								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="text" class="form-control" name="address" value="">
+								</div>
 							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Re-enter </h2>
 							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-						</div>
-						</div>
+							<div class="col-md-6">
 
-
-					</div>
-					<br />
-					<div class="row">
-						<div class="col-sm-2">
-							<a href="Personal_Profile_Customer.html"><button type="button" >Back</button></a>
-							<button type="button" >Save</button>
+							</div>
+							
+							
+							<div class="col-sm-2">
+								<br /><a href="Personal_Profile_Customer.php"><button type="button" >Back</button></a>
+								<input type="reset" value="Clear" />
+								<input type="submit" value="Submit" name="submit"/>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 				
 			</section>
 		</div>
 	</div>
+
 
 	</section>
 

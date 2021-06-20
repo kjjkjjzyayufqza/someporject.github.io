@@ -12,19 +12,20 @@
 	</head>
 	<body>
 	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-		<i class="fa fa-user" aria-hidden="true"></i>  Staff - Joe Chan |
-		<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
-	</div>
+	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
+	<a class="text-white font-weight-bold" href="index.html">Logout</a>
+
+</div>
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Staff.html">Home</a></li>
-					<li><a href="Personal_Profile_Staff.html">Personal Profile</a></li>
-					<li><a href="Update_AirwayBill.html">Update Airway Bill</a></li>
-					<li><a href="Update_Delivery.html">Update Delivery</a></li>
-					<li class="colorlib-active"><a href="Generate_Report.html">Generate Report</a></li>
+					<li><a href="Menu_Customer.php">Home</a></li>
+					<li class="colorlib-active"><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
+					<li><a href="Create_Delivery.php">Create Delivery</a></li>
+					<li><a href="Track_Delivery.php">Track Delivery</a></li>
+					<li><a href="Contact.php">Contact</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -55,41 +56,46 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Delivery Detail</h1>
-						</div>				
+							<h1 class="h2">Change Password</h1>
+						</div>
 						<div class="col-md-6">
-							<h2 class="h4">Air Waybill’s Number :</h2>
-							<h2 class="h4">Customer’s Email :</h2>
-							<h2 class="h4">Customer’s Name :</h2>
-							<h2 class="h4">Staff’s ID :</h2>
-							<h2 class="h4">Date :</h2>
-							<h2 class="h4">Receiver's Name :</h2>
-							<h2 class="h4">Receiver’s Phone Number :</h2>
-							<h2 class="h4">Receiver's Address :</h2>
-							<h2 class="h4">Weight :</h2>
-							<h2 class="h4">Total Price :</h2>
+						<div class="row mt-3">
+							<div class="col-12 col-sm-4">
+								<h2 class="h5">Original</h2>
+							</div>
+							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+								<input type="text" class="form-control" name="" value="">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-12 col-sm-4">
+								<h2 class="h5">New</h2>
+							</div>
+							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+								<input type="text" class="form-control" name="" value="">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-12 col-sm-4">
+								<h2 class="h5">Re-enter </h2>
+							</div>
+							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+								<input type="text" class="form-control" name="" value="">
+							</div>
+						</div>
 						</div>
 
-						<div class="col-md-6">
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-						</div>
-						<div class="col-md-6 my-5">
-							<form id="" method="get" action="">
-								<a href="Generate_Report.html"><input type="button" value="Back"></a>
-								<input type="button" value="Print" />
-							</form>
+
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-sm-2">
+							<a href="Personal_Profile_Customer.php"><button type="button" >Back</button></a>
+							<button type="button" >Save</button>
 						</div>
 					</div>
 				</div>
+				
 			</section>
 		</div>
 	</div>

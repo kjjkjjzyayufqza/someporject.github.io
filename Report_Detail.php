@@ -12,20 +12,19 @@
 	</head>
 	<body>
 	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
-	<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
-
-</div>
+		<i class="fa fa-user" aria-hidden="true"></i>  Staff - Joe Chan |
+		<a class="text-white font-weight-bold" href="index.html">Logout</a>
+	</div>
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="Menu_Customer.html">Home</a></li>
-					<li><a href="Personal_Profile_Customer.html">Personal Profile</a></li>
-					<li><a href="Create_Delivery.html">Create Delivery</a></li>
-					<li><a href="Track_Delivery.html">Track Delivery</a></li>
-					<li><a href="Contact.html">Contact</a></li>
+					<li><a href="Menu_Staff.php">Home</a></li>
+					<li><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
+					<li><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><a href="Update_Delivery.php">Update Delivery</a></li>
+					<li class="colorlib-active"><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -56,15 +55,38 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">EDE Express</h1>
-							<p>The main business of the Eastern Delivery Express Limited (ED) is to provide 
-								delivery services from Hong Kong to three countries that are Australia, Shanghai China and Japan. The services include Express Document Envelope and Express 
-								Freight (package). The headquarters of the Company is situated in Hong Kong. 
-								The Company has two Operations Centres in Hong Kong and one Operation 
-								Centre in each of the countries. In addition, EDE has an extensive service 
-								network, which includes 15 Express Centres situating in major business districts 
-								in Hong Kong. 
-							</p>
+							<h1 class="h2">Delivery Detail</h1>
+						</div>				
+						<div class="col-md-6">
+							<h2 class="h4">Air Waybill’s Number :</h2>
+							<h2 class="h4">Customer’s Email :</h2>
+							<h2 class="h4">Customer’s Name :</h2>
+							<h2 class="h4">Staff’s ID :</h2>
+							<h2 class="h4">Date :</h2>
+							<h2 class="h4">Receiver's Name :</h2>
+							<h2 class="h4">Receiver’s Phone Number :</h2>
+							<h2 class="h4">Receiver's Address :</h2>
+							<h2 class="h4">Weight :</h2>
+							<h2 class="h4">Total Price :</h2>
+						</div>
+
+						<div class="col-md-6">
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+							<h2 class="h4">xxxxxx</h2>
+						</div>
+						<div class="col-md-6 my-5">
+							<form id="" method="get" action="">
+								<a href="Generate_Report.php"><input type="button" value="Back"></a>
+								<input type="button" value="Print" />
+							</form>
 						</div>
 					</div>
 				</div>

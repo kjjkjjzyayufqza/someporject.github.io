@@ -13,7 +13,7 @@
 	<body>
 	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
-	<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
+	<a class="text-white font-weight-bold" href="index.html">Logout</a>
 
 </div>
 	<div id="colorlib-page">
@@ -21,11 +21,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Customer.html">Home</a></li>
-					<li class="colorlib-active"><a href="Personal_Profile_Customer.html">Personal Profile</a></li>
-					<li><a href="Create_Delivery.html">Create Delivery</a></li>
-					<li><a href="Track_Delivery.html">Track Delivery</a></li>
-					<li><a href="Contact.html">Contact</a></li>
+					<li><a href="Menu_Customer.php">Home</a></li>
+					<li><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
+					<li><a href="Create_Delivery.php">Create Delivery</a></li>
+					<li ><a href="Track_Delivery.php">Track Delivery</a></li>
+					<li class="colorlib-active"><a href="Contact.php">Contact</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -56,55 +56,21 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Update Profile</h1>
-						</div>
-						<div class="col-md-6">
-							<div class="row mt-3">
-								<div class="col-12 col-sm-4">
-									<h2 class="h5">Email</h2>
-								</div>
-								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-							</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">First name</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Last name</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Phone</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
-							</div>
-						</div>
-						</div>
-						<div class="col-md-6">
-
-						</div>
-						
-						
-						<div class="col-sm-2">
-							<br /><a href="Personal_Profile_Customer.html"><button type="button" >Back</button></a>
-							<button type="button" >Clear</button>
-							<button type="button" >Submit</button>
+							<h1 class="h2">Email</h1>
+							<p>
+							<h2 class="h4">ede@edeexpress.com.hk</h2>
+							</p><br />
+							<h1 class="h2">Contact Phone</h1>
+							<p>
+							<h2 class="h4">12345678</h2>
+							</p><br />
+							<h1 class="h2">Address</h1>
+							<p>
+							<h2 class="h4">IVELWL</h2>
+							</p><br />
 						</div>
 					</div>
 				</div>
-				
 			</section>
 		</div>
 	</div>

@@ -11,9 +11,9 @@
 
 	</head>
 	<body>
-	<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-	<i class="fa fa-user" aria-hidden="true"></i>  Customer - Joe Chan |
-	<a class="text-white font-weight-bold" href="index.php.html">Logout</a>
+		<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
+	<i class="fa fa-user" aria-hidden="true"></i>  Staff - Joe Chan |
+	<a class="text-white font-weight-bold" href="index.html">Logout</a>
 
 </div>
 	<div id="colorlib-page">
@@ -21,11 +21,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li ><a href="Menu_Customer.html">Home</a></li>
-					<li class="colorlib-active"><a href="Personal_Profile_Customer.html">Personal Profile</a></li>
-					<li><a href="Create_Delivery.html">Create Delivery</a></li>
-					<li><a href="Track_Delivery.html">Track Delivery</a></li>
-					<li><a href="Contact.html">Contact</a></li>
+					<li><a href="Menu_Staff.php">Home</a></li>
+					<li><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
+					<li><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><a href="Update_Delivery.php">Update Delivery</a></li>
+					<li class="colorlib-active"><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -50,38 +50,33 @@
 				</ul>
 			</nav>
 		</aside> 
-
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
-					<div class="row">
+					<div class="row my-5">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">View Profile</h1>
+							<h1 class="h2">Report</h1>
 						</div>
-						<div class="col-md-3">
-							<h2 class="h4">Name</h2>
-							<h2 class="h4">Email</h2>
-							<h2 class="h4">First name</h2>
-							<h2 class="h4">Last name</h2>
-							<h2 class="h4">Phone</h2>
-							<h2 class="h4">Address</h2>
-						</div>
-						<div class="col-md-6">
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-						</div>
-					
+						<table class="table table-hover">
+							<tr>
+								<th>Airway Bill No</th>
+								<th>Sender Name</th>
+								<th>Receiver Name</th>
+								<th>Date</th>
+								<th></th>
+							</tr>
+
+							<tr>
+								<td>xxxxxx</td>
+								<td>xxxxxx</td>
+								<td>xxxxxx</td>
+								<td>xxxxxx</td>
+								<td><span><a href="Report_Detail.php"></a></span></td>
+							</tr>
+						</table>
 					</div>
-						<br /><a href="Update_Profile_Customer.html"><button type="button" >Update</button></a>
-						<a href="Change_Password_Profile_Customer.html"><button type="button" >Change Password</button></a>
-						<a href="Delete_Account_Profile.html"><button type="button" >Delete Account</button></a>
 				</div>
 			</section>
-			
 		</div>
 	</div>
 
