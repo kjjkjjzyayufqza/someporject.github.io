@@ -8654,3 +8654,23 @@ button {
   outline: none;
 }
 
+@media print{
+	body * {
+		visibility: hidden;
+	}
+	
+	.print-container, .print-container * {
+		visibility: visible;
+        -webkit-print-color-adjust: exact; 
+	}
+	
+	.print-container {
+		left: 0px;
+		top: 0px;
+	}
+	
+	.print-container th{
+        background-color: #ff6768 !important;
+    }
+	
+}

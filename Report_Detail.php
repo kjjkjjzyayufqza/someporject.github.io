@@ -53,45 +53,78 @@
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
-					<div class="row">
+					<div class="row print-container">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Delivery Detail</h1>
-						</div>				
+						</div>
+							<div class="col-md-6">
+								<h1 class="font-weight-bolder" style="font-size: 70px;">Report</h1>
+							</div>
+							<div class="col-md-6">
+								<img src="image/pack.jpg" class="float-right" width="300" height="200" />
+							</div>
+								<div class="col-md-4">
+									<br /><br />
+									<h2 class="h4">Air Waybill’s Number :</h2>
+									<h2 class="h4">xxxxxx</h2>
+								</div>
+								<div class="col-md-4">
+									<br /><br />
+									<h2 class="h4">Staff’s ID :</h2>
+									<h2 class="h4">xxxxxx</h2>
+								</div>
+								<div class="col-md-4">
+									<br /><br />
+									<h2 class="h4">Date :</h2>
+									<h2 class="h4">xxxxxx</h2>
+								</div>
+							
 						<div class="col-md-6">
-							<h2 class="h4">Air Waybill’s Number :</h2>
-							<h2 class="h4">Customer’s Email :</h2>
-							<h2 class="h4">Customer’s Name :</h2>
-							<h2 class="h4">Staff’s ID :</h2>
-							<h2 class="h4">Date :</h2>
-							<h2 class="h4">Receiver's Name :</h2>
-							<h2 class="h4">Receiver’s Phone Number :</h2>
-							<h2 class="h4">Receiver's Address :</h2>
-							<h2 class="h4">Weight :</h2>
-							<h2 class="h4">Total Price :</h2>
+							<br />
+							<h2 class="h4">Sender's Information</h2>
+							<hr />
+							<h2 class="h5">Email :</h2>
+							<h2 class="h5">Name :</h2>
 						</div>
 
 						<div class="col-md-6">
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
+							<br />
+							<h2 class="h4">Receiver's Information</h2>
+							<hr />
+							<h2 class="h5">Name :</h2>
+							<h2 class="h5">Phone Number :</h2>
+							<h2 class="h5">Address :</h2>
 						</div>
-						<div class="col-md-6 my-5">
-							<form id="" method="get" action="">
-								<a href="Generate_Report.php"><input type="button" value="Back"></a>
-								<input type="button" value="Print" />
-							</form>
-						</div>
+						<div class="col-md-12">
+						<hr />
+						<h2 class="h4">Shipment Detail</h2>
+							<table class="table table-hover">
+										<tr style="background-color: #ff6768;">
+											<th>Weight</th>
+											<th>Total Price</th>
+										</tr>
+
+										<tr>
+											<td>xxxxxxx</td>
+											<td>xxxxxxx</td>
+										</tr>
+
+										<tr>
+											<td>xxxxxxx</td>
+											<td>xxxxxxx</td>
+										</tr>
+							</table>
+						</div>	
 					</div>
+					
+						<div class="col-md-6 my-5">
+							<a href="Generate_Report.php"><input type="button" value="Back"></a>
+							<button onclick="window.print();">Print</button>
+						</div>	
 				</div>
 			</section>
 		</div>
+		
+		
 	</div>
 
 	</section>
