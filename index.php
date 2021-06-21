@@ -73,7 +73,7 @@
     <div class="rightbox">
       <h2 class="title"><span>SAFETY</span>&<br>FAST</h2>
       <p class="desc">Hurry up and try to use <span>use</span></p>
-      <img class="flower" src="image/idea.png" />
+      <img class="flower" src="image/space-dog-laika1.png" />
       <p class="account">Don't have an account?</p>
       <button class="button" id="signup">Sign Up</button>
     </div>

@@ -84,7 +84,7 @@
 									</select>
 								</h2>
 								<h2 class="h5"><input type="text" /></h2>
-								<h2 class="h4"><input type="submit" class="float-right mx-5" value="Update" /></h2>
+								<h2 class="h4"><input type="submit" class="float-right mx-5 custom-btn btn-3" value="Update" /></h2>
 								
 							</form>
 						</div>

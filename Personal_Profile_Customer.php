@@ -82,14 +82,15 @@
 								}
 							?>
 						</div>
-					
+						
 					</div>
-						<br /><a href="Update_Profile_Customer.php"><button type="button" >Update</button></a>
-						<a href="Change_Password_Profile_Customer.php"><button type="button" >Change Password</button></a>
-						<a href="Delete_Account_Profile.php"><button type="button" >Delete Account</button></a>
+						<br />
+						<a href="Update_Profile_Customer.php"><button class="custom-btn btn-3">Update</button></a>
+						<a href="Change_Password_Profile_Customer.php"><button class="custom-btn btn-3">Change Password</button></a>
+						<a href="Delete_Account_Profile.php"><button class="custom-btn btn-3">Delete Account</button></a>
 				</div>
 			</section>
-			
+									
 		</div>
 	</div>
 

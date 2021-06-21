@@ -59,6 +59,7 @@
 							<h1 class="h2">Delete Account</h1>
 						</div>
 						<div class="col-md-6">
+						<h2 class="h5">You are performing an important operation, please make sure you know exactly what you are doing! !</h2>
 						<div class="row mt-3">
 							<div class="col-12 col-sm-4">
 								<h2 class="h5">Password</h2>
@@ -71,14 +72,9 @@
 
 
 					</div>
-					<div class="row">
-						<div class="col-sm-2">
-						<br /><a href="Personal_Profile_Customer.php"><button type="button" >Back</button></a>
-						<button type="button" >Confirm</button>
-						</div>
-						</div>
 				</div>
-				
+								<button class="custom-btn btn-3">Confirm</button>
+								<button class="custom-btn btn-3">Delete</button>
 			</section>
 		</div>
 	</div>

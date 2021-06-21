@@ -85,17 +85,10 @@
 						</div>
 						</div>
 
-
-					</div>
-					<br />
-					<div class="row">
-						<div class="col-sm-2">
-							<a href="Personal_Profile_Customer.php"><button type="button" >Back</button></a>
-							<button type="button" >Save</button>
-						</div>
 					</div>
 				</div>
-				
+							<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
+							<button class="custom-btn btn-3">Save</button>
 			</section>
 		</div>
 	</div>

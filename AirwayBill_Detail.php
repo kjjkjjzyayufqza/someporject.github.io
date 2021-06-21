@@ -75,9 +75,9 @@
 						</div>
 						<div class="col-md-6 my-5">
 							<form id="" method="get" action="">
-								<a href="Update_AirwayBill.php"><input type="button" value="Back"></a>
-								<input type="submit" value="Confirm" />
-								<input type="button" value="Delete" />
+								<a href="Update_AirwayBill.php"><button class="custom-btn btn-3">Back</button></a>
+								<button class="custom-btn btn-3">Confirm</button>
+								<button class="custom-btn btn-3">Delete</button>
 							</form>
 						</div>
 					</div>

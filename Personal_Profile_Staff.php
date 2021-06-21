@@ -78,7 +78,7 @@
 							?>
 						</div>
 						<div class="col-sm-3">
-							<a href="Change_Password_Profile_Staff.php"><button type="button" >Change Password</button></a>
+							<a href="Change_Password_Profile_Staff.php"><button class="custom-btn btn-3">Change Password</button></a>
 						</div>
 						
 					</div>

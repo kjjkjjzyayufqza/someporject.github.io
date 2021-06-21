@@ -115,15 +115,10 @@
 						<div class="col-md-6">
 
 						</div>
-						
-						
-						<div class="col-sm-2">
-							<br /><button type="button" >Clear</button>
-							<button type="button" >Submit</button>
-						</div>
 					</div>
 				</div>
-				
+								<button class="custom-btn btn-3">Confirm</button>
+								<button class="custom-btn btn-3">Delete</button>
 			</section>
 		</div>
 

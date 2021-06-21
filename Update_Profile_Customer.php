@@ -98,17 +98,13 @@
 							<div class="col-md-6">
 
 							</div>
-							
-							
-							<div class="col-sm-2">
-								<br /><a href="Personal_Profile_Customer.php"><button type="button" >Back</button></a>
-								<input type="reset" value="Clear" />
-								<input type="submit" value="Submit" name="submit"/>
-							</div>
+
 						</div>
 					</form>
 				</div>
-				
+								<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
+								<input type="reset"  class="custom-btn btn-3" value="Clear" />
+								<input type="submit" class="custom-btn btn-3" value="Submit" name="submit"/>
 			</section>
 		</div>
 	</div>
