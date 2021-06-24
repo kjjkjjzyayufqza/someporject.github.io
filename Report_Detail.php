@@ -60,7 +60,7 @@
 								<h1 class="font-weight-bolder" style="font-size: 70px;">Report</h1>
 							</div>
 							<div class="col-md-6">
-								<img src="image/pack.jpg" class="float-right" width="300" height="200" />
+								<img src="image/logo_3.png" class="float-right" width="300" height="150" />
 							</div>
 								<div class="col-md-4">
 									<br /><br />
@@ -115,12 +115,9 @@
 							</table>
 						</div>	
 					</div>
-					
-						<div class="col-md-6 my-5">
-							<a href="Generate_Report.php"><input type="button" value="Back"></a>
-							<button onclick="window.print();">Print</button>
-						</div>	
 				</div>
+							<a href="Generate_Report.php"><button class="custom-btn btn-3" value="Back">Back</button></a>
+							<a><button button class="custom-btn btn-3" onclick="window.print();">Print</button></a>
 			</section>
 		</div>
 		
