@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -62,38 +62,49 @@
 							<div class="col-md-6">
 								<img src="image/logo_3.png" class="float-right" width="300" height="150" />
 							</div>
-								<div class="col-md-4">
-									<br /><br />
-									<h2 class="h4">Air Waybill’s Number :</h2>
-									<h2 class="h4">xxxxxx</h2>
-								</div>
-								<div class="col-md-4">
-									<br /><br />
-									<h2 class="h4">Staff’s ID :</h2>
-									<h2 class="h4">xxxxxx</h2>
-								</div>
-								<div class="col-md-4">
-									<br /><br />
-									<h2 class="h4">Date :</h2>
-									<h2 class="h4">xxxxxx</h2>
-								</div>
-							
-						<div class="col-md-6">
-							<br />
-							<h2 class="h4">Sender's Information</h2>
-							<hr />
-							<h2 class="h5">Email :</h2>
-							<h2 class="h5">Name :</h2>
-						</div>
-
-						<div class="col-md-6">
-							<br />
-							<h2 class="h4">Receiver's Information</h2>
-							<hr />
-							<h2 class="h5">Name :</h2>
-							<h2 class="h5">Phone Number :</h2>
-							<h2 class="h5">Address :</h2>
-						</div>
+							<?php
+								require_once("conn.php");
+								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								while($rc = mysqli_fetch_assoc($rs)){
+									$array = array("airWaybillNo", "staffID", "date");
+									$name = array("Air Waybill’s Number :", "Staff’s ID :", "Date :");
+									for($i = 0; $i < 3 ; $i++){
+										printf(
+										'<div class="col-md-4">
+										<br /><br />
+										<h2 class="h4">%s</h2>
+										<h2 class="h4">%s</h2>
+										</div>'
+										, $name[$i], $rc[$array[$i]]);
+									}
+									
+									$array = array("customerEmail", "customerName");
+									printf(
+									'<div class="col-md-6">
+									<br />
+									<h2 class="h4">Sender\'s Information</h2>
+									<hr />
+									<h2 class="h5">Email : %s</h2>
+									<h2 class="h5">Name : %s</h2>
+									</div>'
+									, $rc[$array[0]], $rc[$array[1]]
+									);
+									
+									$array = array("receiverName", "receiverPhoneNumber", "receiverAddress");
+									printf(
+									'<div class="col-md-6">
+									<br />
+									<h2 class="h4">Receiver\'s Information</h2>
+									<hr />
+									<h2 class="h5">Name : %s</h2>
+									<h2 class="h5">Phone Number : %s</h2>
+									<h2 class="h5">Address : %s</h2>
+									</div>'
+									, $rc[$array[0]], $rc[$array[1]], $rc[$array[2]]
+									);
+								}
+							?>
 						<div class="col-md-12">
 						<hr />
 						<h2 class="h4">Shipment Detail</h2>
@@ -102,16 +113,18 @@
 											<th>Weight</th>
 											<th>Total Price</th>
 										</tr>
-
-										<tr>
-											<td>xxxxxxx</td>
-											<td>xxxxxxx</td>
-										</tr>
-
-										<tr>
-											<td>xxxxxxx</td>
-											<td>xxxxxxx</td>
-										</tr>
+										<?php
+										$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
+										$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+										$array = array("weight", "totalPrice");
+										while($rc = mysqli_fetch_assoc($rs)){
+										echo "<tr>";
+										for($i = 0; $i < 2 ; $i++){
+											printf('<td>%s</td>', $rc[$array[$i]]);
+										}
+										echo '</tr>';
+										}
+										?>
 							</table>
 						</div>	
 					</div>

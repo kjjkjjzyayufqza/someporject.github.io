@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,31 +64,39 @@
 					</div>
 				</div>
 				<div class="container-fluid px-3 px-md-0 ">
+				<form id= method="get" action="">
 					<div class="row">
 						<div class="col-md-6">
 							<h2 class="h4">Airwaybill’s Number :</h2>
+						</div>
+						<div class="col-md-6">
+							<h2 class="h4">1</h2>
+						</div>
+						<div class="col-md-6">
 							<h2 class="h4">Shipment Status :</h2>
+						</div>
+						<div class="col-md-6">
+							<h2 class="h3">
+								<select name="status" id="status">
+									<option value="Waiting for Confirmation">Waiting for Confirmation</option>
+									<option value="Confirmed">Confirmed</option>
+									<option value="In Transit">In Transit</option>
+									<option value="Delivering">Delivering</option>
+									<option value="Completed">Completed</option>
+								</select>
+							</h2>
+						</div>
+						<div class="col-md-6">
 							<h2 class="h4">Current Location :</h2>
 						</div>
-
 						<div class="col-md-6">
-							<form id= method="get" action="">
-								<h2 class="h4">xxxxxx</h2>
-								<h2 class="h3">
-									<select name="status" id="status">
-										<option value="Waiting for Confirmation">Waiting for Confirmation</option>
-										<option value="Confirmed">Confirmed</option>
-										<option value="In Transit">In Transit</option>
-										<option value="Delivering">Delivering</option>
-										<option value="Completed">Completed</option>
-									</select>
-								</h2>
-								<h2 class="h5"><input type="text" /></h2>
-								<h2 class="h4"><input type="submit" class="float-right mx-5 custom-btn btn-3" value="Update" /></h2>
-								
-							</form>
+							<h2 class="h5"><input type="text" /></h2>
+						</div>
+						<div class="col-md-12">
+							<h2 class="h4"><input type="submit" class="float-right mx-5 custom-btn btn-3" value="Update" /></h2>	
 						</div>
 					</div>
+				</form>
 				</div>
 				<div class="row my-5">
 					<table class="table table-hover">
@@ -98,17 +106,20 @@
 							<th>Current Location</th>
 						</tr>
 
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						<?php
+							require_once("conn.php");
+							$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = '1' ORDER BY recordDateTime DESC";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+								while($rc = mysqli_fetch_assoc($rs)){
+									$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+									echo "<tr>";
+									for($i = 0; $i < 3 ; $i++){
+										printf('<td>%s</td>', $array[$i]);
+									}
+									echo "</tr>";
+								}
+						?>
 
 					</table>
 				</div>

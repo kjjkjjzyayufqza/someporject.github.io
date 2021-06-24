@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -65,13 +65,19 @@
 								<th>Date</th>
 								<th></th>
 							</tr>
-
-							<tr>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td>xxxxxx</td>
-								<td><span><a href="Report_Detail.php"></a></span></td>
+							<?php
+								require_once("conn.php");
+								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								$array = array("airWaybillNo", "customerName", "receiverName", "date");
+								while($rc = mysqli_fetch_assoc($rs)){
+									echo "<tr>";
+									for($i = 0; $i < 3 ; $i++){
+										printf('<td>%s</td>', $rc[$array[$i]]);
+									}
+									echo '<td><span><a href="Report_Detail.php"></a></span></td></tr>';
+								}
+							?>
 							</tr>
 						</table>
 					</div>

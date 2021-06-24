@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -102,9 +102,9 @@
 						</div>
 					</form>
 				</div>
-								<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
-								<input type="reset"  class="custom-btn btn-3" value="Clear" />
-								<input type="submit" class="custom-btn btn-3" value="Submit" name="submit"/>
+					<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
+					<button class="custom-btn btn-3">Clear</button>
+					<button class="custom-btn btn-3 ml-3">Submit</button>
 			</section>
 		</div>
 	</div>

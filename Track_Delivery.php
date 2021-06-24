@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -50,6 +50,7 @@
 			</nav>
 		</aside> 
 
+	
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
@@ -67,21 +68,25 @@
 				</div>
 				<div class="container-fluid px-3 px-md-0 ">
 					<div class="row">
-						<div class="col-md-6">
-							<h2 class="h4">Air Waybill’s Number :</h2>
-							<h2 class="h4">Sender’s Name :</h2>
-							<h2 class="h4">Receiver’s Name :</h2>
-							<h2 class="h4">Receiver’s Phone Number :</h2>
-							<h2 class="h4">Parcel’s Weight :</h2>
-						</div>
-
-						<div class="col-md-6">
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-							<h2 class="h4">xxxxxxx</h2>
-						</div>
+						<?php
+							require_once("conn.php");
+							$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");
+							$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
+							while($rc = mysqli_fetch_assoc($rs)){
+								for($i = 0; $i < 5 ; $i++){
+									printf('
+									<div class="col-md-6">
+									<h2 class="h4">%s</h2>
+									</div>
+									<div class="col-md-6">
+									<h2 class="h4">%s</h2>
+									</div>', $name[$i], $rc[$array[$i]]);
+								}
+							}
+							
+						?>
 					</div>
 				</div>
 				<div class="row my-5">
@@ -91,18 +96,19 @@
 							<th>Shipment Status</th>
 							<th>Current Location</th>
 						</tr>
-
-						<tr>
-							<td>xxxxxxx</td>
-							<td>xxxxxxx</td>
-							<td>xxxxxxx</td>
-						</tr>
-
-						<tr>
-							<td>xxxxxxx</td>
-							<td>xxxxxxx</td>
-							<td>xxxxxxx</td>
-						</tr>
+						<?php
+							$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = '1' ORDER BY recordDateTime DESC";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+								while($rc = mysqli_fetch_assoc($rs)){
+									$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+									echo "<tr>";
+									for($i = 0; $i < 3 ; $i++){
+										printf('<td>%s</td>', $array[$i]);
+									}
+									echo "</tr>";
+								}
+						?>
 
 					</table>
 				</div>

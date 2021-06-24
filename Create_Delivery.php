@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -98,7 +98,7 @@
 						</div>
 						<div class="row mt-3">
 							<div class="col-12 col-sm-4">
-								<h2 class="h5">Location ID</h2>
+								<h2 class="h5">Location</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
 							<h2 class="h3">

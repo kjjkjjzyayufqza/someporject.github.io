@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -73,8 +73,8 @@
 
 					</div>
 				</div>
-								<button class="custom-btn btn-3">Confirm</button>
-								<button class="custom-btn btn-3">Delete</button>
+						<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
+						<button class="custom-btn btn-3">Delete</button>
 			</section>
 		</div>
 	</div>

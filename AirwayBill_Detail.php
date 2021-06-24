@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -58,27 +58,28 @@
 						<div class="col-md-12 mb-4">
 							<h1 class="h2">Delivery Detail</h1>
 						</div>
-						<div class="col-md-6">
-							<h2 class="h4">Air Waybill’s Number :</h2>
-							<h2 class="h4">Sender’s Name :</h2>
-							<h2 class="h4">Receiver’s Name :</h2>
-							<h2 class="h4">Receiver’s Phone Number :</h2>
-							<h2 class="h4">Parcel’s Weight :</h2>
-						</div>
-
-						<div class="col-md-6">
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-							<h2 class="h4">xxxxxx</h2>
-						</div>
+							<?php
+								require_once("conn.php");
+								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :", "Parcel’s Weight :");
+								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
+								while($rc = mysqli_fetch_assoc($rs)){
+									for($i = 0; $i < 5 ; $i++){
+										printf('
+										<div class="col-md-6">
+										<h2 class="h4">%s</h2>
+										</div>
+										<div class="col-md-6">
+										<h2 class="h4">%s</h2>
+										</div>', $name[$i], $rc[$array[$i]]);
+									}
+								}
+							?>
 						<div class="col-md-6 my-5">
-							<form id="" method="get" action="">
-								<a href="Update_AirwayBill.php"><button class="custom-btn btn-3">Back</button></a>
-								<button class="custom-btn btn-3">Confirm</button>
-								<button class="custom-btn btn-3">Delete</button>
-							</form>
+							<a href="Update_AirwayBill.php"><button class="custom-btn btn-3">Back</button></a>
+							<button class="custom-btn btn-3">Confirm</button>
+							<button class="custom-btn btn-3">Delete</button>
 						</div>
 					</div>
 				</div>

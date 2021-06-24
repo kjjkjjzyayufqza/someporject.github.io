@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Menu</title>
+  	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -49,13 +49,6 @@
 				</ul>
 			</nav>
 		</aside> 
-	<?php
-
-		require_once("conn.php");
-		$sql = "SELECT * from Staff";
-		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-
-	?>
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
@@ -63,20 +56,24 @@
 						<div class="col-md-12 mb-4">
 							<h1 class="h2">View Profile</h1>
 						</div>
-						<div class="col-md-6">
-							<h2 class="h4">staffID</h2>
-							<h2 class="h4">staffName</h2>
-						</div>
-						<div class="col-md-6">
 						<?php
+							require_once("conn.php");
+							$sql = "SELECT * from Staff";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								$name = array("staffID :", "staffName :");
 								$array = array("staffID", "staffName");
-								while($rc = mysqli_fetch_assoc($rs)){
-									for($i = 0; $i < 2 ; $i++){
-										printf('<h2 class="h4">%s</h2>', $rc[$array[$i]]);
-									}
+								for($i = 0; $i < 2 ; $i++){
+									printf('
+									<div class="col-md-6">
+									<h2 class="h4">%s</h2>
+									</div>
+									<div class="col-md-6">
+									<h2 class="h4">%s</h2>
+									</div>', $name[$i] ,$rc[$array[$i]]);
 								}
-							?>
-						</div>
+							}
+						?>
 						<div class="col-sm-3">
 							<a href="Change_Password_Profile_Staff.php"><button class="custom-btn btn-3">Change Password</button></a>
 						</div>
