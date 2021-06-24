@@ -69,14 +69,6 @@
 									<div class="col-12 col-sm-8 text-secondary font-weight-bold">
 									<input type="text" class="form-control" name="name" value="">
 								</div>
-								</div>
-							<div class="row mt-3">
-								<div class="col-12 col-sm-4">
-									<h2 class="h5">Email</h2>
-								</div>
-								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" class="form-control" name="email" value="">
-								</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-12 col-sm-4">
