@@ -20,7 +20,7 @@
 								printf('
 									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 									<i class="fa fa-user" aria-hidden="true"></i>  Staff - %s|
-									<a class="text-white font-weight-bold" href="index.html">Logout</a>',$rc[$array[0]]);
+									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
 							}
 
 ?>
@@ -64,7 +64,7 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-								<h1 class="h2">Track Delivery</h1>
+								<h1 class="h2">Update Delivery</h1>
 						</div>
 						<div class="col-md-2 my-4">
 							<h2 class="h4">Airway Bill No: </h2>

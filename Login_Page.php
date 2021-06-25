@@ -19,16 +19,8 @@
 	
 
 	<script src="js/modernizr.js"></script>
-
-
-
-	
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-
-<style>
-
-</style>
+	
 </head>
 
 <body onload="startTime()">
@@ -48,17 +40,19 @@
         </form>
       </div>
 
+
       <!-- 登录 -->
       <div class="signin">
         <h1>Sign In</h1>
-        <form class="more-padding" autocomplete="off">
-          <input type="text" placeholder="Username">
-          <input type="password" placeholder="Password">
+        <form class="more-padding" autocomplete="off" id="login" action="login.php" method="post">
+          <input type="text" name="user" placeholder="Username">
+          <input type="password" name="pwd" placeholder="Password">
           <div class="checkbox">
             <input type="checkbox" id="remember" /><label for="remember">Remember Me</label>
           </div>
-          <button class="buttom sumbit"><a href="Menu_Customer.php">Login</a></button>
         </form>
+		<br />
+		<button type="submit" class="buttom sumbit" form="login" value="Submit">Login</button>
       </div>
     </div>
 

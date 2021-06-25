@@ -21,7 +21,7 @@
 								printf('
 									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 									<i class="fa fa-user" aria-hidden="true"></i>  Customer - %s|
-									<a class="text-white font-weight-bold" href="index.html">Logout</a>',$rc[$array[0]]);
+									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
 							}
 
 ?>
@@ -67,16 +67,16 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Delivery Detail</h1>
+							<h1 class="h2">Airway Bill Detail</h1>
 						</div>
 							<?php
 								require_once("conn.php");
 								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :", "Parcel’s Weight :");
-								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
+								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
+								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber");
 								while($rc = mysqli_fetch_assoc($rs)){
-									for($i = 0; $i < 5 ; $i++){
+									for($i = 0; $i < 4 ; $i++){
 										printf('
 										<div class="col-md-6">
 										<h2 class="h4">%s</h2>
@@ -87,6 +87,12 @@
 									}
 								}
 							?>
+							<div class="col-md-6">
+								<h2 class="h4">Parcel’s Weight :</h2>
+							</div>
+							<div class="col-md-6">
+								<h2 class="h4"><input type="text" name="weight" /></h2>
+							</div>
 						<div class="col-md-6 my-5">
 							<a href="Update_AirwayBill.php"><button class="custom-btn btn-3">Back</button></a>
 							<button class="custom-btn btn-3">Confirm</button>
