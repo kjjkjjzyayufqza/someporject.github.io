@@ -7,6 +7,9 @@
 		if($user == $rc['customerEmail'] && $pwd == $rc['customerPassword']){
 			header('Location: Menu_Customer.php');
 		}
+		else {
+			header('Location: Login_Page.html');
+		}
 	}
 	
 	$sql = "SELECT staffID, staffPassword FROM staff";
@@ -14,6 +17,9 @@
 	while($rc = mysqli_fetch_assoc($rs)){
 		if($user == $rc['staffID'] && $pwd == $rc['staffPassword']){
 			header('Location: Menu_Staff.php');
+		}
+		else {
+			header('Location: Login_Page.html');
 		}
 	}
 	
