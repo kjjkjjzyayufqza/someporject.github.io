@@ -21,11 +21,7 @@
 								printf('
 									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 									<i class="fa fa-user" aria-hidden="true"></i>  Staff - %s|
-<<<<<<< Updated upstream
 									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
-=======
-									<a class="text-white font-weight-bold" href="index.html">Logout</a>',$rc[$array[0]]);
->>>>>>> Stashed changes
 							}
 
 ?>
@@ -68,6 +64,7 @@
 
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
+			<form  method="post">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
@@ -79,7 +76,7 @@
 								<h2 class="h5">Original</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="originalpass" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -87,7 +84,7 @@
 								<h2 class="h5">New</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="newpass" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -95,7 +92,7 @@
 								<h2 class="h5">Re-enter </h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="repass" value="">
 							</div>
 						</div>
 						</div>
@@ -104,14 +101,61 @@
 					</div>
 					<br />
 				</div>
-							<a href="Personal_Profile_Staff.php"><button class="custom-btn btn-3">Back</button></a>
-							<button class="custom-btn btn-3">Save</button>
+							<a href="Personal_Profile_Staff.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
+					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
+					</form>
 			</section>
 		</div>
 	</div>
 
 	</section>
+<?php
+if(isset($_POST['submit']))
+{	
 
+							//get data
+							$sql = "SELECT * from staff";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+								$array = array("staffName", "staffPassword");
+								$arrarysave = $rc[$array[0]];
+								$arrarysavepass = $rc[$array[1]];
+							}
+								//set updata
+	$originalpass = $_POST['originalpass'];
+	$newpass = $_POST['newpass'];
+	$repass = $_POST['repass'];
+	require_once("conn.php");
+	
+	//check pass
+	if($originalpass == $arrarysavepass && $newpass == $repass){
+		$sql = "UPDATE staff SET staffPassword ='{$newpass}' WHERE staffName = '{$arrarysave}'";
+
+		if (mysqli_query($conn, $sql)) {
+		  printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Password Change 成功</font></h1></div></div></div></div>');
+		} else {
+		  echo "Error updating record: " . mysqli_error($conn);
+		}
+		mysqli_close($conn);
+	}else{
+		printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');
+							
+	}
+
+}
+
+
+?>
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>

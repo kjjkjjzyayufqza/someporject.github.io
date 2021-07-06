@@ -62,8 +62,10 @@
 			</nav>
 		</aside> 
 
+
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
+			<form  method="post">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
@@ -75,7 +77,7 @@
 								<h2 class="h5">Original</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="originalpass" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -83,7 +85,7 @@
 								<h2 class="h5">New</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="newpass" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -91,21 +93,73 @@
 								<h2 class="h5">Re-enter </h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="repass" value="">
 							</div>
 						</div>
 						</div>
 
 					</div>
 				</div>
-							<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
-							<button class="custom-btn btn-3">Save</button>
+				<br />
+					<a href="Personal_Profile_Customer.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
+					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
+				</form>
+					
 			</section>
+
 		</div>
+
 	</div>
 
-	</section>
 
+	</section>
+<?php
+if(isset($_POST['submit']))
+{	
+
+							//get data
+							$sql = "SELECT * from customer";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+								$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
+								$arrarysave = $rc[$array[1]];
+								$arrarysavepass = $rc[$array[2]];
+							}
+								//set updata
+	$originalpass = $_POST['originalpass'];
+	$newpass = $_POST['newpass'];
+	$repass = $_POST['repass'];
+	require_once("conn.php");
+	
+	//check pass
+	if($originalpass == $arrarysavepass && $newpass == $repass){
+		$sql = "UPDATE customer SET customerPassword ='{$newpass}' WHERE customerEmail = '{$arrarysave}'";
+
+		if (mysqli_query($conn, $sql)) {
+		  printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Password Change 成功</font></h1></div></div></div></div>');
+		} else {
+		  echo "Error updating record: " . mysqli_error($conn);
+		}
+		mysqli_close($conn);
+	}else{
+		printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');
+							
+	}
+
+}
+
+
+?>
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>

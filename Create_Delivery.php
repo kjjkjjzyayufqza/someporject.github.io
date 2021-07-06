@@ -62,6 +62,32 @@
 			</nav>
 		</aside> 
 
+						<?php
+						require_once("conn.php");// Using database connection file here
+
+						if(isset($_POST['submit']))
+						{		
+							
+							$Email = $_POST['Email'];
+							$Name = $_POST['Name'];
+							$Phone = $_POST['Phone'];
+							$Address = $_POST['Address'];
+							$data = date_default_timezone_get();
+							//$sql = "INSERT INTO `airwaybill`(`airWaybillNo`, `customerEmail`, `staffID`, `locationID`, `date`, `receiverName`, `receiverPhoneNumber`, `receiverAddress`) VALUES (9,'$Email',9,'$Address','$data','$Name','$Phone','$Address')";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							if(!$rs)
+							{
+								echo mysqli_error();
+							}
+							else
+							{
+								echo "Records added successfully.";
+							}
+						}
+
+						//mysqli_close($db); // Close connection
+						?>
+<form id="createdelivery" method="post" action="">
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
@@ -76,7 +102,7 @@
 									<h2 class="h5">Email</h2>
 								</div>
 								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" class="form-control" name="" value="">
+									<input type="text" class="form-control" name="Email" value="">
 								</div>
 								
 							</div>
@@ -88,7 +114,7 @@
 								<h2 class="h5">Name</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="Name" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -96,7 +122,7 @@
 								<h2 class="h5">Phone</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="Phone" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -104,7 +130,7 @@
 								<h2 class="h5">Address</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="Address" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -113,7 +139,7 @@
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
 							<h2 class="h3">
-								<select name="location" id="location">
+								<select name="location" id="location" οnchange="checkselect(this.options[this.selectedIndex].text)">
 										<option value="Shanghai">Shanghai China</option>
 										<option value="Australia">Australia</option>
 										<option value="Japan">Japan</option>
@@ -128,11 +154,20 @@
 						</div>
 					</div>
 				</div>
-								<button class="custom-btn btn-3">Confirm</button>
-								<button class="custom-btn btn-3">Reset</button>
+						
+								<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+								<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
+
+
 			</section>
 		</div>
+</form>
 
+	<script language="javascript">
+	function fuzhi(a){
+		document.getElementById("select_content").value=a;//
+		}
+	</script>
 	</section>
 
 	<script src="js/jquery.min.js"></script>

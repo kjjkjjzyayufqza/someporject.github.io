@@ -21,11 +21,7 @@
 								printf('
 									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 									<i class="fa fa-user" aria-hidden="true"></i>  Staff - %s|
-<<<<<<< Updated upstream
 									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
-=======
-									<a class="text-white font-weight-bold" href="index.html">Logout</a>',$rc[$array[0]]);
->>>>>>> Stashed changes
 							}
 
 ?>

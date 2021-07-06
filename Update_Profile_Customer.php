@@ -63,11 +63,11 @@
 		</aside> 
 
 
-		
+<form action="" method="post">
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
-					<form action="updateProfile.php" method="post">
+					
 						<div class="row">
 							<div class="col-md-12 mb-4">
 								<h1 class="h2">Update Profile</h1>
@@ -103,16 +103,46 @@
 							</div>
 
 						</div>
-					</form>
+					
 				</div>
-					<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
-					<button class="custom-btn btn-3">Clear</button>
-					<button class="custom-btn btn-3 ml-3">Submit</button>
+				<br />
+				<a href="Personal_Profile_Customer.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
+					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
 			</section>
 		</div>
 	</div>
+</form>
+<?php
+if(isset($_POST['submit']))
+{	
+
+							//get data
+							$sql = "SELECT * from customer";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+								$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
+								$arrarysave = $rc[$array[1]];
+							}
+								//set updata
+	$name = $_POST['name'];
+	$phone = $_POST['phone'];
+	$address = $_POST['address'];
+	require_once("conn.php");
+
+	$sql = "UPDATE customer SET customerName ='{$name}' , phoneNumber ='{$phone}' , address ='{$address}' WHERE customerEmail = '{$arrarysave}'";
+
+	if (mysqli_query($conn, $sql)) {
+	  echo "Record updated successfully";
+	} else {
+	  echo "Error updating record: " . mysqli_error($conn);
+	}
+	mysqli_close($conn);
+}
 
 
+?>
 	</section>
 
 	<script src="js/jquery.min.js"></script>
