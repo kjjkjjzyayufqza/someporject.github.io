@@ -53,6 +53,7 @@
 
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
+			<form  method="post">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
@@ -65,7 +66,7 @@
 								<h2 class="h5">Password</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="" value="">
+								<input type="text" class="form-control" name="originalpass" value="">
 							</div>
 						</div>
 						</div>
@@ -73,14 +74,53 @@
 
 					</div>
 				</div>
-						<a href="Personal_Profile_Customer.php"><button class="custom-btn btn-3">Back</button></a>
-						<button class="custom-btn btn-3">Delete</button>
+				<br/>
+						<a href="Personal_Profile_Customer.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
+						<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+						</form>
 			</section>
+
 		</div>
 	</div>
 
 	</section>
+<?php
+if(isset($_POST['submit']))
+{	
 
+							//get data
+							require_once("header.php");
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+								$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
+								$arrarysave = $rc[$array[1]];
+								$arrarysavepass = $rc[$array[2]];
+							}
+							
+						$originalpass = $_POST['originalpass'];
+						if(empty($originalpass) || $originalpass != $arrarysavepass){
+							printf('<div id="colorlib-main">
+										<div class="container-fluid px-3 px-md-0">
+										<div class="row">
+											<div class="col-md-12 mb-4">
+												<h1 class="h2"><font color="red">Password Error !!</font></h1></div></div></div></div>');
+						}else{
+							$Email = $arrarysave;
+							//$data = date_default_timezone_get();
+							$sql = "DELETE FROM `customer` WHERE `customer`.`customerEmail` = \"" . $_SESSION['user']. "\"";
+							if (mysqli_query($conn, $sql)) {
+							  printf('<div id="colorlib-main">
+										<div class="container-fluid px-3 px-md-0">
+										<div class="row">
+											<div class="col-md-12 mb-4">
+												<h1 class="h2"><font color="red">Password Change success</font></h1></div></div></div></div>');
+							}else {
+								  echo "Error updating record: " . mysqli_error($conn);
+								}
+						}
+}
+?>
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>

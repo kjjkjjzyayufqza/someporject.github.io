@@ -108,7 +108,7 @@ if(isset($_POST['submit']))
 {	
 
 							//get data
-							$sql = "SELECT * from customer";
+							require_once("header.php");
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){
 								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
@@ -131,7 +131,7 @@ if(isset($_POST['submit']))
 					<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Password Change 成功</font></h1></div></div></div></div>');
+							<h1 class="h2"><font color="red">Password Change success</font></h1></div></div></div></div>');
 		} else {
 		  echo "Error updating record: " . mysqli_error($conn);
 		}
