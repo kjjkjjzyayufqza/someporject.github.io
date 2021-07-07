@@ -66,7 +66,7 @@
 								<th></th>
 							</tr>
 							<?php
-								require_once("conn.php");
+								//require_once("conn.php");
 								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								$array = array("airWaybillNo", "customerName", "receiverName", "date");
@@ -77,6 +77,9 @@
 									}
 									printf('<td><span><a href="Report_Detail.php?airWaybillNo=%s"></a></span></td></tr>', $rc["airWaybillNo"]);
 								}
+								
+								mysqli_free_result($rs);
+								mysqli_close($conn);
 							?>
 							</tr>
 						</table>

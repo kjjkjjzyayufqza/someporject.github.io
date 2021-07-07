@@ -64,7 +64,7 @@
 							</div>
 							<?php
 								require_once("conn.php");
-								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = " . $_GET["airWaybillNo"];
+								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] ."\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								while($rc = mysqli_fetch_assoc($rs)){
 									$array = array("airWaybillNo", "staffID", "date");
