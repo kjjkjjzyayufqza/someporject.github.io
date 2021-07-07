@@ -11,19 +11,8 @@
 
 	</head>
 	<body>
-	<?php
-							require_once("conn.php");
-							$sql = "SELECT * from staff";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("staffID");
-								printf('
-									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-									<i class="fa fa-user" aria-hidden="true"></i>  Staff - %s|
-									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
-							}
-
+<?php
+	require_once("header.php");
 ?>
 	</div>
 	<div id="colorlib-page">
@@ -78,7 +67,7 @@
 
 							<?php
 							require_once("conn.php");
-							$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
+							$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							$array = array("airWaybillNo", "customerName", "date");
 							while($rc = mysqli_fetch_assoc($rs)){
@@ -86,7 +75,7 @@
 								for($i = 0; $i < 3 ; $i++){
 								printf('<td>%s</td>', $rc[$array[$i]]);
 								}
-								echo '<td><span><a href="AirwayBill_Detail.php"></a></span></td></tr>';
+								printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
 							}
 							?>
 						</table>

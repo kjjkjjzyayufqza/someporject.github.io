@@ -10,19 +10,8 @@
 
 	</head>
 	<body>
-	<?php
-							require_once("conn.php");
-							$sql = "SELECT * from staff";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("staffID");
-								printf('
-									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-									<i class="fa fa-user" aria-hidden="true"></i>  Staff - %s|
-									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
-							}
-
+<?php
+	require_once("header.php");
 ?>
 	</div>
 	<div id="colorlib-page">
@@ -75,25 +64,35 @@
 					</div>
 				</div>
 				<div class="container-fluid px-3 px-md-0 ">
-				<form id= method="get" action="">
+				<form method="post" action="status.php" id="status">
 					<div class="row">
 						<div class="col-md-6">
 							<h2 class="h4">Airwaybill’s Number :</h2>
 						</div>
 						<div class="col-md-6">
-							<h2 class="h4">1</h2>
+						<?php
+							if(isset($_GET["q"])){
+								require_once("conn.php");
+								$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								if(mysqli_num_rows($rs) != 0){
+									printf("<h2 class='h4'>%s</h2>", $_GET["q"]);
+									printf("<input type='hidden' name='airWaybillNo' value='%s' >", $_GET["q"]);
+								}
+							}
+						?>
 						</div>
 						<div class="col-md-6">
 							<h2 class="h4">Shipment Status :</h2>
 						</div>
 						<div class="col-md-6">
 							<h2 class="h3">
-								<select name="status" id="status">
-									<option value="Waiting for Confirmation">Waiting for Confirmation</option>
-									<option value="Confirmed">Confirmed</option>
-									<option value="In Transit">In Transit</option>
-									<option value="Delivering">Delivering</option>
-									<option value="Completed">Completed</option>
+								<select name="deliveryStatusID" id="status">
+									<option value="1">Waiting for Confirmation</option>
+									<option value="2">Confirmed</option>
+									<option value="3">In Transit</option>
+									<option value="4">Delivering</option>
+									<option value="5">Completed</option>
 								</select>
 							</h2>
 						</div>
@@ -101,7 +100,7 @@
 							<h2 class="h4">Current Location :</h2>
 						</div>
 						<div class="col-md-6">
-							<h2 class="h5"><input type="text" /></h2>
+							<h2 class="h5"><input type="text" name="currentLocation" /></h2>
 						</div>
 						<div class="col-md-12">
 							<h2 class="h4"><input type="submit" class="float-right mx-5 custom-btn btn-3" value="Update" /></h2>	
@@ -118,18 +117,21 @@
 						</tr>
 
 						<?php
-							require_once("conn.php");
-							$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = '1' ORDER BY recordDateTime DESC";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
-								while($rc = mysqli_fetch_assoc($rs)){
-									$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
-									echo "<tr>";
-									for($i = 0; $i < 3 ; $i++){
-										printf('<td>%s</td>', $array[$i]);
+						
+							if(isset($_GET["q"]) && $_GET["q"]!=""){
+								require_once("conn.php");
+								$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+									while($rc = mysqli_fetch_assoc($rs)){
+										$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+										echo "<tr>";
+										for($i = 0; $i < 3 ; $i++){
+											printf('<td>%s</td>', $array[$i]);
+										}
+										echo "</tr>";
 									}
-									echo "</tr>";
-								}
+							}
 						?>
 
 					</table>
