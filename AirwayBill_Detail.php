@@ -8,9 +8,28 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="css/Menu.css">
+	<script>
+		function unableClick(){
+			var weight = document.getElementById('weight').value;
+			document.getElementById('submit').disabled = true;
+		}
+	
+		function checkWeight(){
+			var weight = document.getElementById('weight').value;
+			if(!isNaN(weight) && weight>0){
+				document.getElementById('submit').disabled = false;
+				document.getElementById('error').innerHTML = "";
+			}else{
+				document.getElementById('submit').disabled = true;
+				var errorMsg = "Please input number!"
+				document.getElementById('error').innerHTML = errorMsg.fontcolor("red");
+			}
+		}
+			
+	</script>
 
 	</head>
-	<body>
+	<body onload="unableClick();">>
 <?php
 	require_once("header.php");
 ?>
@@ -76,7 +95,7 @@
 									}
 								}
 							?>
-							<form action="weight.php" method="post" id="weight">
+							<form action="weight.php" method="post" id="update" onload="unableClick();">
 							<?php
 								printf("<input type='hidden' name='airWaybillNo' value='%s' />", $_GET["airWaybillNo"]);
 							?>
@@ -84,14 +103,18 @@
 									<h2 class="h4" name="weight">Parcel’s Weight :</h2>
 								</div>
 								<div class="col-md-6">
-									<h2 class="h4"><input type="text" name="weight" /></h2>
+									<h2 class="h4"><input type="text" onchange="checkWeight();" name="weight" id="weight" /></h2>
 								</div>
 							<div class="col-md-12 my-5">
 									<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
-								<button type="submit" class="custom-btn btn-3" form="weight" value="Submit">Confirm</button>
+								<button type="submit" class="custom-btn btn-3" style="" id="submit" form="weight" value="Submit">Confirm</button>
 								<button type="reset" class="custom-btn btn-3">Delete</button>
+							</div>
+							
+							<h2 class="h4" id="error"></h2>
 							</form>
-						</div>
+							
+							
 					</div>
 				</div>
 			</section>

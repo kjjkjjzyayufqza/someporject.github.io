@@ -117,7 +117,7 @@
 	require_once("conn.php");
 	
 	//check pass
-	if($originalpass == $arrarysavepass && $newpass == $repass){
+	if($originalpass == $arrarysavepass && $newpass == $repass && strlen($newpass)>=5 ){
 		$sql = "UPDATE staff SET staffPassword ='{$newpass}' WHERE staffName = '{$arrarysave}'";
 
 		if (mysqli_query($conn, $sql)) {
