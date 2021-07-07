@@ -11,19 +11,8 @@
 
 	</head>
 	<body>
-	<?php
-							require_once("conn.php");
-							$sql = "SELECT * from customer";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
-								printf('
-									<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
-									<i class="fa fa-user" aria-hidden="true"></i>  Customer - %s|
-									<a class="text-white font-weight-bold" href="Login_Page.php">Logout</a>',$rc[$array[0]]);
-							}
-
+<?php
+    require_once("header.php");
 ?>
 
 </div>
@@ -70,8 +59,8 @@
 							<h1 class="h2">Personal Profile</h1>
 						</div>
 							<?php
-							require_once("conn.php");
-							$sql = "SELECT * from customer";
+							require_once("header.php");
+							//$sql = "SELECT * from customer";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){
 								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
