@@ -106,8 +106,9 @@
 if(isset($_POST['submit']))
 {	
 
+
 							//get data
-							$sql = "SELECT * from customer";
+							require_once("header.php");
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){
 								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
@@ -118,16 +119,33 @@ if(isset($_POST['submit']))
 	$name = $_POST['name'];
 	$phone = $_POST['phone'];
 	$address = $_POST['address'];
-	require_once("conn.php");
 
+if(empty($name) || empty($phone) || empty($address))
+{
+	printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">All information must be filled !!</font></h1></div></div></div></div>');
+}else {
 	$sql = "UPDATE customer SET customerName ='{$name}' , phoneNumber ='{$phone}' , address ='{$address}' WHERE customerEmail = '{$arrarysave}'";
 
 	if (mysqli_query($conn, $sql)) {
-	  echo "Record updated successfully";
+	  	printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Successfully updated user profile !!</font></h1></div></div></div></div>');
 	} else {
-	  echo "Error updating record: " . mysqli_error($conn);
+	  	printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">wrong !!</font></h1></div></div></div></div>');
 	}
 	mysqli_close($conn);
+}
+
 }
 
 

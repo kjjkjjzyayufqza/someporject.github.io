@@ -83,7 +83,7 @@
 										</div>
 										', $errorms);
 								}else{
-								require_once("conn.php");
+								require_once("header.php");
 								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");

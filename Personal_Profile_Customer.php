@@ -59,8 +59,8 @@
 							<h1 class="h2">Personal Profile</h1>
 						</div>
 							<?php
-							require_once("conn.php");
-							$sql = "SELECT * from customer";
+							require_once("header.php");
+							//$sql = "SELECT * from customer";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){
 								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
