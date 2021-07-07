@@ -2,7 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/api/discountCalculator/<year>")
+@app.route("/api/discountCalculator/<year>", methods=['GET'])
 def process(year=None):
     year = int(year)
     if year > 3 :

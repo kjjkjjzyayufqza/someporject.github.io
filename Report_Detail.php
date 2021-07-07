@@ -129,8 +129,8 @@
 						</div>	
 					</div>
 				</div>
-							<a href="Generate_Report.php"><button class="custom-btn btn-3" value="Back">Back</button></a>
-							<a><button button class="custom-btn btn-3" onclick="window.print();">Print</button></a>
+					<a href="Generate_Report.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+					<a><button button class="custom-btn btn-3" onclick="window.print();">Print</button></a>
 			</section>
 		</div>
 		
