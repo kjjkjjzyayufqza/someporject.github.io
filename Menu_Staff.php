@@ -13,6 +13,8 @@
 	<body>
 <?php
 	require_once("header.php");
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 ?>
 	</div>
 	<div id="colorlib-page">

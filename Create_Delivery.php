@@ -53,7 +53,7 @@
 
 						<?php
 						require_once("conn.php");// Using database connection file here
-
+						
 						if(isset($_POST['submit']))
 						{		
 							
@@ -61,9 +61,10 @@
 							$Name = $_POST['Name'];
 							$Phone = $_POST['Phone'];
 							$Address = $_POST['Address'];
-							$data = date_default_timezone_get();
-							//$sql = "INSERT INTO airwaybill(airWaybillNo, customerEmail,locationID, date, receiverName, receiverPhoneNumber, receiverAddress) VALUES (3,'3','3','$data','3','3')";
-							$sql = "INSERT INTO `airwaybill`(receiverName) VALUES (3)";
+							$Location = $_POST['location'];
+							//$data = date_default_timezone_get();
+							$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
+							//$sql = "INSERT INTO `airwaybill`(receiverName) VALUES (3)";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							if(!$rs)
 							{
@@ -130,10 +131,9 @@
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
 							<h2 class="h3">
 								<select name="location" id="location" οnchange="checkselect(this.options[this.selectedIndex].text)">
-										<option value="Shanghai">Shanghai China</option>
-										<option value="Australia">Australia</option>
-										<option value="Japan">Japan</option>
-										<option value="HongKong">Hong Kong</option>
+										<option value="1">Shanghai China</option>
+										<option value="2">Japan</option>
+										<option value="3">Australia</option>
 								</select>
 							</h2>
 							</div>

@@ -100,18 +100,16 @@
 
 	</section>
 <?php
-if(isset($_POST['submit']))
-{	
-
-							//get data
-							$sql = "SELECT * from staff";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("staffName", "staffPassword");
-								$arrarysave = $rc[$array[0]];
-								$arrarysavepass = $rc[$array[1]];
-							}
+	if(isset($_POST['submit'])){	
+	//get data
+	$sql = "SELECT * from staff WHERE staffID = \"" . $_SESSION['user'] . "\"";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	while($rc = mysqli_fetch_assoc($rs)){
+		$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+		$array = array("staffName", "staffPassword");
+		$arrarysave = $rc[$array[0]];
+		$arrarysavepass = $rc[$array[1]];
+	}
 								//set updata
 	$originalpass = $_POST['originalpass'];
 	$newpass = $_POST['newpass'];
@@ -123,22 +121,21 @@ if(isset($_POST['submit']))
 		$sql = "UPDATE staff SET staffPassword ='{$newpass}' WHERE staffName = '{$arrarysave}'";
 
 		if (mysqli_query($conn, $sql)) {
-		  printf('<div id="colorlib-main">
+			printf('<div id="colorlib-main">
 					<div class="container-fluid px-3 px-md-0">
 					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Password Change 成功</font></h1></div></div></div></div>');
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Password Change 成功</font></h1></div></div></div></div>');
 		} else {
-		  echo "Error updating record: " . mysqli_error($conn);
+			echo "Error updating record: " . mysqli_error($conn);
 		}
 		mysqli_close($conn);
 	}else{
 		printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');
-							
+				<div class="container-fluid px-3 px-md-0">
+				<div class="row">
+				<div class="col-md-12 mb-4">
+				<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');		
 	}
 
 }

@@ -27,5 +27,8 @@
 	if (!isset($_SESSION['user'])) {
        header('Location: Login_Page.html');
     }
+	
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 
 ?>

@@ -59,7 +59,7 @@
 							<h1 class="h2">Airway Bill Detail</h1>
 						</div>
 							<?php
-								require_once("conn.php");
+								//require_once("conn.php");
 								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
@@ -87,7 +87,7 @@
 									<h2 class="h4"><input type="text" name="weight" /></h2>
 								</div>
 							<div class="col-md-12 my-5">
-								<a href="Update_AirwayBill.php"><button class="custom-btn btn-3">Back</button></a>
+									<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
 								<button type="submit" class="custom-btn btn-3" form="weight" value="Submit">Confirm</button>
 								<button type="reset" class="custom-btn btn-3">Delete</button>
 							</form>

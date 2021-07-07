@@ -72,7 +72,7 @@
 						<div class="col-md-6">
 						<?php
 							if(isset($_GET["q"])){
-								require_once("conn.php");
+								//require_once("conn.php");
 								$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								if(mysqli_num_rows($rs) != 0){
@@ -119,7 +119,7 @@
 						<?php
 						
 							if(isset($_GET["q"]) && $_GET["q"]!=""){
-								require_once("conn.php");
+								//require_once("conn.php");
 								$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
@@ -132,6 +132,9 @@
 										echo "</tr>";
 									}
 							}
+							
+							mysqli_free_result($rs);
+							mysqli_close($conn);
 						?>
 
 					</table>
