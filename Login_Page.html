@@ -20,6 +20,50 @@
 
 	<script src="js/modernizr.js"></script>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	//check all data
+		function Check(){
+			var Email = document.getElementById('Email').value;
+			var password = document.getElementById('Password').value;
+			var cpassword = document.getElementById('cPassword').value;
+			var Register = document.getElementById('Register');
+
+			if(isEmail(Email))
+			{
+				if(password == cpassword)
+				{
+					if(password.length >= 6 && cpassword.length >= 6)
+					{
+						Register.submit();
+					}
+					else
+					{
+						alert("Password length must be between 6-25 characters！")
+					}
+				}
+				else
+				{
+					alert("The two passwords entered are inconsistent！");
+				}
+			}
+			else
+			{
+				alert("Please confirm that your email address is correct！");   
+			}
+
+		}
+
+		function isEmail(email) {
+			var strEmail = email;
+			if (strEmail.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) 
+			{ 
+					return true; 
+			}else{ 
+
+					return false; 
+			}
+		}
+	</script>
 	
 </head>
 
@@ -31,13 +75,14 @@
       <!-- 注册 -->
       <div class="signup nodisplay">
         <h1>Register</h1>
-        <form autocomplete="off">
-          <input type="text" placeholder="Username">
-          <input type="email" placeholder="Email">
-          <input type="password" placeholder="Password">
-          <input type="password" placeholder="Confirm Password">
-          <button class="button submit">Create Account</button>
+		<form class="more-padding" autocomplete="off" id="Register" action="Create_Account.php" method="post">
+          <input type="text" placeholder="Username" id="Username" name="Username">
+          <input type="email" placeholder="Email" id="Email" name="Email">
+          <input type="password" placeholder="Password" id="Password" name="Password">
+          <input type="password" placeholder="Confirm Password" id="cPassword" name="cPassword">
+          
         </form>
+		<button class="button submit" id="sbutton"  Onclick="Check();">Create Account</button>
       </div>
 
 

@@ -52,7 +52,7 @@
 		</aside> 
 
 						<?php
-						require_once("conn.php");// Using database connection file here
+						require_once("header.php");// Using database connection file here
 						
 						if(isset($_POST['submit']))
 						{		
@@ -78,7 +78,12 @@
 							}
 							else
 							{
-								echo "Records added successfully.";
+								printf('<div id="colorlib-main">
+											<div class="container-fluid px-3 px-md-0">
+											<div class="row">
+												<div class="col-md-12 mb-4">
+													<h1 class="h2"><font color="red">Created successfully !!</font></h1></div></div></div></div>');
+													
 							}
 						}
 
