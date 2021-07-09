@@ -9,19 +9,28 @@
 	
 	<link rel="stylesheet" href="css/Menu.css">
 	<script>
+		var max;
 		function unableClick(){
-			var weight = document.getElementById('weight').value;
+			var locationID = document.getElementById('locationID').value;
 			document.getElementById('submit').disabled = true;
+			if(locationID == 3){
+				max = 5;
+				document.getElementById('weight').max = max;
+			}else{
+				max = 10;
+				document.getElementById('weight').max = max;
+			}
 		}
 	
 		function checkWeight(){
 			var weight = document.getElementById('weight').value;
-			if(!isNaN(weight) && weight>0){
+			var errorMsg;
+			if(weight >= 1 && weight <= max){
 				document.getElementById('submit').disabled = false;
 				document.getElementById('error').innerHTML = "";
 			}else{
 				document.getElementById('submit').disabled = true;
-				var errorMsg = "Please input number!"
+				errorMsg = "Please enter the weight between 1kg to " + max + "kg";
 				document.getElementById('error').innerHTML = errorMsg.fontcolor("red");
 			}
 		}
@@ -101,24 +110,34 @@
 								$sql = "SELECT locationID, accountCreationDate FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								while($rc = mysqli_fetch_assoc($rs)){
-									printf("<input type='hidden' name='locationID' value='%s' />", $rc["locationID"]);
+									printf("<input type='hidden' id='locationID' name='locationID' value='%s' />", $rc["locationID"]);
 									printf("<input type='hidden' name='accountCreationDate' value='%s' />", $rc["accountCreationDate"]);
 								}
 							?>
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<h2 class="h4" name="weight">Parcel’s Weight :</h2>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<h2 class="h4"><input type="number" style="width: 10em" max="10" min="1" onchange="checkWeight();" name="weight" id="weight" /></h2>
 								</div>
 								<div class="col-md-12 my-5">
-									<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+									<a href="Update_AirwayBill.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
 									<button type="submit" class="custom-btn btn-3" id="submit" form="update" value="Submit">Confirm</button>
-									<button type="reset" class="custom-btn btn-3">Delete</button>
-								</div>
-							
-								<h2 class="h4" id="error"></h2>
+								
 							</form>
+							<form action="deleteAirwayBill.php" method="post" id="deleteAirway" style="display:inline;">
+								<?php
+									printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
+								?>
+								
+								<button type="submit" class="custom-btn btn-3" id="delete" name="delete" form="deleteAirway" value="Submit">Delete</button>
+								</div>	
+							</form>
+							
+							
+							<h2 class="h4" id="error"></h2>
+								
+							
 							
 							
 					</div>

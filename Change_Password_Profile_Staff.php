@@ -65,7 +65,7 @@
 								<h2 class="h5">Original</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="originalpass" value="">
+								<input type="password" class="form-control" name="originalpass" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -73,7 +73,7 @@
 								<h2 class="h5">New</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="newpass" value="">
+								<input type="password" class="form-control" name="newpass" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -81,7 +81,7 @@
 								<h2 class="h5">Re-enter </h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="repass" value="">
+								<input type="password" class="form-control" name="repass" value="">
 							</div>
 						</div>
 						</div>
