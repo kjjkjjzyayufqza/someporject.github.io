@@ -62,28 +62,40 @@
 							$Phone = $_POST['Phone'];
 							$Address = $_POST['Address'];
 							$Location = $_POST['location'];
-							//$data = date_default_timezone_get();
-							$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
-							mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
-								$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
-							}
-							
-							if(mysqli_affected_rows($conn) == 0)
+							//check data
+							if(empty($Email) || empty($Name) || empty($Phone) || empty($Address))
 							{
-								echo mysqli_error();
+									printf('<div id="colorlib-main">
+												<div class="container-fluid px-3 px-md-0">
+												<div class="row">
+													<div class="col-md-12 mb-4">
+														<h1 class="h2"><font color="red">Please fill in all the information !!</font></h1></div></div></div></div>');
+									
 							}
 							else
 							{
-								printf('<div id="colorlib-main">
-											<div class="container-fluid px-3 px-md-0">
-											<div class="row">
-												<div class="col-md-12 mb-4">
-													<h1 class="h2"><font color="red">Created successfully !!</font></h1></div></div></div></div>');
-													
+								$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
+								mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								while($rc = mysqli_fetch_assoc($rs)){
+									$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
+									$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
+								}
+								
+								if(mysqli_affected_rows($conn) == 0)
+								{
+									echo mysqli_error();
+								}
+								else
+								{
+									printf('<div id="colorlib-main">
+												<div class="container-fluid px-3 px-md-0">
+												<div class="row">
+													<div class="col-md-12 mb-4">
+														<h1 class="h2"><font color="red">Created successfully !!</font></h1></div></div></div></div>');
+														
+								}
 							}
 						}
 
@@ -105,7 +117,7 @@
 									<h2 class="h5">Email</h2>
 								</div>
 								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" class="form-control" name="Email" value="">
+									<input type="Email" class="form-control" name="Email" value="">
 								</div>
 								
 							</div>
