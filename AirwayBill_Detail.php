@@ -38,7 +38,7 @@
 	</script>
 
 	</head>
-	<body onload="unableClick();">>
+	<body onload="unableClick();">
 <?php
 	require_once("header.php");
 ?>
@@ -134,9 +134,9 @@
 								</div>	
 							</form>
 							
-							
-							<h2 class="h4" id="error"></h2>
-								
+							<div class="col-md-12">
+								<h2 class="h4" id="error"></h2>
+							</div>
 							
 							
 							

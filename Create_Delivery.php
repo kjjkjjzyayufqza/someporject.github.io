@@ -64,8 +64,15 @@
 							$Location = $_POST['location'];
 							//$data = date_default_timezone_get();
 							$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
+							mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							if(!$rs)
+							while($rc = mysqli_fetch_assoc($rs)){
+								$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
+								$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
+							}
+							
+							if(mysqli_affected_rows($conn) == 0)
 							{
 								echo mysqli_error();
 							}
@@ -77,6 +84,7 @@
 
 						//mysqli_close($db); // Close connection
 						?>
+						
 <form id="createdelivery" method="post" action="">
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">

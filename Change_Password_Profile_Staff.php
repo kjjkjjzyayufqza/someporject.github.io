@@ -53,7 +53,7 @@
 
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
-			<form  method="post">
+			<form  method="post" action="">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
@@ -65,7 +65,7 @@
 								<h2 class="h5">Original</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="password" class="form-control" name="originalpass" value="">
+								<input type="password" minlength="5" maxlength="50" placeholder="5 to 50 characters" title="5-50" class="form-control" name="originalpass" value="" required />
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -73,7 +73,7 @@
 								<h2 class="h5">New</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="password" class="form-control" name="newpass" value="">
+								<input type="password" minlength="5" maxlength="50" placeholder="5 to 50 characters" class="form-control" name="newpass" value="" required>
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -81,7 +81,7 @@
 								<h2 class="h5">Re-enter </h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="password" class="form-control" name="repass" value="">
+								<input type="password" minlength="5" maxlength="50" placeholder="5 to 50 characters" class="form-control" name="repass" value="" required>
 							</div>
 						</div>
 						</div>
@@ -125,7 +125,7 @@
 					<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 					<div class="col-md-12 mb-4">
-					<h1 class="h2"><font color="red">Password Change 成功</font></h1></div></div></div></div>');
+					<h1 class="h2"><font color="red">Successfully Change Password</font></h1></div></div></div></div>');
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
