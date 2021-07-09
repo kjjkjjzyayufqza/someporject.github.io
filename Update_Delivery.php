@@ -100,7 +100,7 @@
 							<h2 class="h4">Current Location :</h2>
 						</div>
 						<div class="col-md-6">
-							<h2 class="h5"><input type="text" name="currentLocation" /></h2>
+							<h2 class="h5"><input type="text" maxlength="255" name="currentLocation" /></h2>
 						</div>
 						<div class="col-md-12">
 							<h2 class="h4"><input type="submit" class="float-right mx-5 custom-btn btn-3" value="Update" /></h2>	
