@@ -24,9 +24,8 @@
 			printf('
 				<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 				<i class="fa fa-user" aria-hidden="true"></i>  Staff - %s|
-				<a class="text-white font-weight-bold" href="Login_Page.html">Logout</a>',$rc[$array[0]]);
+				<a href="logout.php" class="text-white font-weight-bold";>Logout</a>
+				',$rc[$array[0]]);
 		}
 	}
-	
-	
 ?>

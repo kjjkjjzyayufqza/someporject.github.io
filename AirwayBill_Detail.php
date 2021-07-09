@@ -82,7 +82,7 @@
 								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
-								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber");
+								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "locationID");
 								while($rc = mysqli_fetch_assoc($rs)){
 									for($i = 0; $i < 4 ; $i++){
 										printf('
@@ -95,23 +95,29 @@
 									}
 								}
 							?>
-							<form action="weight.php" method="post" id="update" onload="unableClick();">
+							<form action="weight.php" method="post" id="update" onload="unableClick();" >
 							<?php
 								printf("<input type='hidden' name='airWaybillNo' value='%s' />", $_GET["airWaybillNo"]);
+								$sql = "SELECT locationID, accountCreationDate FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								while($rc = mysqli_fetch_assoc($rs)){
+									printf("<input type='hidden' name='locationID' value='%s' />", $rc["locationID"]);
+									printf("<input type='hidden' name='accountCreationDate' value='%s' />", $rc["accountCreationDate"]);
+								}
 							?>
 								<div class="col-md-6">
 									<h2 class="h4" name="weight">Parcel’s Weight :</h2>
 								</div>
 								<div class="col-md-6">
-									<h2 class="h4"><input type="text" onchange="checkWeight();" name="weight" id="weight" /></h2>
+									<h2 class="h4"><input type="number" style="width: 10em" max="10" min="1" onchange="checkWeight();" name="weight" id="weight" /></h2>
 								</div>
-							<div class="col-md-12 my-5">
+								<div class="col-md-12 my-5">
 									<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
-								<button type="submit" class="custom-btn btn-3" style="" id="submit" form="weight" value="Submit">Confirm</button>
-								<button type="reset" class="custom-btn btn-3">Delete</button>
-							</div>
+									<button type="submit" class="custom-btn btn-3" id="submit" form="update" value="Submit">Confirm</button>
+									<button type="reset" class="custom-btn btn-3">Delete</button>
+								</div>
 							
-							<h2 class="h4" id="error"></h2>
+								<h2 class="h4" id="error"></h2>
 							</form>
 							
 							
