@@ -25,7 +25,9 @@
 	}
 	
 	if (!isset($_SESSION['user'])) {
+	   //echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';
        header('Location: Login_Page.html');
+	   
     }
 	
 	mysqli_free_result($rs);
