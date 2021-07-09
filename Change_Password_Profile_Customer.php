@@ -123,26 +123,38 @@ if(isset($_POST['submit']))
 	require_once("conn.php");
 	
 	//check pass
-	if($originalpass == $arrarysavepass && $newpass == $repass){
-		$sql = "UPDATE customer SET customerPassword ='{$newpass}' WHERE customerEmail = '{$arrarysave}'";
+	if(strlen($newpass) >= 6 && strlen($repass) >= 6)
+	{
+		
+		if($originalpass == $arrarysavepass && $newpass == $repass){
+			$sql = "UPDATE customer SET customerPassword ='{$newpass}' WHERE customerEmail = '{$arrarysave}'";
 
-		if (mysqli_query($conn, $sql)) {
-		  printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Password Change success</font></h1></div></div></div></div>');
-		} else {
-		  echo "Error updating record: " . mysqli_error($conn);
+			if (mysqli_query($conn, $sql)) {
+			  printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">Password Change success</font></h1></div></div></div></div>');
+			} else {
+			  echo "Error updating record: " . mysqli_error($conn);
+			}
+			mysqli_close($conn);
+		}else{
+			printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');
+								
 		}
-		mysqli_close($conn);
-	}else{
-		printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');
-							
+	}
+	else{
+			printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">Password Must morethan 6 lenght !!</font></h1></div></div></div></div>');
+				
 	}
 
 }
