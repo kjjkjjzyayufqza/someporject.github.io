@@ -53,9 +53,20 @@
 
 						<?php
 						require_once("header.php");// Using database connection file here
-						
+							$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
+									printf('<div id="colorlib-main">
+												<div class="container-fluid px-3 px-md-0">
+												<div class="row">
+													<div class="col-md-12 mb-4">
+														<h1 class="h1"><font color="red">Please fill in all account information before creating delivery!!</font></h1></div></div></div></div>');
+								}
+							}
 						if(isset($_POST['submit']))
 						{		
+							
 							
 							$Email = $_POST['Email'];
 							$Name = $_POST['Name'];
@@ -168,8 +179,17 @@
 						</div>
 					</div>
 				</div>
-						
-								<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+						<?php
+						$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
+							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+							while($rc = mysqli_fetch_assoc($rs)){
+								if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
+									print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3" disabled>');
+								}else{
+									print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">');
+								}
+							}
+						?>
 								<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
 
 

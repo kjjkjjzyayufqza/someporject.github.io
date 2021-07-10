@@ -30,17 +30,21 @@
         $header = "From: edeexpress11@gmail.com";
          
         if(mail($to,$subject,$message,$header)) {
-           echo "Message sent successfully...";
+           session_start();
+			$_SESSION['Rerror'] = false;
         }else {
            echo "Message could not be sent...";
         }
 	}else{
-		
-		echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';
+		session_start();
+		$_SESSION['Rerror'] = true;
+		//echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';
 		
 	}
 		
 	mysqli_free_result($rs);
 	mysqli_close($conn);
-	header('Location: Login_Page.html');
+	header('Location: index.php');
+	
+	
 ?>

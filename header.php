@@ -12,7 +12,7 @@
 			printf('
 				<div class="container-fluid py-1 bg-secondary shadow-sm text-right text-white">
 				<i class="fa fa-user" aria-hidden="true"></i>  Customer - %s|
-				<a class="text-white font-weight-bold" href="Login_Page.html">Logout</a>',$rc[$array[0]]);
+				<a class="text-white font-weight-bold" href="index.php">Logout</a>',$rc[$array[0]]);
 		}
 	}
 	else if($role == "staff"){

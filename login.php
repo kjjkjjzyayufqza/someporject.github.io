@@ -5,6 +5,10 @@
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	while($rc = mysqli_fetch_assoc($rs)){
 		if($user == $rc['customerEmail'] && $pwd == $rc['customerPassword']){
+			if($remember == true){
+				setcookie("account", $user, time() + (10 * 365 * 24 * 60 * 60));
+				setcookie("password", $pwd, time() + (10 * 365 * 24 * 60 * 60));
+			}
 			session_start();
 			$_SESSION['user'] = $user;
 			$_SESSION['role'] = "customer";
@@ -16,6 +20,8 @@
 		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		while($rc = mysqli_fetch_assoc($rs)){
 			if($user == $rc['staffID'] && $pwd == $rc['staffPassword']){
+				setcookie("account", $user, time() + (10 * 365 * 24 * 60 * 60));
+				setcookie("password", $pwd, time() + (10 * 365 * 24 * 60 * 60));
 				session_start();
 				$_SESSION['user'] = $user;
 				$_SESSION['role'] = "staff";
@@ -25,8 +31,10 @@
 	}
 	
 	if (!isset($_SESSION['user'])) {
+		session_start();
+		$_SESSION['Lerror'] = true;
 	   //echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';
-       header('Location: Login_Page.html');
+       header('Location: index.php');
 	   
     }
 	

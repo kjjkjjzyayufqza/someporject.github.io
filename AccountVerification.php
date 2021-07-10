@@ -33,7 +33,10 @@
 		require_once("conn.php");
 		$sql = "INSERT INTO Customer (customerEmail, customerName,customerPassword,accountCreationDate) VALUES (\"" . $decrypted[0] . "\",\"" . $decrypted[1] ."\",\"" . $decrypted[2] ."\", \"" . date("Y/m/d") . "\")";
 		//$sql = "INSERT INTO Customer (customerEmail, customerName,customerPassword,accountCreationDate) VALUES (\"" . $_GET['customerEmail'] . "\",\"" . $_GET['customerName'] ."\",\"" . $_GET['customerPassword'] ."\",\"" . date("Y/m/d") . "\")";
-		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		$rs = mysqli_query($conn, $sql);
+		if(mysqli_error($conn)){
+			echo '<script>alert("Account had been activated before.")</script>';
+		}
 		
 ?>
 <body>
@@ -42,7 +45,7 @@
   <div class="welcome">
 	 <div>
 		 <h1 style="color:blue"> Login Now? </h1>
-		 <a href="http://127.0.0.1/G20/Login_Page.html"><button class="signin">Click here to login page</button></a>
+		 <a href="http://127.0.0.1/G20/index.php"><button class="signin">Click here to login page</button></a>
 	 </div>
 		
   </div>

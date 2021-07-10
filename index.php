@@ -68,14 +68,30 @@
 </head>
 
 <body onload="startTime()">
-
+	<?php
+		session_start();
+		if(isset($_SESSION['Rerror'])){
+			if($_SESSION['Rerror'] == true){
+				echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';	
+			}else{
+				echo '<script>alert("Please go to your email to activate you account !!!")</script>';
+			}
+			unset($_SESSION['Rerror']);
+		}else if(isset($_SESSION['Lerror'])){
+			echo '<script>alert("Invalid username or password !!!")</script>';
+			unset($_SESSION['Lerror']);
+		}
+	?>
 <div class="container">
+
   <div class="welcome">
     <div class="pinkbox">
+
+
       <!-- 注册 -->
       <div class="signup nodisplay">
         <h1>Register</h1>
-		<form class="more-padding" autocomplete="off" id="Register" action="Create_Account.php" method="post">
+		<form class="more-padding" autocomplete="off" id="Register" action="createAccount.php" method="post">
           <input type="text" placeholder="Username" id="Username" name="Username">
           <input type="email" placeholder="Email" id="Email" name="Email">
           <input type="password" placeholder="Password" id="Password" name="Password">
@@ -83,21 +99,35 @@
           
         </form>
 		<button class="button submit" id="sbutton"  Onclick="Check();">Create Account</button>
-      </div>
+
+
+	 </div>
 
 
       <!-- 登录 -->
       <div class="signin">
         <h1>Sign In</h1>
         <form class="more-padding" autocomplete="off" id="login" action="login.php" method="post">
-          <input type="text" name="user" placeholder="Username">
-          <input type="password" name="pwd" placeholder="Password">
+		<?php
+			if(isset($_COOKIE['account'])){
+				echo "<input type='text' name='user' value='{$_COOKIE['account']}' placeholder='Username'>";
+			}else{
+				echo "<input type='text' name='user' placeholder='Username'>";
+			}
+			
+			if(isset($_COOKIE['password'])){
+				echo "<input type='password' name='pwd' value='{$_COOKIE['password']}' placeholder='Password'>";
+			}else{
+				echo "<input type='password' name='pwd' placeholder='Password'>";
+			}
+		?>
           <div class="checkbox">
-            <input type="checkbox" id="remember" /><label for="remember">Remember Me</label>
+            <input type="checkbox" id="remember" name="remember" /><label for="remember">Remember Me</label>
           </div>
         </form>
 		<br />
 		<button type="submit" class="buttom sumbit" form="login" value="Submit">Login</button>
+		
       </div>
     </div>
 
@@ -117,6 +147,7 @@
       <button class="button" id="signup">Sign Up</button>
     </div>
   </div>
+
 </div>
 
 
