@@ -19,13 +19,19 @@
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($curl);   
 		curl_close($curl);
+		if(empty($response)){
+			echo '<script>alert("Airway Bill no updated")</script>';
+		}
+		else
+		{
+			//echo "rate = " .$rc["rate"] . ", discount = " . $response;
+			$price = $rc["rate"]*((100-$response)/100);
+			$sql = "UPDATE airwaybill SET totalPrice = \"" . $price . "\" WHERE airWaybillNo = \"" . $airWaybillNo ."\"";
+			mysqli_query($conn, $sql) or die(mysqli_error($conn));
+			
+			echo '<script>alert("Airway Bill is updated")</script>';
+		}
 
-		//echo "rate = " .$rc["rate"] . ", discount = " . $response;
-		$price = $rc["rate"]*((100-$response)/100);
-		$sql = "UPDATE airwaybill SET totalPrice = \"" . $price . "\" WHERE airWaybillNo = \"" . $airWaybillNo ."\"";
-		mysqli_query($conn, $sql) or die(mysqli_error($conn));
-		
-		echo '<script>alert("Airway Bill is updated")</script>';
 	}
 	//header('Location: Update_AirwayBill.php');
 	mysqli_free_result($rs);
