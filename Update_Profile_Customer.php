@@ -120,32 +120,61 @@ if(isset($_POST['submit']))
 	$phone = $_POST['phone'];
 	$address = $_POST['address'];
 
-if(empty($name) || empty($phone) || empty($address))
-{
-	printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">All information must be filled !!</font></h1></div></div></div></div>');
-}else {
-	$sql = "UPDATE customer SET customerName ='{$name}' , phoneNumber ='{$phone}' , address ='{$address}' WHERE customerEmail = '{$arrarysave}'";
 
+if(empty($name) && empty($phone) && empty($address))
+{
+		printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">information must be filled !!</font></h1></div></div></div></div>');
+
+}
+else
+{
+		printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Update completed !!</font></h1></div></div></div></div>');
+
+}
+//set name
+if(empty($name))
+{
+
+}
+else
+{
+	$sql = "UPDATE customer SET customerName ='{$name}'  WHERE customerEmail = '{$arrarysave}'";
 	if (mysqli_query($conn, $sql)) {
-	  	printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Successfully updated user profile !!</font></h1></div></div></div></div>');
-	} else {
-	  	printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">wrong !!</font></h1></div></div></div></div>');
+	
 	}
-	mysqli_close($conn);
+}
+//set phone
+if(empty($phone))
+{
+
+}
+else
+{
+	$sql = "UPDATE customer SET phoneNumber ='{$phone}'  WHERE customerEmail = '{$arrarysave}'";
+	if (mysqli_query($conn, $sql)) {
+	}
+}
+//set address
+if(empty($address))
+{
+
+}
+else
+{
+	$sql = "UPDATE customer SET address ='{$address}'  WHERE customerEmail = '{$arrarysave}'";
+	if (mysqli_query($conn, $sql)) {
+	}
 }
 
+mysqli_close($conn);
 }
 
 
