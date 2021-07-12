@@ -8,7 +8,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="css/Menu.css">
-	<script>
+	<script type="text/javascript">  
+		function deleteAirwayBill() {
+			if (confirm("Are you sure to delete the delivery request?")) {
+				document.forms['confirm'].submit();  
+			}
+		}
 		var max;
 		function unableClick(){
 			var locationID = document.getElementById('locationID').value;
@@ -125,18 +130,22 @@
 									<button type="submit" class="custom-btn btn-3" id="submit" form="update" value="Submit">Confirm</button>
 								
 							</form>
-							<form action="deleteAirwayBill.php" method="post" id="deleteAirway" style="display:inline;">
+							<form action="deleteAirwayBill.php" method="post" name="confirm" id="confirm" style="display:inline;">
 								<?php
 									printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
 								?>
-								
-								<button type="submit" class="custom-btn btn-3" id="delete" name="delete" form="deleteAirway" value="Submit">Delete</button>
-								</div>	
-							</form>
+							</form> 
+							<button class="custom-btn btn-3" form="" onclick="deleteAirwayBill()">Delete</button>
 							
 							<div class="col-md-12">
 								<h2 class="h4" id="error"></h2>
-							</div>
+							</div>	
+							
+							
+								
+								
+							
+							
 							
 							
 							

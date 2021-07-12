@@ -1,6 +1,6 @@
 <?php
 	require_once("conn.php");
-	if(isset($_POST["delete"])){
+	if(isset($_POST["airwaybill"])){
 		$sql = "DELETE FROM airwaybilldeliveryrecord WHERE airWaybillNo = \"" . $_POST["airwaybill"] . "\"" ;
 		mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		

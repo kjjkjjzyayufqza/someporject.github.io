@@ -27,7 +27,7 @@
 		
 		echo '<script>alert("Airway Bill is updated")</script>';
 	}
-	header('Location: Update_AirwayBill.php');
+	//header('Location: Update_AirwayBill.php');
 	mysqli_free_result($rs);
 	mysqli_close($conn);
 ?>
