@@ -57,7 +57,6 @@
 							<h1 class="h2">Personal Profile</h1>
 						</div>
 						<?php
-							//require_once("conn.php");
 							$sql = "SELECT * from Staff WHERE staffID = \"" . $_SESSION['user'] . "\"" ;
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){

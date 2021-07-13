@@ -60,7 +60,7 @@
 						</div>
 						
 							<?php
-							require_once("header.php");
+							require_once("conn.php");
 							//$sql = "SELECT * from customer";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){

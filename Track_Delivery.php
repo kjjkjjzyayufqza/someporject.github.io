@@ -70,58 +70,29 @@
 					<div class="row">
 						<?php
 						
-
-							//$errorms = "Please input Airway Bill No !!!";
 							//have value to search
 							if(isset($_POST['search'])){
 								//set value
 								$searchinput = $_POST['searchinput'];
-								if ($searchinput == null){
-									/*printf('
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>
-										', $errorms);*/
-								}else{
-								require_once("conn.php");
-								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");
-								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
-								while($rc = mysqli_fetch_assoc($rs)){
-									for($i = 0; $i < 5 ; $i++){
-										printf('
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>', $name[$i], $rc[$array[$i]]);
+								if ($searchinput != null){
+									require_once("conn.php");
+									$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
+									$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+									$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");
+									$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
+									while($rc = mysqli_fetch_assoc($rs)){
+										for($i = 0; $i < 5 ; $i++){
+											printf('
+											<div class="col-md-6">
+											<h2 class="h4">%s</h2>
+											</div>
+											<div class="col-md-6">
+											<h2 class="h4">%s</h2>
+											</div>', $name[$i], $rc[$array[$i]]);
+										}
 									}
-								}
 								}
 							}
-							//check if null
-							/*else if(empty($_POST['search'])){
-								require_once("conn.php");
-								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '1'";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");
-								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
-								while($rc = mysqli_fetch_assoc($rs)){
-									for($i = 0; $i < 5 ; $i++){
-										printf('
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>', $name[$i], " ");
-									}
-								}
-							}*/
-
-							
 						?>
 					</div>
 				</div>
@@ -133,8 +104,6 @@
 							<th>Current Location</th>
 						</tr>
 						<?php
-							//$errorms = "Please input Airway Bill No !!!";
-							
 							//have value to search
 							if(isset($_POST['search'])){
 								//set value
@@ -155,11 +124,6 @@
 									}
 								}
 							}
-							
-							//check if null
-							/*else if(empty($_POST['search'])){
-
-							}*/
 							mysqli_free_result($rs);
 							mysqli_close($conn);
 						?>

@@ -23,22 +23,19 @@
 		echo $response;
 		
 		if(strlen($response) == 0){
-			//echo '<script>alert("Error in updating airwaybill !!!")</script>';
 			$_SESSION['error'] = true;
 		}
 		else
 		{
 			$sql2 = "UPDATE airwaybill SET weight = \"" . $weight . "\" WHERE airWaybillNo = \"" . $airWaybillNo ."\"";
 			mysqli_query($conn, $sql2) or die(mysqli_error($conn));
-			//echo "rate = " .$rc["rate"] . ", discount = " . $response;
 			$price = $rc["rate"]*((100-$response)/100);
 			$sql3 = "UPDATE airwaybill SET totalPrice = \"" . $price . "\" WHERE airWaybillNo = \"" . $airWaybillNo ."\"";
 			mysqli_query($conn, $sql3) or die(mysqli_error($conn));
 			$_SESSION['error'] = false;
-			//echo '<script>alert("Airwaybill is updated successfully !!!")</script>';
 		}
-
 	}
+	
 	header('Location: Update_AirwayBill.php');
 	mysqli_free_result($rs);
 	mysqli_close($conn);

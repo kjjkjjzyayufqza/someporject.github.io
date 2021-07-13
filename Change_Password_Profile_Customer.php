@@ -108,10 +108,9 @@
 	{	
 
 	//get data
-	require_once("header.php");
+	require_once("conn.php");
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	while($rc = mysqli_fetch_assoc($rs)){
-		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
 		$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
 		$arrarysave = $rc[$array[1]];
 		$arrarysavepass = $rc[$array[2]];

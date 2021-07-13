@@ -105,7 +105,6 @@
 		$sql = "SELECT * from staff WHERE staffID = \"" . $_SESSION['user'] . "\"";
 		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		while($rc = mysqli_fetch_assoc($rs)){
-			//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
 			$array = array("staffName", "staffPassword");
 			$arrarysave = $rc[$array[0]];
 			$arrarysavepass = $rc[$array[1]];
