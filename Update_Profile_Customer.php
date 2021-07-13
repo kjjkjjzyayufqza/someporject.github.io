@@ -8,7 +8,14 @@
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	
 	<link rel="stylesheet" href="css/Menu.css">
-
+	<script type="text/javascript">
+		function isNumberKey(evt){
+			var charCode = (evt.which) ? evt.which : evt.keyCode;
+			if (charCode > 31 && (charCode < 48 || charCode > 57))
+				return false;
+			return true;
+		}
+	</script>
 	</head>
 	<body>
 <?php
@@ -75,7 +82,7 @@
 									<h2 class="h5">Phone</h2>
 								</div>
 								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" class="form-control" name="phone" value="">
+									<input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="phone" value="">
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -103,79 +110,60 @@
 	</div>
 </form>
 <?php
-if(isset($_POST['submit']))
-{	
+	if(isset($_POST['submit']))
+	{	
+		//get data
+		require_once("conn.php");
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		while($rc = mysqli_fetch_assoc($rs)){
+			//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+			$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
+			$arrarysave = $rc[$array[1]];
+		}
+		
+		//set updata
+		$name = $_POST['name'];
+		$phone = $_POST['phone'];
+		$address = $_POST['address'];
 
 
-							//get data
-							require_once("header.php");
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
-								$arrarysave = $rc[$array[1]];
-							}
-	//set updata
-	$name = $_POST['name'];
-	$phone = $_POST['phone'];
-	$address = $_POST['address'];
+	if(empty($name) && empty($phone) && empty($address))
+	{
+			printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">no information updated !!</font></h1></div></div></div></div>');
 
-
-if(empty($name) && empty($phone) && empty($address))
-{
-		printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">information must be filled !!</font></h1></div></div></div></div>');
-
-}
-else
-{
-		printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2"><font color="red">Update completed !!</font></h1></div></div></div></div>');
-
-}
-//set name
-if(empty($name))
-{
-
-}
-else
-{
-	$sql = "UPDATE customer SET customerName ='{$name}'  WHERE customerEmail = '{$arrarysave}'";
-	if (mysqli_query($conn, $sql)) {
-	
 	}
-}
-//set phone
-if(empty($phone))
-{
+	else
+	{
+			printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">Update completed !!</font></h1></div></div></div></div>');
 
-}
-else
-{
-	$sql = "UPDATE customer SET phoneNumber ='{$phone}'  WHERE customerEmail = '{$arrarysave}'";
-	if (mysqli_query($conn, $sql)) {
 	}
-}
-//set address
-if(empty($address))
-{
-
-}
-else
-{
-	$sql = "UPDATE customer SET address ='{$address}'  WHERE customerEmail = '{$arrarysave}'";
-	if (mysqli_query($conn, $sql)) {
+	//set name
+	if(!empty($name)){
+		$sql = "UPDATE customer SET customerName ='{$name}'  WHERE customerEmail = '{$arrarysave}'";
+		mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	}
-}
+	//set phone
+	if(!empty($phone)){
+		$sql = "UPDATE customer SET phoneNumber ='{$phone}'  WHERE customerEmail = '{$arrarysave}'";
+		mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	}
+	//set address
+	if(!empty($address)){
+		$sql = "UPDATE customer SET address ='{$address}'  WHERE customerEmail = '{$arrarysave}'";
+		mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	}
 
-mysqli_close($conn);
-}
+	mysqli_free_result($rs);
+	mysqli_close($conn);
+	}
 
 
 ?>

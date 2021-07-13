@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	<link rel="stylesheet" href="css/Menu.css">
 	<link rel="stylesheet" href="css/search.css">
-
 	</head>
 	<body>
 <?php
@@ -76,7 +75,7 @@
 								$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								if(mysqli_num_rows($rs) != 0){
-									printf("<h2 class='h4'>%s</h2>", $_GET["q"]);
+									printf("<h2 class='h4' name='airway' id='airway' onchange='showUpdate();' >%s</h2>", $_GET["q"]);
 									printf("<input type='hidden' name='airWaybillNo' value='%s' >", $_GET["q"]);
 								}
 							}
@@ -86,7 +85,7 @@
 							<h2 class="h4">Shipment Status :</h2>
 						</div>
 						<div class="col-md-6">
-							<h2 class="h3">
+							<h2 class="h4">
 								<select name="deliveryStatusID" id="status">
 									<option value="1">Waiting for Confirmation</option>
 									<option value="2">Confirmed</option>
@@ -103,7 +102,18 @@
 							<h2 class="h5"><input type="text" maxlength="255" name="currentLocation" /></h2>
 						</div>
 						<div class="col-md-12">
-							<h2 class="h4"><input type="submit" class="float-right mx-5 custom-btn btn-3" value="Update" /></h2>	
+						<?php
+							if(isset($_GET["q"])){
+								//require_once("conn.php");
+								$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
+								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+								if(mysqli_num_rows($rs) != 0){
+									printf('<h2 class="h4"><button type="submit" class="float-right mx-5 custom-btn btn-3" id="update">Update</button></h2>');
+								}
+							}
+						?>
+						
+								
 						</div>
 					</div>
 				</form>

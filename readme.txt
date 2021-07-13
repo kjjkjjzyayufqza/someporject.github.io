@@ -9,7 +9,7 @@ Search and pass the following values:
 SMTP=smtp.gmail.com
 smtp_port=587
 sendmail_from = edeexpress11@gmail.com
-sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
+sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"(your own path)
 
 Now, go to C:\xampp\sendmail and open the sendmail.ini file.
 
@@ -21,6 +21,8 @@ error_logfile=error.log
 debug_logfile=debug.log
 auth_username=edeexpress11@gmail.com
 auth_password=edeexpress
+
+restart xampp
 
 Go to edeexpress11@gmail.com.
 On the left navigation panel, click Security.

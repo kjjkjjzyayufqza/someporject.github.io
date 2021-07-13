@@ -92,7 +92,6 @@
 							<h1 class="h2">Airway Bill Detail</h1>
 						</div>
 							<?php
-								//require_once("conn.php");
 								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
 								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
@@ -109,7 +108,9 @@
 									}
 								}
 							?>
-							<form action="weight.php" method="post" id="update" onload="unableClick();" >
+							
+							
+						<form action="weight.php" method="post" id="update" onload="unableClick();" >
 							<?php
 								printf("<input type='hidden' name='airWaybillNo' value='%s' />", $_GET["airWaybillNo"]);
 								$sql = "SELECT locationID, accountCreationDate FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
@@ -119,36 +120,29 @@
 									printf("<input type='hidden' name='accountCreationDate' value='%s' />", $rc["accountCreationDate"]);
 								}
 							?>
-								<div class="col-md-12">
-									<h2 class="h4" name="weight">Parcel’s Weight :</h2>
-								</div>
-								<div class="col-md-12">
-									<h2 class="h4"><input type="number" style="width: 10em" max="10" min="1" onchange="checkWeight();" name="weight" id="weight" /></h2>
-								</div>
-								<div class="col-md-12 my-5">
-									<a href="Update_AirwayBill.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
-									<button type="submit" class="custom-btn btn-3" id="submit" form="update" value="Submit">Confirm</button>
-								
-							</form>
-							<form action="deleteAirwayBill.php" method="post" name="confirm" id="confirm" style="display:inline;">
-								<?php
-									printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
-								?>
-							</form> 
-							<button class="custom-btn btn-3" form="" onclick="deleteAirwayBill()">Delete</button>
-							
 							<div class="col-md-12">
-								<h2 class="h4" id="error"></h2>
-							</div>	
-							
-							
-								
-								
-							
-							
-							
-							
-							
+								<h2 class="h4" name="weight">Parcel’s Weight :</h2>
+							</div>
+							<div class="col-md-12">
+								<h2 class="h4"><input type="number" style="width: 10em" max="10" min="1" onchange="checkWeight();" name="weight" id="weight" /></h2>
+							</div>
+							<div class="col-md-12 my-5">
+								<a href="Update_AirwayBill.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+								<button type="submit" class="custom-btn btn-3" id="submit" form="update" value="Submit">Confirm</button>
+						</form>
+						
+						<form action="deleteAirwayBill.php" method="post" name="confirm" id="confirm" style="display:inline;">
+						<?php
+							printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
+							mysqli_free_result($rs);
+							mysqli_close($conn);
+						?>
+						</form> 
+						<button class="custom-btn btn-3" form="" onclick="deleteAirwayBill()">Delete</button>
+						<div class="col-md-12">
+							<br />
+							<h1 class="h2" id="error"></h1>
+						</div>
 					</div>
 				</div>
 			</section>

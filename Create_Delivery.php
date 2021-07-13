@@ -50,8 +50,6 @@
 				</ul>
 			</nav>
 		</aside> 
-
-
 						
 <form id="createdelivery" method="post" action="">
 		<div id="colorlib-main">
@@ -113,31 +111,49 @@
 							</h2>
 							</div>
 						</div>
-						</div>
-						<div class="col-md-6">
-
-						</div>
-					</div>
-				</div>
-						<?php
-						$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
-									print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3" disabled>');
-								}else{
-									print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">');
-								}
-							}
-						?>
+						
+						<br />
+						<div class="col-12">
+							<?php
+								$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
+									$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+									while($rc = mysqli_fetch_assoc($rs)){
+										if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
+											print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3" disabled>');
+										}else{
+											print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">');
+										}
+									}
+									
+							?>
 								<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
 
-
+							
+							
+							</div>
+						</div>
+					</div>
+				</div><?php
+			$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
+			$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+			while($rc = mysqli_fetch_assoc($rs)){
+				if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
+					printf('<br />
+							<div class="container-fluid px-3 px-md-0">
+							<div class="row">
+							<div class="col-md-12 mb-4">
+							<h1 class="h1"><font color="red">Please fill in all account information before creating delivery!!</font></h1></div></div></div>');
+				}
+			}
+			mysqli_free_result($rs);
+			mysqli_close($conn);
+		?>
 			</section>
 		</div>
+		
 </form>
 						<?php
-						require_once("header.php");// Using database connection file here
+						require_once("conn.php");// Using database connection file here
 							$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							while($rc = mysqli_fetch_assoc($rs)){

@@ -87,71 +87,71 @@
 <?php
 if(isset($_POST['submit']))
 {	
-
-							//get data
-							require_once("header.php");
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
-								$arrarysave = $rc[$array[1]];
-								$arrarysavepass = $rc[$array[2]];
-							}
+	//get data
+	require_once("conn.php");
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	while($rc = mysqli_fetch_assoc($rs)){
+		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+		$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
+		$arrarysave = $rc[$array[1]];
+		$arrarysavepass = $rc[$array[2]];
+	}
 							
 
-							//check password
-						$originalpass = $_POST['originalpass'];
-						if(empty($originalpass) || $originalpass != $arrarysavepass){
-							printf('<div id="colorlib-main">
-										<div class="container-fluid px-3 px-md-0">
-										<div class="row">
-											<div class="col-md-12 mb-4">
-												<h1 class="h2"><font color="red">Password Error !!</font></h1></div></div></div></div>');
-						}else{
-							
-							//delete airwaybilldeliveryrecord
-							$sql = "SELECT * FROM airwaybill WHERE customerEmail = \"" . $_SESSION['user']. "\"";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								while($rc2 = mysqli_fetch_assoc($rs)){
-									$array2 = array("airWaybillNo", "customerEmail");
-									$arrarysavepass = $rc2[$array2[0]];
-									$sql = "DELETE FROM airwaybilldeliveryrecord WHERE airWaybillNo = \"" . $arrarysavepass. "\"";
-									$rs2 = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-									
-									
-								}
+	//check password
+	$originalpass = $_POST['originalpass'];
+	if(empty($originalpass)){
+		printf('<div id="colorlib-main">
+				<div class="container-fluid px-3 px-md-0">
+				<div class="row">
+				<div class="col-md-12 mb-4">
+				<h1 class="h2"><font color="red">Please fill in the password !!!</font></h1></div></div></div></div>');
+	}else if($originalpass != $arrarysavepass){
+		printf('<div id="colorlib-main">
+				<div class="container-fluid px-3 px-md-0">
+				<div class="row">
+				<div class="col-md-12 mb-4">
+				<h1 class="h2"><font color="red">Wrong Password !!!</font></h1></div></div></div></div>');
+	}else{
+		//delete airwaybilldeliveryrecord
+		$sql = "SELECT * FROM airwaybill WHERE customerEmail = \"" . $_SESSION['user']. "\"";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		while($rc2 = mysqli_fetch_assoc($rs)){
+			$array2 = array("airWaybillNo", "customerEmail");
+			$arrarysavepass = $rc2[$array2[0]];
+			$sql = "DELETE FROM airwaybilldeliveryrecord WHERE airWaybillNo = \"" . $arrarysavepass. "\"";
+			$rs2 = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		}
 								
-								
-								//delete airwaybill
-							$sql = "SELECT * FROM airwaybill WHERE customerEmail = \"" . $_SESSION['user']. "\"";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								while($rc2 = mysqli_fetch_assoc($rs)){
-									$array2 = array("airWaybillNo", "customerEmail");
-									$arrarysavepass = $rc2[$array2[1]];
-									$sql = "DELETE FROM airwaybill WHERE customerEmail = \"" . $arrarysavepass. "\"";
-									$rs2 = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-									
-									
-								}
+		//delete airwaybill
+		$sql = "SELECT * FROM airwaybill WHERE customerEmail = \"" . $_SESSION['user']. "\"";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		while($rc2 = mysqli_fetch_assoc($rs)){
+			$array2 = array("airWaybillNo", "customerEmail");
+			$arrarysavepass = $rc2[$array2[1]];
+			$sql = "DELETE FROM airwaybill WHERE customerEmail = \"" . $arrarysavepass. "\"";
+			$rs2 = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		}
 							
-							
-							
-							//delete customer
-							$Email = $arrarysave;
-							//$data = date_default_timezone_get();
-							$sql = "DELETE FROM `customer` WHERE `customer`.`customerEmail` = \"" . $_SESSION['user']. "\"";
-							if (mysqli_query($conn, $sql)) {
-							  printf('<div id="colorlib-main">
-										<div class="container-fluid px-3 px-md-0">
-										<div class="row">
-											<div class="col-md-12 mb-4">
-												<h1 class="h2"><font color="red">Password Change success</font></h1></div></div></div></div>');
-							}else {
-								  echo "Error updating record: " . mysqli_error($conn);
-								}
-								header('Location: Login_Page.html');
-						}
-}
+		//delete customer
+		$Email = $arrarysave;
+		//$data = date_default_timezone_get();
+		$sql = "DELETE FROM `customer` WHERE `customer`.`customerEmail` = \"" . $_SESSION['user']. "\"";
+		if (mysqli_query($conn, $sql)) {
+			printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Password change successfully !!!</font></h1></div></div></div></div>');
+		}else {
+			 echo "Error updating record: " . mysqli_error($conn);
+		}
+		header('Location: Login_Page.html');
+		}
+		
+		mysqli_free_result($rs);
+		mysqli_close($conn);
+	}
 ?>
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>

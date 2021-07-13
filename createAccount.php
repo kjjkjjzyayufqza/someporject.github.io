@@ -32,14 +32,11 @@
         if(mail($to,$subject,$message,$header)) {
            session_start();
 			$_SESSION['Rerror'] = false;
-        }else {
-           echo "Message could not be sent...";
         }
 	}else{
 		session_start();
 		$_SESSION['Rerror'] = true;
 		//echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';
-		
 	}
 		
 	mysqli_free_result($rs);

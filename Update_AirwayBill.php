@@ -52,6 +52,17 @@
 			</nav>
 		</aside> 
 
+<?php
+	if(isset($_SESSION['error'])){
+		if($_SESSION['error'] == true){
+			echo '<script>alert("Error in updating airwaybill !!!")</script>';
+		}else{
+			echo '<script>alert("Airwaybill is updated successfully !!!")</script>';
+		}
+		unset($_SESSION['error']);
+	}
+?>
+
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">

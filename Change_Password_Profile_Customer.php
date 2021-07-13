@@ -66,7 +66,7 @@
 								<h2 class="h5">Original</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" placeholder="5 to 40 characters" name="originalpass" value="">
+								<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" title="5-40" class="form-control" name="originalpass" value="" required />
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -74,7 +74,7 @@
 								<h2 class="h5">New</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control"  placeholder="5 to 40 characters" name="newpass" value="">
+								<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" class="form-control" name="newpass" value="" required>
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -82,7 +82,7 @@
 								<h2 class="h5">Re-enter </h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" placeholder="5 to 40 characters" name="repass" value="">
+								<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" class="form-control" name="repass" value="" required>
 							</div>
 						</div>
 						</div>
@@ -104,26 +104,27 @@
 
 	</section>
 <?php
-if(isset($_POST['submit']))
-{	
+	if(isset($_POST['submit']))
+	{	
 
-							//get data
-							require_once("header.php");
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
-								$arrarysave = $rc[$array[1]];
-								$arrarysavepass = $rc[$array[2]];
-							}
-								//set updata
+	//get data
+	require_once("header.php");
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	while($rc = mysqli_fetch_assoc($rs)){
+		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+		$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
+		$arrarysave = $rc[$array[1]];
+		$arrarysavepass = $rc[$array[2]];
+	}
+							
+	//set updata
 	$originalpass = $_POST['originalpass'];
 	$newpass = $_POST['newpass'];
 	$repass = $_POST['repass'];
 	require_once("conn.php");
 	
 	//check pass
-	if(strlen($newpass) >= 6 && strlen($repass) >= 6)
+	if(strlen($newpass) >= 5 && strlen($repass) >= 5)
 	{
 		
 		if($originalpass == $arrarysavepass && $newpass == $repass){
@@ -134,18 +135,23 @@ if(isset($_POST['submit']))
 						<div class="container-fluid px-3 px-md-0">
 						<div class="row">
 							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">Password Change success</font></h1></div></div></div></div>');
+								<h1 class="h2"><font color="red">Password change successfully !!!</font></h1></div></div></div></div>');
 			} else {
 			  echo "Error updating record: " . mysqli_error($conn);
 			}
 			mysqli_close($conn);
+		}else if($originalpass == $newpass){
+			printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Original password cannot be the same as new password !!!</font></h1></div></div></div></div>');
 		}else{
 			printf('<div id="colorlib-main">
-						<div class="container-fluid px-3 px-md-0">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">Original or Re-enter Password Error !!</font></h1></div></div></div></div>');
-								
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Original or Re-enter Password Error !!!</font></h1></div></div></div></div>');
 		}
 	}
 	else{
@@ -153,10 +159,11 @@ if(isset($_POST['submit']))
 						<div class="container-fluid px-3 px-md-0">
 						<div class="row">
 							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">Password Must morethan 6 lenght !!</font></h1></div></div></div></div>');
+								<h1 class="h2"><font color="red">Password must be more than 4 characters !!!</font></h1></div></div></div></div>');
 				
 	}
-
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 }
 
 
