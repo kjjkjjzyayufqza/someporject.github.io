@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	
 	<link rel="stylesheet" href="css/Menu.css">
 	
@@ -23,11 +23,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Staff.php">Home</a></li>
-					<li><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
-					<li><a href="Update_Delivery.php">Update Delivery</a></li>
-					<li class="colorlib-active"><a href="Generate_Report.php">Generate Report</a></li>
+					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
+					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
+					<li class="colorlib-active"><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >

@@ -8,7 +8,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="css/Menu.css">
-	<script>
+	<script type="text/javascript">  
+		function deleteAirwayBill() {
+			if (confirm("Are you sure to delete the delivery request?")) {
+				document.forms['confirm'].submit();  
+			}
+		}
 		var max;
 		function unableClick(){
 			var locationID = document.getElementById('locationID').value;
@@ -56,7 +61,7 @@
 					<li><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
 							<div class="logo">
-							  <svg width="200px" height="200px" >
+							  <svg width="200px" height="200px">
 									<path stroke="#ffffff" stroke-width="0" fill="#ff004e" d="M140.773,59.227C137.316,55.771,130.055,50,100,50
 									s-37.317,5.771-40.774,9.227C55.77,62.684,49.999,69.104,50,100c-0.001,30.896,5.77,37.316,9.227,40.773
 									C62.683,144.229,69.103,150,100,150c30.895,0,37.317-5.771,40.772-9.227C144.229,137.316,150,130.896,150,100
@@ -125,18 +130,22 @@
 									<button type="submit" class="custom-btn btn-3" id="submit" form="update" value="Submit">Confirm</button>
 								
 							</form>
-							<form action="deleteAirwayBill.php" method="post" id="deleteAirway" style="display:inline;">
+							<form action="deleteAirwayBill.php" method="post" name="confirm" id="confirm" style="display:inline;">
 								<?php
 									printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
 								?>
-								
-								<button type="submit" class="custom-btn btn-3" id="delete" name="delete" form="deleteAirway" value="Submit">Delete</button>
-								</div>	
-							</form>
+							</form> 
+							<button class="custom-btn btn-3" form="" onclick="deleteAirwayBill()">Delete</button>
 							
 							<div class="col-md-12">
 								<h2 class="h4" id="error"></h2>
-							</div>
+							</div>	
+							
+							
+								
+								
+							
+							
 							
 							
 							
