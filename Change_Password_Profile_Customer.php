@@ -90,9 +90,9 @@
 					</div>
 				</div>
 				<br />
-					<a href="Personal_Profile_Customer.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
-					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
-					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
+					<a href="Personal_Profile_Customer.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4">
+					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3 mr-4">
 				</form>
 					
 			</section>
@@ -104,7 +104,7 @@
 
 	</section>
 <?php
-	if(isset($_POST['submit']))
+if(isset($_POST['submit']))
 	{	
 
 	//get data
@@ -122,7 +122,7 @@
 	$repass = $_POST['repass'];
 	require_once("conn.php");
 	
-	//check pass
+	//check password
 	if(strlen($newpass) >= 5 && strlen($repass) >= 5)
 	{
 		

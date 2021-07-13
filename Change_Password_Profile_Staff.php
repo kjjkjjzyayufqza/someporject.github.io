@@ -90,9 +90,9 @@
 					</div>
 					<br />
 				</div>
-							<a href="Personal_Profile_Staff.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
-					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
-					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
+							<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4">
+					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3 mr-4">
 					</form>
 			</section>
 		</div>
@@ -116,7 +116,7 @@
 		$repass = $_POST['repass'];
 		require_once("conn.php");
 		
-		//check pass
+		//check password
 		if(strlen($newpass) >= 6 && strlen($repass) >= 6)
 		{
 			

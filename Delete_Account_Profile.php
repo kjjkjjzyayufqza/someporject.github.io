@@ -75,8 +75,8 @@
 					</div>
 				</div>
 				<br/>
-						<a href="Personal_Profile_Customer.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
-						<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
+						<a href="Personal_Profile_Customer.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+						<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4">
 						</form>
 			</section>
 

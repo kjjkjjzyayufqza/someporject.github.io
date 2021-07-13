@@ -59,24 +59,25 @@
 							<h1 class="h2">Personal Profile</h1>
 						</div>
 						
-							<?php
-							require_once("conn.php");
-							//$sql = "SELECT * from customer";
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-								$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
-								for($i = 0; $i < 5 ; $i++){
-									printf('
-									<div class="col-md-6">
-									<h2 class="h4">%s</h2>
-									</div>
-									<div class="col-md-6">
-									<h2 class="h4">%s</h2>
-									</div>', $name[$i] ,$rc[$array[$i]]);
-								}
-							}
-						?>
+<?php
+require_once("conn.php");
+
+$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+while($rc = mysqli_fetch_assoc($rs)){
+	//loop the list show
+	$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+	$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
+	for($i = 0; $i < 5 ; $i++){
+		printf('
+		<div class="col-md-6">
+		<h2 class="h4">%s</h2>
+		</div>
+		<div class="col-md-6">
+		<h2 class="h4">%s</h2>
+		</div>', $name[$i] ,$rc[$array[$i]]);
+	}
+}
+?>
 						
 					</div>
 						<br />

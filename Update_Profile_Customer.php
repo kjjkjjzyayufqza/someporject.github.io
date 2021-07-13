@@ -9,6 +9,7 @@
 	
 	<link rel="stylesheet" href="css/Menu.css">
 	<script type="text/javascript">
+	    //check if Number
 		function isNumberKey(evt){
 			var charCode = (evt.which) ? evt.which : evt.keyCode;
 			if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -28,11 +29,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Customer.php">Home</a></li>
-					<li class="colorlib-active"><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
-					<li><a href="Create_Delivery.php">Create Delivery</a></li>
-					<li><a href="Track_Delivery.php">Track Delivery</a></li>
-					<li><a href="Contact.php">Contact</a></li>
+					<li ><i class="fas fa-home"></i><a href="Menu_Customer.php">Home</a></li>
+					<li class="colorlib-active"><i class="far fa-user-circle"></i><a href="Personal_Profile_Customer.php">Personal Profile</a></li>
+					<li><i class="fas fa-truck"></i><a href="Create_Delivery.php">Create Delivery</a></li>
+					<li><i class="fas fa-file-contract"></i><a href="Track_Delivery.php">Track Delivery</a></li>
+					<li><i class="fas fa-question"></i><a href="Contact.php">Contact</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px" >
@@ -102,68 +103,68 @@
 					
 				</div>
 				<br />
-				<a href="Personal_Profile_Customer.php" class="custom-btn btn-3" ><font size="3" color="red"><center>Back</center></font></a>
-					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">
-					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
+				<a href="Personal_Profile_Customer.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4">
+					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3 mr-4">
 			</section>
 		</div>
 	</div>
 </form>
 <?php
-	if(isset($_POST['submit']))
-	{	
-		//get data
-		require_once("conn.php");
-		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-		while($rc = mysqli_fetch_assoc($rs)){
-			//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
-			$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
-			$arrarysave = $rc[$array[1]];
-		}
-		
-		//set updata
-		$name = $_POST['name'];
-		$phone = $_POST['phone'];
-		$address = $_POST['address'];
+if(isset($_POST['submit']))
+{	
+	//get data
+	require_once("conn.php");
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	while($rc = mysqli_fetch_assoc($rs)){
+		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
+		$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
+		$arrarysave = $rc[$array[1]];
+	}
+	
+	//set updata
+	$name = $_POST['name'];
+	$phone = $_POST['phone'];
+	$address = $_POST['address'];
 
+//check if empty
+if(empty($name) && empty($phone) && empty($address))
+{
+		printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">no information updated !!</font></h1></div></div></div></div>');
 
-	if(empty($name) && empty($phone) && empty($address))
-	{
-			printf('<div id="colorlib-main">
-						<div class="container-fluid px-3 px-md-0">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">no information updated !!</font></h1></div></div></div></div>');
+}
+else
+{
+		printf('<div id="colorlib-main">
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+						<div class="col-md-12 mb-4">
+							<h1 class="h2"><font color="red">Update completed !!</font></h1></div></div></div></div>');
 
-	}
-	else
-	{
-			printf('<div id="colorlib-main">
-						<div class="container-fluid px-3 px-md-0">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">Update completed !!</font></h1></div></div></div></div>');
+}
+//set name
+if(!empty($name)){
+	$sql = "UPDATE customer SET customerName ='{$name}'  WHERE customerEmail = '{$arrarysave}'";
+	mysqli_query($conn, $sql) or die(mysqli_error($conn));
+}
+//set phone
+if(!empty($phone)){
+	$sql = "UPDATE customer SET phoneNumber ='{$phone}'  WHERE customerEmail = '{$arrarysave}'";
+	mysqli_query($conn, $sql) or die(mysqli_error($conn));
+}
+//set address
+if(!empty($address)){
+	$sql = "UPDATE customer SET address ='{$address}'  WHERE customerEmail = '{$arrarysave}'";
+	mysqli_query($conn, $sql) or die(mysqli_error($conn));
+}
 
-	}
-	//set name
-	if(!empty($name)){
-		$sql = "UPDATE customer SET customerName ='{$name}'  WHERE customerEmail = '{$arrarysave}'";
-		mysqli_query($conn, $sql) or die(mysqli_error($conn));
-	}
-	//set phone
-	if(!empty($phone)){
-		$sql = "UPDATE customer SET phoneNumber ='{$phone}'  WHERE customerEmail = '{$arrarysave}'";
-		mysqli_query($conn, $sql) or die(mysqli_error($conn));
-	}
-	//set address
-	if(!empty($address)){
-		$sql = "UPDATE customer SET address ='{$address}'  WHERE customerEmail = '{$arrarysave}'";
-		mysqli_query($conn, $sql) or die(mysqli_error($conn));
-	}
-
-	mysqli_free_result($rs);
-	mysqli_close($conn);
-	}
+mysqli_free_result($rs);
+mysqli_close($conn);
+}
 
 
 ?>

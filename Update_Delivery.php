@@ -69,16 +69,17 @@
 							<h2 class="h4">Airwaybill’s Number :</h2>
 						</div>
 						<div class="col-md-6">
-						<?php
-							if(isset($_GET["q"])){
-								$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								if(mysqli_num_rows($rs) != 0){
-									printf("<h2 class='h4' name='airway' id='airway' onchange='showUpdate();' >%s</h2>", $_GET["q"]);
-									printf("<input type='hidden' name='airWaybillNo' value='%s' >", $_GET["q"]);
-								}
-							}
-						?>
+<?php
+//check if set show data
+if(isset($_GET["q"])){
+	$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	if(mysqli_num_rows($rs) != 0){
+		printf("<h2 class='h4' name='airway' id='airway' onchange='showUpdate();' >%s</h2>", $_GET["q"]);
+		printf("<input type='hidden' name='airWaybillNo' value='%s' >", $_GET["q"]);
+	}
+}
+?>
 						</div>
 						<div class="col-md-6">
 							<h2 class="h4">Shipment Status :</h2>
@@ -101,15 +102,16 @@
 							<h2 class="h5"><input type="text" maxlength="255" name="currentLocation" /></h2>
 						</div>
 						<div class="col-md-12">
-						<?php
-							if(isset($_GET["q"])){
-								$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								if(mysqli_num_rows($rs) != 0){
-									printf('<h2 class="h4"><button type="submit" class="float-right mx-5 custom-btn btn-3" id="update">Update</button></h2>');
-								}
-							}
-						?>
+<?php
+//check if set show data
+if(isset($_GET["q"])){
+	$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	if(mysqli_num_rows($rs) != 0){
+		printf('<h2 class="h4"><button type="submit" class="float-right mx-5 custom-btn btn-3" id="update">Update</button></h2>');
+	}
+}
+?>
 						
 								
 						</div>
@@ -124,25 +126,25 @@
 							<th>Current Location</th>
 						</tr>
 
-						<?php
-						
-							if(isset($_GET["q"]) && $_GET["q"]!=""){
-								$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
-									while($rc = mysqli_fetch_assoc($rs)){
-										$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
-										echo "<tr>";
-										for($i = 0; $i < 3 ; $i++){
-											printf('<td>%s</td>', $array[$i]);
-										}
-										echo "</tr>";
-									}
-							}
-							
-							mysqli_free_result($rs);
-							mysqli_close($conn);
-						?>
+<?php
+//check if set show data
+if(isset($_GET["q"]) && $_GET["q"]!=""){
+	$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+		while($rc = mysqli_fetch_assoc($rs)){
+			$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+			echo "<tr>";
+			for($i = 0; $i < 3 ; $i++){
+				printf('<td>%s</td>', $array[$i]);
+			}
+			echo "</tr>";
+		}
+}
+
+mysqli_free_result($rs);
+mysqli_close($conn);
+?>
 
 					</table>
 				</div>

@@ -68,32 +68,32 @@
 				</div>
 				<div class="container-fluid px-3 px-md-0 ">
 					<div class="row">
-						<?php
-						
-							//have value to search
-							if(isset($_POST['search'])){
-								//set value
-								$searchinput = $_POST['searchinput'];
-								if ($searchinput != null){
-									require_once("conn.php");
-									$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
-									$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-									$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");
-									$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
-									while($rc = mysqli_fetch_assoc($rs)){
-										for($i = 0; $i < 5 ; $i++){
-											printf('
-											<div class="col-md-6">
-											<h2 class="h4">%s</h2>
-											</div>
-											<div class="col-md-6">
-											<h2 class="h4">%s</h2>
-											</div>', $name[$i], $rc[$array[$i]]);
-										}
-									}
-								}
-							}
-						?>
+<?php
+
+//have value to search
+if(isset($_POST['search'])){
+	//set value
+	$searchinput = $_POST['searchinput'];
+	if ($searchinput != null){
+		require_once("conn.php");
+		$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone :", "Weight :", "Parcel’s Weight :");
+		$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "weight");
+		while($rc = mysqli_fetch_assoc($rs)){
+			for($i = 0; $i < 5 ; $i++){
+				printf('
+				<div class="col-md-6">
+				<h2 class="h4">%s</h2>
+				</div>
+				<div class="col-md-6">
+				<h2 class="h4">%s</h2>
+				</div>', $name[$i], $rc[$array[$i]]);
+			}
+		}
+	}
+}
+?>
 					</div>
 				</div>
 				<div class="row my-5">
@@ -103,30 +103,31 @@
 							<th>Shipment Status</th>
 							<th>Current Location</th>
 						</tr>
-						<?php
-							//have value to search
-							if(isset($_POST['search'])){
-								//set value
-								$searchinput = $_POST['searchinput'];
-								if ($searchinput == null){
+<?php
+//have value to search
+if(isset($_POST['search'])){
+	//set value
+	$searchinput = $_POST['searchinput'];
+	if ($searchinput == null){
 
-								}else{
-									$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = '{$searchinput}' ORDER BY recordDateTime DESC";
-									$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-									$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
-									while($rc = mysqli_fetch_assoc($rs)){
-											$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
-										echo "<tr>";
-									for($i = 0; $i < 3 ; $i++){
-										printf('<td>%s</td>', $array[$i]);
-									}
-									echo "</tr>";
-									}
-								}
-							}
-							mysqli_free_result($rs);
-							mysqli_close($conn);
-						?>
+	}else{
+	//loop data
+		$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = '{$searchinput}' ORDER BY recordDateTime DESC";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+		while($rc = mysqli_fetch_assoc($rs)){
+				$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+			echo "<tr>";
+		for($i = 0; $i < 3 ; $i++){
+			printf('<td>%s</td>', $array[$i]);
+		}
+		echo "</tr>";
+		}
+	}
+}
+mysqli_free_result($rs);
+mysqli_close($conn);
+?>
 
 					</table>
 				</div>

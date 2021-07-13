@@ -56,26 +56,27 @@
 						<div class="col-md-12 mb-4">
 							<h1 class="h2">Personal Profile</h1>
 						</div>
-						<?php
-							$sql = "SELECT * from Staff WHERE staffID = \"" . $_SESSION['user'] . "\"" ;
-							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-							while($rc = mysqli_fetch_assoc($rs)){
-								$name = array("staffID :", "staffName :");
-								$array = array("staffID", "staffName");
-								for($i = 0; $i < 2 ; $i++){
-									printf('
-									<div class="col-md-6">
-									<h2 class="h4">%s</h2>
-									</div>
-									<div class="col-md-6">
-									<h2 class="h4">%s</h2>
-									</div>', $name[$i] ,$rc[$array[$i]]);
-								}
-							}
-							
-							mysqli_free_result($rs);
-							mysqli_close($conn);
-						?>
+<?php
+//loop show data
+$sql = "SELECT * from Staff WHERE staffID = \"" . $_SESSION['user'] . "\"" ;
+$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+while($rc = mysqli_fetch_assoc($rs)){
+	$name = array("staffID :", "staffName :");
+	$array = array("staffID", "staffName");
+	for($i = 0; $i < 2 ; $i++){
+		printf('
+		<div class="col-md-6">
+		<h2 class="h4">%s</h2>
+		</div>
+		<div class="col-md-6">
+		<h2 class="h4">%s</h2>
+		</div>', $name[$i] ,$rc[$array[$i]]);
+	}
+}
+
+mysqli_free_result($rs);
+mysqli_close($conn);
+?>
 						<div class="col-sm-3">
 							<a href="Change_Password_Profile_Staff.php"><button class="custom-btn btn-3">Change Password</button></a>
 						</div>

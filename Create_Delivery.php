@@ -51,57 +51,54 @@
 			</nav>
 		</aside> 
 						
-						<?php
-						require_once("conn.php");// Using database connection file here
-						
-						if(isset($_POST['submit']))
-						{		
-							
-							
-							$Email = $_POST['Email'];
-							$Name = $_POST['Name'];
-							$Phone = $_POST['Phone'];
-							$Address = $_POST['Address'];
-							$Location = $_POST['location'];
-							//check data
-							if(empty($Email) || empty($Name) || empty($Phone) || empty($Address))
-							{
-									printf('<div id="colorlib-main">
-												<div class="container-fluid px-3 px-md-0">
-												<div class="row">
-													<div class="col-md-12 mb-4">
-														<h1 class="h2"><font color="red">Please fill in all the information !!!</font></h1></div></div></div></div>');
-									
-							}
-							else
-							{
-								$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
-								mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								while($rc = mysqli_fetch_assoc($rs)){
-									$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
-									$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
-								}
-								
-								if(mysqli_affected_rows($conn) == 0)
-								{
-									echo mysqli_error();
-								}
-								else
-								{
-									printf('<div id="colorlib-main">
-												<div class="container-fluid px-3 px-md-0">
-												<div class="row">
-													<div class="col-md-12 mb-4">
-														<h1 class="h2"><font color="red">Created successfully !!</font></h1></div></div></div></div>');
-														
-								}
-							}
-						}
+<?php
+require_once("conn.php");// Using database connection file here
 
-						//mysqli_close($db); // Close connection
-						?>
+if(isset($_POST['submit']))
+{
+	$Email = $_POST['Email'];
+	$Name = $_POST['Name'];
+	$Phone = $_POST['Phone'];
+	$Address = $_POST['Address'];
+	$Location = $_POST['location'];
+	//check data
+	if(empty($Email) || empty($Name) || empty($Phone) || empty($Address))
+	{
+			printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">Please fill in all the information !!!</font></h1></div></div></div></div>');
+			
+	}
+	else
+	{
+		$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
+		mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		while($rc = mysqli_fetch_assoc($rs)){
+			$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
+			$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
+		}
+		
+		if(mysqli_affected_rows($conn) == 0)
+		{
+			echo mysqli_error();
+		}
+		else
+		{
+			printf('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2"><font color="red">Created successfully !!</font></h1></div></div></div></div>');
+								
+		}
+	}
+}
+
+?>
 						
 <form id="createdelivery" method="post" action="">
 		<div id="colorlib-main">
@@ -166,40 +163,44 @@
 						
 						<br />
 						<div class="col-12">
-							<?php
-								$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
-									$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-									while($rc = mysqli_fetch_assoc($rs)){
-										if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
-											print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3" disabled>');
-										}else{
-											print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3">');
-										}
-									}
-									
-							?>
-								<input type="reset" name="reset" value="Reset" class="custom-btn btn-3">
 
-							
-							
+<?php
+//print the button
+	$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		while($rc = mysqli_fetch_assoc($rs)){
+			if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
+				print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4" disabled>');
+			}else{
+				print('<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4">');
+			}
+		}
+		
+?>
+
+								<input type="reset" name="reset" value="Reset" class="custom-btn btn-3 mr-4">
+
 							</div>
 						</div>
 					</div>
-				</div><?php
-			$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
-			$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-			while($rc = mysqli_fetch_assoc($rs)){
-				if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
-					printf('<br />
-							<div class="container-fluid px-3 px-md-0">
-							<div class="row">
-							<div class="col-md-12 mb-4">
-							<h1 class="h1"><font color="red">Please fill in all account information before creating delivery!!!</font></h1></div></div></div>');
-				}
-			}
-			mysqli_free_result($rs);
-			mysqli_close($conn);
-		?>
+				</div>
+
+<?php
+//show message
+$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
+$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+while($rc = mysqli_fetch_assoc($rs)){
+	if(strlen($rc['phoneNumber']) == 0 || strlen($rc['address']) == 0){
+		printf('<br />
+				<div class="container-fluid px-3 px-md-0">
+				<div class="row">
+				<div class="col-md-12 mb-4">
+				<h1 class="h1"><font color="red">Please fill in all account information before creating delivery!!!</font></h1></div></div></div>');
+	}
+}
+mysqli_free_result($rs);
+mysqli_close($conn);
+?>
 			</section>
 		</div>
 		

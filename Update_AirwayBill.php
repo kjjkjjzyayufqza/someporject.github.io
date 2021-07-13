@@ -53,14 +53,15 @@
 		</aside> 
 
 <?php
-	if(isset($_SESSION['error'])){
-		if($_SESSION['error'] == true){
-			echo '<script>alert("Error in updating airwaybill !!!")</script>';
-		}else{
-			echo '<script>alert("Airwaybill is updated successfully !!!")</script>';
-		}
-		unset($_SESSION['error']);
+//check if error than show message
+if(isset($_SESSION['error'])){
+	if($_SESSION['error'] == true){
+		echo '<script>alert("Error in updating airwaybill !!!")</script>';
+	}else{
+		echo '<script>alert("Airwaybill is updated successfully !!!")</script>';
 	}
+	unset($_SESSION['error']);
+}
 ?>
 
 		<div id="colorlib-main">
@@ -83,33 +84,34 @@
 								<th></th>
 							</tr>
 
-							<?php
-							if(isset($_GET['q']) && strlen($_GET['q'])!=0){
-								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\"" ;
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$array = array("airWaybillNo", "customerName", "date");
-								while($rc = mysqli_fetch_assoc($rs)){
-									echo "<tr>";
-									for($i = 0; $i < 3 ; $i++){
-									printf('<td>%s</td>', $rc[$array[$i]]);
-									}
-									printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
-								}
-							}else{
-								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$array = array("airWaybillNo", "customerName", "date");
-								while($rc = mysqli_fetch_assoc($rs)){
-									echo "<tr>";
-									for($i = 0; $i < 3 ; $i++){
-									printf('<td>%s</td>', $rc[$array[$i]]);
-									}
-									printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
-								}
-							}
-							mysqli_free_result($rs);
-							mysqli_close($conn);
-							?>
+<?php
+//check set
+if(isset($_GET['q']) && strlen($_GET['q'])!=0){
+	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\"" ;
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	$array = array("airWaybillNo", "customerName", "date");
+	while($rc = mysqli_fetch_assoc($rs)){
+		echo "<tr>";
+		for($i = 0; $i < 3 ; $i++){
+		printf('<td>%s</td>', $rc[$array[$i]]);
+		}
+		printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
+	}
+}else{
+	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	$array = array("airWaybillNo", "customerName", "date");
+	while($rc = mysqli_fetch_assoc($rs)){
+		echo "<tr>";
+		for($i = 0; $i < 3 ; $i++){
+		printf('<td>%s</td>', $rc[$array[$i]]);
+		}
+		printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
+	}
+}
+mysqli_free_result($rs);
+mysqli_close($conn);
+?>
 						</table>
 					</div>
 				</div>

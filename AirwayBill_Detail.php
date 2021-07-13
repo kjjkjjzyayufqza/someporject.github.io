@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	
 	<link rel="stylesheet" href="css/Menu.css">
 	<script type="text/javascript">  
@@ -54,11 +54,11 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="Menu_Staff.php">Home</a></li>
-					<li><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li class="colorlib-active"><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
-					<li><a href="Update_Delivery.php">Update Delivery</a></li>
-					<li><a href="Generate_Report.php">Generate Report</a></li>
+					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
+					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
+					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
+					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
 							<div class="logo">
 							  <svg width="200px" height="200px">
@@ -91,35 +91,37 @@
 						<div class="col-md-12 mb-4">
 							<h1 class="h2">Airway Bill Detail</h1>
 						</div>
-							<?php
-								$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
-								$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "locationID");
-								while($rc = mysqli_fetch_assoc($rs)){
-									for($i = 0; $i < 4 ; $i++){
-										printf('
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>
-										<div class="col-md-6">
-										<h2 class="h4">%s</h2>
-										</div>', $name[$i], $rc[$array[$i]]);
-									}
-								}
-							?>
+<?php
+//loop show data
+$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
+$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
+$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "locationID");
+while($rc = mysqli_fetch_assoc($rs)){
+	for($i = 0; $i < 4 ; $i++){
+		printf('
+		<div class="col-md-6">
+		<h2 class="h4">%s</h2>
+		</div>
+		<div class="col-md-6">
+		<h2 class="h4">%s</h2>
+		</div>', $name[$i], $rc[$array[$i]]);
+	}
+}
+?>
 							
 							
 						<form action="weight.php" method="post" id="update" onload="unableClick();" >
-							<?php
-								printf("<input type='hidden' name='airWaybillNo' value='%s' />", $_GET["airWaybillNo"]);
-								$sql = "SELECT locationID, accountCreationDate FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
-								$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-								while($rc = mysqli_fetch_assoc($rs)){
-									printf("<input type='hidden' id='locationID' name='locationID' value='%s' />", $rc["locationID"]);
-									printf("<input type='hidden' name='accountCreationDate' value='%s' />", $rc["accountCreationDate"]);
-								}
-							?>
+<?php
+//show button
+printf("<input type='hidden' name='airWaybillNo' value='%s' />", $_GET["airWaybillNo"]);
+$sql = "SELECT locationID, accountCreationDate FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
+$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+while($rc = mysqli_fetch_assoc($rs)){
+	printf("<input type='hidden' id='locationID' name='locationID' value='%s' />", $rc["locationID"]);
+	printf("<input type='hidden' name='accountCreationDate' value='%s' />", $rc["accountCreationDate"]);
+}
+?>
 							<div class="col-md-12">
 								<h2 class="h4" name="weight">Parcel’s Weight :</h2>
 							</div>
@@ -132,11 +134,12 @@
 						</form>
 						
 						<form action="deleteAirwayBill.php" method="post" name="confirm" id="confirm" style="display:inline;">
-						<?php
-							printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
-							mysqli_free_result($rs);
-							mysqli_close($conn);
-						?>
+<?php
+//show data
+printf("<input type='hidden' name='airwaybill' value='%s' />", $_GET["airWaybillNo"]);
+mysqli_free_result($rs);
+mysqli_close($conn);
+?>
 						</form> 
 						<button class="custom-btn btn-3" form="" onclick="deleteAirwayBill()">Delete</button>
 						<div class="col-md-12">
