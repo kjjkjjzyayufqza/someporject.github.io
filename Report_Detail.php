@@ -53,13 +53,12 @@
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row print-container">
-						<div class="col-md-12 mb-4">
-						</div>
+						
 							<div class="col-md-6">
 								<h1 class="font-weight-bolder" style="font-size: 70px;">Report</h1>
 							</div>
 							<div class="col-md-6">
-								<img src="image/logo_3.png" class="float-right" width="300" height="150" />
+								<img src="image/logo_3.png" class="float-right" style="width:350px;height:150px;" />
 							</div>
 <?php
 //show data
