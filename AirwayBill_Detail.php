@@ -14,22 +14,16 @@
 			}
 		}
 		var max;
-		function unableClick(){ // disable submit button and set the maximum weight for different location
-			var locationID = document.getElementById('locationID').value;
+		function unableClick(){ // disable submit button
 			document.getElementById('submit').disabled = true;
-			if(locationID == 3){
-				max = 5;
-				document.getElementById('weight').max = max;
-			}else{
-				max = 10;
-				document.getElementById('weight').max = max;
-			}
+			max = 10.0;
+			document.getElementById('weight').max = max;
 		}
 	
 		function checkWeight(){// decide submit button whether disable or not & set error message
 			var weight = document.getElementById('weight').value;
 			var errorMsg;
-			if(weight >= 1 && weight <= max){
+			if(weight >= 1.0 && weight <= max){
 				document.getElementById('submit').disabled = false;
 				document.getElementById('error').innerHTML = "";
 			}else{
@@ -125,7 +119,7 @@ while($rc = mysqli_fetch_assoc($rs)){
 								<h2 class="h4" name="weight">Parcel’s Weight :</h2>
 							</div>
 							<div class="col-md-12">
-								<h2 class="h4"><input type="number" style="width: 10em" max="10" min="1" onchange="checkWeight();" name="weight" id="weight" /></h2>
+								<h2 class="h4"><input type="number" style="width: 10em" max="10.0" min="1.0" step=".1"onchange="checkWeight();" name="weight" id="weight" /></h2>
 							</div>
 							<div class="col-md-12 my-5">
 								<a href="Update_AirwayBill.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>

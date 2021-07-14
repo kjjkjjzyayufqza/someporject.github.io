@@ -2,8 +2,8 @@
 	session_start();
 	extract($_POST);
 	require_once("conn.php");
-	
-	$sql = "SELECT rate FROM chargetable WHERE weight = '{$weight}' AND locationID = '{$locationID}'";
+	$w = ceil($weight);
+	$sql = "SELECT rate FROM chargetable WHERE weight = '{$w}' AND locationID = '{$locationID}'";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		
 	while($rc = mysqli_fetch_assoc($rs)){
