@@ -70,13 +70,24 @@
 		$array = array("airWaybillNo", "staffID", "date");
 		$name = array("Air Waybill’s Number :", "Staff’s ID :", "Date :");
 		for($i = 0; $i < 3 ; $i++){
-			printf(
-			'<div class="col-md-4">
-			<br /><br />
-			<h2 class="h4">%s</h2>
-			<h2 class="h4">%s</h2>
-			</div>'
-			, $name[$i], $rc[$array[$i]]);
+			if($i == 2){ // show date
+				$dt = new DateTime($rc[$array[$i]]);
+				printf(
+				'<div class="col-md-4">
+				<br /><br />
+				<h2 class="h4">%s</h2>
+				<h2 class="h4">%s</h2>
+				</div>'
+				, $name[$i], $dt->format('Y-m-d'));
+			}else{ // show airwaybillno and staffID
+				printf(
+				'<div class="col-md-4">
+				<br /><br />
+				<h2 class="h4">%s</h2>
+				<h2 class="h4">%s</h2>
+				</div>'
+				, $name[$i], $rc[$array[$i]]);
+			}
 		}
 		
 		$array = array("customerEmail", "customerName");
