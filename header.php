@@ -3,7 +3,7 @@
 	$user = $_SESSION['user'];
 	$role = $_SESSION['role'];
 	require_once("conn.php");
-	if($role == "customer"){
+	if($role == "customer"){ // header of customer
 		$sql = "SELECT * from customer WHERE customerEmail = \"" . $user ."\"";
 		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		while($rc = mysqli_fetch_assoc($rs)){
@@ -15,7 +15,7 @@
 				<a class="text-white font-weight-bold" href="index.php">Logout</a>',$rc[$array[0]]);
 		}
 	}
-	else if($role == "staff"){
+	else if($role == "staff"){ // header of staff
 		$sql = "SELECT * from staff WHERE staffID = \"" . $user ."\"";
 		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		while($rc = mysqli_fetch_assoc($rs)){

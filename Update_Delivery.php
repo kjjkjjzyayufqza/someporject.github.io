@@ -9,7 +9,9 @@
 	<link rel="stylesheet" href="css/search.css">
 	</head>
 	<body>
+	
 <?php
+	// header of page
 	require_once("header.php");
 ?>
 	</div>
@@ -70,7 +72,7 @@
 						</div>
 						<div class="col-md-6">
 <?php
-//check if set show data
+//check if show data
 if(isset($_GET["q"])){
 	$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
@@ -103,7 +105,7 @@ if(isset($_GET["q"])){
 						</div>
 						<div class="col-md-12">
 <?php
-//check if set show data
+//check if show update button
 if(isset($_GET["q"])){
 	$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));

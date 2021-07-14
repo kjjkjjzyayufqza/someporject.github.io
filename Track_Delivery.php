@@ -11,6 +11,7 @@
 </head>
 <body>
 <?php
+	// header of page
     require_once("header.php");
 ?>
 
@@ -74,7 +75,7 @@
 if(isset($_POST['search'])){
 	//set value
 	$searchinput = $_POST['searchinput'];
-	if ($searchinput != null){
+	if ($searchinput != null){ // check whether searchinput is null
 		require_once("conn.php");
 		$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
 		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));

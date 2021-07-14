@@ -4,14 +4,13 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
 
 	</head>
 	<body>
 <?php
+	// header of page
     require_once("header.php");
 ?>
 
@@ -75,12 +74,10 @@
 		</div>
 	</div>
 
-	</section>
-
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+	  <script src="js/jquery.min.js"></script>
+	  <script src="js/popper.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/main.js"></script>
 
 	</body>
 </html>

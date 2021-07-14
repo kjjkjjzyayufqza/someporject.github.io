@@ -3,13 +3,13 @@
   <head>
   	<title>EDE Express</title>
     <meta charset="utf-8">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	<link rel="stylesheet" href="css/Menu.css">
+	
 	<script type="text/javascript">
-	    //check if Number
+	    //check if it is number
 		function isNumberKey(evt){
 			var charCode = (evt.which) ? evt.which : evt.keyCode;
 			if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -20,6 +20,7 @@
 	</head>
 	<body>
 <?php
+	// header of page
     require_once("header.php");
 ?>
 
@@ -53,7 +54,7 @@
 									S144.229,62.683,140.773,59.227z"/>
 							  </svg>
 							</div>
-							</div>
+						</div>
 					</li>
 				</ul>
 			</nav>
@@ -117,12 +118,11 @@ if(isset($_POST['submit']))
 	require_once("conn.php");
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	while($rc = mysqli_fetch_assoc($rs)){
-		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
 		$array = array("customerName", "customerEmail", "phoneNumber", "address", "accountCreationDate");
 		$arrarysave = $rc[$array[1]];
 	}
 	
-	//set updata
+	//set update
 	$name = $_POST['name'];
 	$phone = $_POST['phone'];
 	$address = $_POST['address'];

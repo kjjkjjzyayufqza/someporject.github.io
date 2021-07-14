@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
+	<link rel="stylesheet" href="css/fontawesome/css/all.css">	
 	<link rel="stylesheet" href="css/Menu.css">
 
-	</head>
-	<body>
+</head>
+<body>
+
 <?php
+	//header of page
 	require_once("header.php");
 ?>
 
@@ -45,7 +45,7 @@
 									S144.229,62.683,140.773,59.227z"/>
 							  </svg>
 							</div>
-							</div>
+						</div>
 					</li>
 				</ul>
 			</nav>
@@ -53,52 +53,49 @@
 
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
-			<form  method="post" action="">
-				<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-						<div class="col-md-12 mb-4">
-							<h1 class="h2">Change Password</h1>
+				<form  method="post" action="">
+					<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+							<div class="col-md-12 mb-4">
+								<h1 class="h2">Change Password</h1>
+							</div>
+							<div class="col-md-6">
+							<div class="row mt-3">
+								<div class="col-12 col-sm-4">
+									<h2 class="h5">Original</h2>
+								</div>
+								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" title="5-40" class="form-control" name="originalpass" value="" required />
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-12 col-sm-4">
+									<h2 class="h5">New</h2>
+								</div>
+								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" class="form-control" name="newpass" value="" required>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-12 col-sm-4">
+									<h2 class="h5">Re-enter </h2>
+								</div>
+								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
+									<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" class="form-control" name="repass" value="" required>
+								</div>
+							</div>
+							</div>
 						</div>
-						<div class="col-md-6">
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Original</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" title="5-40" class="form-control" name="originalpass" value="" required />
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">New</h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" class="form-control" name="newpass" value="" required>
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-12 col-sm-4">
-								<h2 class="h5">Re-enter </h2>
-							</div>
-							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="password" minlength="5" maxlength="40" placeholder="5 to 40 characters" class="form-control" name="repass" value="" required>
-							</div>
-						</div>
-						</div>
-
-
-					</div>
 					<br />
-				</div>
-							<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
+					</div>
+					<a href="Personal_Profile_Staff.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
 					<input type="submit" name="submit" value="Submit" class="custom-btn btn-3 mr-4">
 					<input type="reset" name="reset" value="Reset" class="custom-btn btn-3 mr-4">
-					</form>
+				</form>
 			</section>
 		</div>
 	</div>
-
-	</section>
+	
 <?php
 	if(isset($_POST['submit'])){	
 		//get data
@@ -117,10 +114,9 @@
 		require_once("conn.php");
 		
 		//check password
-		if(strlen($newpass) >= 6 && strlen($repass) >= 6)
-		{
+		if(strlen($newpass) >= 6 && strlen($repass) >= 6){ // set word limit
 			
-			if($originalpass == $arrarysavepass && $newpass == $repass && strlen($newpass)>=5 ){
+			if($originalpass == $arrarysavepass && $newpass == $repass && strlen($newpass)>=5 ){ // successfully change
 				$sql = "UPDATE staff SET staffPassword ='{$newpass}' WHERE staffName = '{$arrarysave}'";
 
 				if (mysqli_query($conn, $sql)) {
@@ -133,13 +129,13 @@
 					echo "Error updating record: " . mysqli_error($conn);
 				}
 				
-			}else if($originalpass == $newpass){
+			}else if($originalpass == $newpass){ // set cannot the same password
 				print('<div id="colorlib-main">
 						<div class="container-fluid px-3 px-md-0">
 						<div class="row">
 						<div class="col-md-12 mb-4">
 						<h1 class="h2"><font color="red">Original password cannot be the same as new password !!!</font></h1></div></div></div></div>');
-			}else{
+			}else{ // wrong input
 				print('<div id="colorlib-main">
 						<div class="container-fluid px-3 px-md-0">
 						<div class="row">
@@ -155,14 +151,15 @@
 				<h1 class="h2"><font color="red">Password Must more than 4 characters !!!</font></h1></div></div></div></div>');			
 		}
 	}
+	
 	mysqli_free_result($rs);
 	mysqli_close($conn);
 
 ?>
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+	  <script src="js/jquery.min.js"></script>
+	  <script src="js/popper.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/main.js"></script>
 
 	</body>
 </html>

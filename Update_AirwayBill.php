@@ -4,16 +4,14 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
-	
 	<link rel="stylesheet" href="css/search.css">
 
 	</head>
 	<body>
 <?php
+	//header of page
 	require_once("header.php");
 ?>
 	</div>
@@ -53,7 +51,8 @@
 		</aside> 
 
 <?php
-//check if error than show message
+//receive variable
+//check if error then show message
 if(isset($_SESSION['error'])){
 	if($_SESSION['error'] == true){
 		echo '<script>alert("Error in updating airwaybill !!!")</script>';
@@ -86,7 +85,7 @@ if(isset($_SESSION['error'])){
 
 <?php
 //check set
-if(isset($_GET['q']) && strlen($_GET['q'])!=0){
+if(isset($_GET['q']) && strlen($_GET['q'])!=0){ // show airwaybill with specific airWaybillNo
 	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\"" ;
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "date");
@@ -95,9 +94,10 @@ if(isset($_GET['q']) && strlen($_GET['q'])!=0){
 		for($i = 0; $i < 3 ; $i++){
 		printf('<td>%s</td>', $rc[$array[$i]]);
 		}
+		//pass variable to AirwayBill_Detail.php
 		printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
 	}
-}else{
+}else{ // show all airwaybill
 	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "date");
@@ -106,6 +106,7 @@ if(isset($_GET['q']) && strlen($_GET['q'])!=0){
 		for($i = 0; $i < 3 ; $i++){
 		printf('<td>%s</td>', $rc[$array[$i]]);
 		}
+		//pass variable to AirwayBill_Detail.php
 		printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
 	}
 }

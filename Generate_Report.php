@@ -4,16 +4,14 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
-	
 	<link rel="stylesheet" href="css/search.css">
 
 	</head>
 	<body>
 <?php
+	//header of page
 	require_once("header.php");
 ?>
 
@@ -52,6 +50,7 @@
 				</ul>
 			</nav>
 		</aside> 
+		
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
@@ -74,19 +73,19 @@
 							</tr>
 <?php
 //check if set show data
-if(isset($_GET['q']) && strlen($_GET['q'])!=0){
+if(isset($_GET['q']) && strlen($_GET['q'])!=0){ // show airwaybill with specific airwaybillno
 	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\"";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "receiverName", "date");
 	while($rc = mysqli_fetch_assoc($rs)){
 		echo "<tr>";
-		for($i = 0; $i < 3 ; $i++){
+		for($i = 0; $i < 3 ; $i++){ // show data in table
 			printf('<td>%s</td>', $rc[$array[$i]]);
 		}
+		// pass airwaybillno to Report_Detail.php
 		printf('<td><span><a href="Report_Detail.php?airWaybillNo=%s"></a></span></td></tr>', $rc["airWaybillNo"]);
 	}
-}else{
-
+}else{ // show all airwaybill
 	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "receiverName", "date");
@@ -95,6 +94,7 @@ if(isset($_GET['q']) && strlen($_GET['q'])!=0){
 		for($i = 0; $i < 3 ; $i++){
 			printf('<td>%s</td>', $rc[$array[$i]]);
 		}
+		// pass airwaybillno to Report_Detail.php
 		printf('<td><span><a href="Report_Detail.php?airWaybillNo=%s"></a></span></td></tr>', $rc["airWaybillNo"]);
 	}
 }

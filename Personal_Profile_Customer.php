@@ -12,6 +12,7 @@
 	</head>
 	<body>
 <?php
+	//header of page
     require_once("header.php");
 ?>
 

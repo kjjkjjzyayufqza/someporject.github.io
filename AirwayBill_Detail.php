@@ -4,18 +4,17 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
+	
 	<script type="text/javascript">  
-		function deleteAirwayBill() {
+		function deleteAirwayBill() { //pop up a confirmation dialog to re-confirm deletion of delivery request
 			if (confirm("Are you sure to delete the delivery request?")) {
 				document.forms['confirm'].submit();  
 			}
 		}
 		var max;
-		function unableClick(){
+		function unableClick(){ // disable submit button and set the maximum weight for different location
 			var locationID = document.getElementById('locationID').value;
 			document.getElementById('submit').disabled = true;
 			if(locationID == 3){
@@ -27,7 +26,7 @@
 			}
 		}
 	
-		function checkWeight(){
+		function checkWeight(){// decide submit button whether disable or not & set error message
 			var weight = document.getElementById('weight').value;
 			var errorMsg;
 			if(weight >= 1 && weight <= max){

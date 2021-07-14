@@ -4,14 +4,14 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
 
 	</head>
 	<body>
+	
 <?php
+	// header of page
     require_once("header.php");
 ?>
 
@@ -91,22 +91,20 @@ if(isset($_POST['submit']))
 	require_once("conn.php");
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	while($rc = mysqli_fetch_assoc($rs)){
-		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
 		$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
 		$arrarysave = $rc[$array[1]];
 		$arrarysavepass = $rc[$array[2]];
 	}
-							
-
+		
 	//check password
 	$originalpass = $_POST['originalpass'];
-	if(empty($originalpass)){
+	if(empty($originalpass)){ // check is the password empty
 		printf('<div id="colorlib-main">
 				<div class="container-fluid px-3 px-md-0">
 				<div class="row">
 				<div class="col-md-12 mb-4">
 				<h1 class="h2"><font color="red">Please fill in the password !!!</font></h1></div></div></div></div>');
-	}else if($originalpass != $arrarysavepass){
+	}else if($originalpass != $arrarysavepass){ // wrong password
 		printf('<div id="colorlib-main">
 				<div class="container-fluid px-3 px-md-0">
 				<div class="row">
@@ -135,7 +133,6 @@ if(isset($_POST['submit']))
 							
 		//delete customer
 		$Email = $arrarysave;
-		//$data = date_default_timezone_get();
 		$sql = "DELETE FROM `customer` WHERE `customer`.`customerEmail` = \"" . $_SESSION['user']. "\"";
 		if (mysqli_query($conn, $sql)) {
 			printf('<div id="colorlib-main">
@@ -147,10 +144,10 @@ if(isset($_POST['submit']))
 			 echo "Error updating record: " . mysqli_error($conn);
 		}
 		header('Location: Login_Page.html');
-		}
-		
-		mysqli_free_result($rs);
-		mysqli_close($conn);
+	}
+	
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 	}
 ?>
 	<script src="js/jquery.min.js"></script>
