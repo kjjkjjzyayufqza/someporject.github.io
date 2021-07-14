@@ -116,7 +116,7 @@
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
 							<h2 class="h3">
 								<select name="location" id="location" onChange="checkselect(this.options[this.selectedIndex].text)">
-										<option value="1">Shanghai China</option>
+										<option value="1">China Shanghai</option>
 										<option value="2">Japan</option>
 										<option value="3">Australia</option>
 								</select>

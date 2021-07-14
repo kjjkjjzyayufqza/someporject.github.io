@@ -32,13 +32,13 @@
 			{
 				if(password == cpassword) // check two password entered the same
 				{
-					if(password.length >= 6 && cpassword.length >= 6) // check the length of password
+					if(password.length >= 5 && cpassword.length >= 5) // check the length of password
 					{
 						Register.submit();
 					}
 					else
 					{
-						alert("Password length must be between 6-25 characters！")
+						alert("Password length must be between 5-25 characters！")
 					}
 				}
 				else

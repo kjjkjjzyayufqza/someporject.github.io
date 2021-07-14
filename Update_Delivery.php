@@ -22,7 +22,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
@@ -56,8 +56,8 @@
 						<div class="col-md-12 mb-4">
 								<h1 class="h2">Update Delivery</h1>
 						</div>
-						<div class="col-md-2 my-4">
-							<h2 class="h4">Airway Bill No: </h2>
+						<div class="col-md-3 my-4">
+							<h2 class="h4">Air Waybill’s Number : </h2>
 						</div>
 						<form id="tfnewsearch" method="get" action="">
 								<input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
@@ -68,7 +68,7 @@
 				<form method="post" action="status.php" id="status">
 					<div class="row">
 						<div class="col-md-6">
-							<h2 class="h4">Airwaybill’s Number :</h2>
+							<h2 class="h4">Air Waybill’s Number :</h2>
 						</div>
 						<div class="col-md-6">
 <?php

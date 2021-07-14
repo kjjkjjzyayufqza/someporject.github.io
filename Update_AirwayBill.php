@@ -22,7 +22,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
@@ -57,7 +57,7 @@ if(isset($_SESSION['error'])){
 	if($_SESSION['error'] == true){
 		echo '<script>alert("Error in updating airwaybill !!!")</script>';
 	}else{
-		echo '<script>alert("Airwaybill is updated successfully !!!")</script>';
+		echo '<script>alert("Air Waybill is updated successfully !!!")</script>';
 	}
 	unset($_SESSION['error']);
 }
@@ -68,7 +68,7 @@ if(isset($_SESSION['error'])){
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row my-5">
 						<div class="col-md-4 mb-4">
-							<h1 class="h2">Airway Bill</h1>
+							<h1 class="h2">Air Waybill</h1>
 						</div>
 						
 						<form id="tfnewsearch" method="get" action="">
@@ -77,7 +77,7 @@ if(isset($_SESSION['error'])){
 						
 						<table class="table table-hover">
 							<tr>
-								<th>Airway Bill No</th>
+								<th>Air Waybill’s Number</th>
 								<th>Sender Name</th>
 								<th>Date</th>
 								<th></th>

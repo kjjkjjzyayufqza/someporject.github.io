@@ -60,7 +60,18 @@
 			</nav>
 		</aside> 
 
-
+<?php
+	//get data for showing on the textbox
+	require_once("conn.php");
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	$array = array("customerName", "phoneNumber", "address");
+	$arrayShow = array();
+	while($rc = mysqli_fetch_assoc($rs)){
+		for($i = 0; $i < 3; $i++){
+			$arraryShow[] = $rc[$array[$i]];
+		}
+	}
+?>
 <form action="" method="post">
 		<div id="colorlib-main">
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
@@ -76,7 +87,7 @@
 										<h2 class="h5">Name</h2>
 									</div>
 									<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" class="form-control" name="name" value="">
+									<input type="text" class="form-control" name="name" value="<?php echo $arraryShow[0]; ?>">
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -84,7 +95,7 @@
 									<h2 class="h5">Phone</h2>
 								</div>
 								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="phone" value="">
+									<input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="phone" value="<?php echo $arraryShow[1]; ?>">
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -92,7 +103,7 @@
 									<h2 class="h5">Address</h2>
 								</div>
 								<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-									<input type="text" class="form-control" name="address" value="">
+									<input type="text" class="form-control" name="address" value="<?php echo $arraryShow[2]; ?>">
 								</div>
 							</div>
 							</div>

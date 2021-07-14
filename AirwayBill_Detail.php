@@ -23,12 +23,12 @@
 		function checkWeight(){// decide submit button whether disable or not & set error message
 			var weight = document.getElementById('weight').value;
 			var errorMsg;
-			if(weight >= 1.0 && weight <= max){
+			if(weight >= 0.1 && weight <= max){
 				document.getElementById('submit').disabled = false;
 				document.getElementById('error').innerHTML = "";
 			}else{
 				document.getElementById('submit').disabled = true;
-				errorMsg = "Please enter the weight between 1kg to " + max + "kg";
+				errorMsg = "Please enter the weight between 0.1kg to " + max + "kg";
 				document.getElementById('error').innerHTML = errorMsg.fontcolor("red");
 			}
 		}
@@ -49,7 +49,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
@@ -82,25 +82,39 @@
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row">
 						<div class="col-md-12 mb-4">
-							<h1 class="h2">Airway Bill Detail</h1>
+							<h1 class="h2">Air Waybill Detail</h1>
 						</div>
 <?php
-//loop show data
-$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
-$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-$name = array("Air Waybill’s Number :", "Sender’s Name :", "Receiver’s Name :", "Receiver’s Phone Number :");
-$array = array("airWaybillNo", "customerName", "receiverName", "receiverPhoneNumber", "locationID");
-while($rc = mysqli_fetch_assoc($rs)){
-	for($i = 0; $i < 4 ; $i++){
-		printf('
-		<div class="col-md-6">
-		<h2 class="h4">%s</h2>
-		</div>
-		<div class="col-md-6">
-		<h2 class="h4">%s</h2>
-		</div>', $name[$i], $rc[$array[$i]]);
+	//loop show data
+	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = \"" . $_GET["airWaybillNo"] . "\"";
+	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+	$name = array("Air Waybill’s Number :", "Sender’s Email :", "Receiver’s Name :", "Receiver’s Phone Number :", "Location :");
+	$array = array("airWaybillNo", "customerEmail", "receiverName", "receiverPhoneNumber", "locationID");
+	while($rc = mysqli_fetch_assoc($rs)){
+		for($i = 0; $i < 5 ; $i++){
+			if($i == 4){
+				$sql1 = "SELECT locationName FROM location WHERE locationID = \"" . $rc[$array[$i]] . "\"";
+				$rs1 = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
+				while($rc1 = mysqli_fetch_assoc($rs1)){
+					printf('
+					<div class="col-md-6">
+					<h2 class="h4">%s</h2>
+					</div>
+					<div class="col-md-6">
+					<h2 class="h4">%s</h2>
+					</div>', $name[$i], $rc1['locationName']);
+				}
+			}else{	
+				printf('
+				<div class="col-md-6">
+				<h2 class="h4">%s</h2>
+				</div>
+				<div class="col-md-6">
+				<h2 class="h4">%s</h2>
+				</div>', $name[$i], $rc[$array[$i]]);
+			}
+		}
 	}
-}
 ?>
 							
 							
@@ -119,7 +133,7 @@ while($rc = mysqli_fetch_assoc($rs)){
 								<h2 class="h4" name="weight">Parcel’s Weight :</h2>
 							</div>
 							<div class="col-md-12">
-								<h2 class="h4"><input type="number" style="width: 10em" max="10.0" min="1.0" step=".1"onchange="checkWeight();" name="weight" id="weight" /></h2>
+								<h2 class="h4"><input type="number" style="width: 10em" max="10.0" min="0.1" step=".1"onchange="checkWeight();" name="weight" id="weight" /></h2>
 							</div>
 							<div class="col-md-12 my-5">
 								<a href="Update_AirwayBill.php" class="custom-btn btn-3 mr-4" ><font size="3" color="red"><center>Back</center></font></a>
