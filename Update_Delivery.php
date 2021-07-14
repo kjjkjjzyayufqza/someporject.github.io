@@ -129,23 +129,42 @@ if(isset($_GET["q"])){
 						</tr>
 
 <?php
-//check if set show data
-if(isset($_GET["q"]) && $_GET["q"]!=""){
-	$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
-	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-	$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
-		while($rc = mysqli_fetch_assoc($rs)){
-			$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
-			echo "<tr>";
-			for($i = 0; $i < 3 ; $i++){
-				printf('<td>%s</td>', $array[$i]);
-			}
-			echo "</tr>";
+	// show update message
+	//receive variable from status.php
+	if(isset($_SESSION['error'])){
+		if($_SESSION['error'] == true){ // error in updating
+			printf('<br />
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Error occured when updating !!!</font></h1></div></div></div>');
+		}else{ // successfully update
+			printf('<br />
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Updated successfully !!!</font></h1></div></div></div>');
 		}
-}
+		unset($_SESSION['error']);
+	}
 
-mysqli_free_result($rs);
-mysqli_close($conn);
+	//check if set show data
+	if(isset($_GET["q"]) && $_GET["q"]!=""){
+		$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+			while($rc = mysqli_fetch_assoc($rs)){
+				$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+				echo "<tr>";
+				for($i = 0; $i < 3 ; $i++){
+					printf('<td>%s</td>', $array[$i]);
+				}
+				echo "</tr>";
+			}
+	}
+
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 ?>
 
 					</table>

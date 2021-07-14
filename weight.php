@@ -30,7 +30,7 @@
 		{
 			//update airwaybill
 			$price = $rc["rate"]*((100-$response)/100);
-			$sql2 = "UPDATE airwaybill SET totalPrice = \"" . $price . "\", weight = \"" . $weight . "\" WHERE airWaybillNo = \"" . $airWaybillNo ."\"";
+			$sql2 = "UPDATE airwaybill SET staffID = \"". $_SESSION['user'] ."\", totalPrice = \"" . $price . "\", weight = \"" . $weight . "\" WHERE airWaybillNo = \"" . $airWaybillNo ."\"";
 			mysqli_query($conn, $sql2) or die(mysqli_error($conn));
 			//pass variable to Update_AirwayBill.php
 			$_SESSION['error'] = false;

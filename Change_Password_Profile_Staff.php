@@ -115,8 +115,13 @@
 		
 		//check password
 		if(strlen($newpass) >= 6 && strlen($repass) >= 6){ // set word limit
-			
-			if($originalpass == $arrarysavepass && $newpass == $repass && strlen($newpass)>=5 ){ // successfully change
+			if($originalpass == $newpass){ // set cannot the same password
+				print('<div id="colorlib-main">
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+						<div class="col-md-12 mb-4">
+						<h1 class="h2"><font color="red">Original password cannot be the same as new password !!!</font></h1></div></div></div></div>');
+			}else if($originalpass == $arrarysavepass && $newpass == $repass && strlen($newpass)>=5 ){ // successfully change
 				$sql = "UPDATE staff SET staffPassword ='{$newpass}' WHERE staffName = '{$arrarysave}'";
 
 				if (mysqli_query($conn, $sql)) {
@@ -128,13 +133,6 @@
 				} else {
 					echo "Error updating record: " . mysqli_error($conn);
 				}
-				
-			}else if($originalpass == $newpass){ // set cannot the same password
-				print('<div id="colorlib-main">
-						<div class="container-fluid px-3 px-md-0">
-						<div class="row">
-						<div class="col-md-12 mb-4">
-						<h1 class="h2"><font color="red">Original password cannot be the same as new password !!!</font></h1></div></div></div></div>');
 			}else{ // wrong input
 				print('<div id="colorlib-main">
 						<div class="container-fluid px-3 px-md-0">

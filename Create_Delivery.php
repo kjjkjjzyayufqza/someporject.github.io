@@ -7,6 +7,16 @@
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
 	<link rel="stylesheet" href="css/Menu.css">
 
+	<script type="text/javascript">
+	    //check if it is number
+		function isNumberKey(evt){
+			var charCode = (evt.which) ? evt.which : evt.keyCode;
+			if (charCode > 31 && (charCode < 48 || charCode > 57))
+				return false;
+			return true;
+		}
+	</script>
+
 	</head>
 	<body>
 	
@@ -51,46 +61,7 @@
 			</nav>
 		</aside> 
 						
-<?php
-require_once("conn.php");// Using database connection file here
 
-if(isset($_POST['submit']))
-{
-	$Email = $_POST['Email'];
-	$Name = $_POST['Name'];
-	$Phone = $_POST['Phone'];
-	$Address = $_POST['Address'];
-	$Location = $_POST['location'];
-	//check data
-	if(empty($Email) || empty($Name) || empty($Phone) || empty($Address)){ // set constraint -> every field should be filled in
-			printf('<div id="colorlib-main">
-						<div class="container-fluid px-3 px-md-0">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">Please fill in all the information !!!</font></h1></div></div></div></div>');
-	}else{ // insert new record into airwaybill table
-		$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
-		mysqli_query($conn, $sql) or die(mysqli_error($conn));
-		$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
-		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-		while($rc = mysqli_fetch_assoc($rs)){ // insert new record into airwaybilldeliveryrecord table
-			$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
-			$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
-		}
-		
-		if(mysqli_affected_rows($conn) == 0){// if no table is affected -> pop error message
-			echo mysqli_error();
-		}else{ // pop successful creation message
-			printf('<div id="colorlib-main">
-						<div class="container-fluid px-3 px-md-0">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-								<h1 class="h2"><font color="red">Created successfully !!</font></h1></div></div></div></div>');
-		}
-	}
-}
-
-?>
 						
 <form id="createdelivery" method="post" action="">
 		<div id="colorlib-main">
@@ -101,7 +72,7 @@ if(isset($_POST['submit']))
 							<h1 class="h2">Create Delivery</h1>
 						</div>
 						<div class="col-md-6">
-						<h2 class="h3">Sender:</h2>
+						<!--<h2 class="h3">Sender:</h2>
 							<div class="row mt-3">
 								<div class="col-12 col-sm-4">
 									<h2 class="h5">Email</h2>
@@ -111,7 +82,7 @@ if(isset($_POST['submit']))
 								</div>
 								
 							</div>
-							<br />
+							<br />-->
 						<h2 class="h3">Receiver:</h2>
 						<div class="row mt-3">
 						
@@ -127,7 +98,7 @@ if(isset($_POST['submit']))
 								<h2 class="h5">Phone</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="Phone" value="">
+								<input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="Phone" value="">
 							</div>
 						</div>
 						<div class="row mt-3">
@@ -176,8 +147,45 @@ if(isset($_POST['submit']))
 						</div>
 					</div>
 				</div>
-
 <?php
+	require_once("conn.php");// Using database connection file here
+
+	if(isset($_POST['submit']))
+	{
+		//$Email = $_POST['Email']; empty($Email) || 
+		$Name = $_POST['Name'];
+		$Phone = $_POST['Phone'];
+		$Address = $_POST['Address'];
+		$Location = $_POST['location'];
+		//check data
+		if(empty($Name) || empty($Phone) || empty($Address)){ // set constraint -> every field should be filled in
+				printf('<br />
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+						<div class="col-md-12 mb-4">
+						<h1 class="h2"><font color="red">Please fill in all the information !!!</font></h1></div></div></div>');
+		}else{ // insert new record into airwaybill table
+			$sql = "INSERT INTO airwaybill(customerEmail, locationID, receiverName, receiverPhoneNumber, receiverAddress) VALUES (\"" . $_SESSION['user'] . "\", \"" .$Location. "\", \"" . $Name . "\", \"" . $Phone . "\", \"" . $Address . "\")";
+			mysqli_query($conn, $sql) or die(mysqli_error($conn));
+			$sql = "SELECT airWaybillNo FROM airwaybill ORDER BY date DESC LIMIT 1";
+			$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+			while($rc = mysqli_fetch_assoc($rs)){ // insert new record into airwaybilldeliveryrecord table
+				$sqlIn = "INSERT INTO airwaybilldeliveryrecord (airWaybillNo, deliveryStatusID) VALUES (\"" . $rc['airWaybillNo'] . "\", \"1\")";
+				$rsIn = mysqli_query($conn, $sqlIn) or die(mysqli_error($conn));
+			}
+			
+			if(mysqli_affected_rows($conn) == 0){// if no table is affected -> pop error message
+				echo mysqli_error();
+			}else{ // pop successful creation message
+				printf('<br />
+						<div class="container-fluid px-3 px-md-0">
+						<div class="row">
+						<div class="col-md-12 mb-4">
+						<h1 class="h2"><font color="red">Created successfully !!!</font></h1></div></div></div>');
+			}
+		}
+	}
+
 	//show message
 	$sql = "SELECT phoneNumber, address FROM customer WHERE customerEmail = \"" . $_SESSION['user'] ."\"";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));

@@ -81,7 +81,11 @@
 		}else if(isset($_SESSION['Lerror'])){ // Login
 			echo '<script>alert("Invalid username or password !!!")</script>';
 			unset($_SESSION['Lerror']);
+		}else if(isset($_SESSION['deleteMsg'])){ // Delete account
+			echo '<script>alert("Delete account successfully !!!")</script>';
+			unset($_SESSION['deleteMsg']);
 		}
+			
 	?>
 <div class="container">
 

@@ -66,7 +66,7 @@
 								<h2 class="h5">Password</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="originalpass" value="">
+								<input type="password" class="form-control" name="originalpass" value="">
 							</div>
 						</div>
 						</div>
@@ -135,15 +135,11 @@ if(isset($_POST['submit']))
 		$Email = $arrarysave;
 		$sql = "DELETE FROM `customer` WHERE `customer`.`customerEmail` = \"" . $_SESSION['user']. "\"";
 		if (mysqli_query($conn, $sql)) {
-			printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-					<div class="col-md-12 mb-4">
-					<h1 class="h2"><font color="red">Password change successfully !!!</font></h1></div></div></div></div>');
+			$_SESSION['deleteMsg'] = true;
+			header('Location: index.php');
 		}else {
-			 echo "Error updating record: " . mysqli_error($conn);
+			 echo "Error deleting record: " . mysqli_error($conn);
 		}
-		header('Location: Login_Page.html');
 	}
 	
 	mysqli_free_result($rs);

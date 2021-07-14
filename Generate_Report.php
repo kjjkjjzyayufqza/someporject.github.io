@@ -74,24 +74,24 @@
 <?php
 //check if set show data
 if(isset($_GET['q']) && strlen($_GET['q'])!=0){ // show airwaybill with specific airwaybillno
-	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\"";
+	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\" ORDER BY date DESC";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "receiverName", "date");
 	while($rc = mysqli_fetch_assoc($rs)){
 		echo "<tr>";
-		for($i = 0; $i < 3 ; $i++){ // show data in table
+		for($i = 0; $i < 4 ; $i++){ // show data in table
 			printf('<td>%s</td>', $rc[$array[$i]]);
 		}
 		// pass airwaybillno to Report_Detail.php
 		printf('<td><span><a href="Report_Detail.php?airWaybillNo=%s"></a></span></td></tr>', $rc["airWaybillNo"]);
 	}
 }else{ // show all airwaybill
-	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
+	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail ORDER BY date DESC";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "receiverName", "date");
 	while($rc = mysqli_fetch_assoc($rs)){
 		echo "<tr>";
-		for($i = 0; $i < 3 ; $i++){
+		for($i = 0; $i < 4 ; $i++){
 			printf('<td>%s</td>', $rc[$array[$i]]);
 		}
 		// pass airwaybillno to Report_Detail.php
