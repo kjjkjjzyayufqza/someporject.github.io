@@ -28,17 +28,17 @@
 			var cpassword = document.getElementById('cPassword').value;
 			var Register = document.getElementById('Register');
 
-			if(isEmail(Email))
+			if(isEmail(Email)) // check the email format
 			{
-				if(password == cpassword)
+				if(password == cpassword) // check two password entered the same
 				{
-					if(password.length >= 6 && cpassword.length >= 6)
+					if(password.length >= 5 && cpassword.length >= 5) // check the length of password
 					{
 						Register.submit();
 					}
 					else
 					{
-						alert("Password length must be between 6-25 characters！")
+						alert("Password length must be between 5-25 characters！")
 					}
 				}
 				else
@@ -53,7 +53,7 @@
 
 		}
 
-		function isEmail(email) {
+		function isEmail(email) { // check email format
 			var strEmail = email;
 			if (strEmail.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) 
 			{ 
@@ -70,17 +70,22 @@
 <body onload="startTime()">
 	<?php
 		session_start();
-		if(isset($_SESSION['Rerror'])){
-			if($_SESSION['Rerror'] == true){
+		//receive variable
+		if(isset($_SESSION['Rerror'])){ // Register
+			if($_SESSION['Rerror'] == true){ //show error message
 				echo '<script>alert("Creation failed, reason: email already exists !!!")</script>';	
-			}else{
+			}else{ // show success message
 				echo '<script>alert("Please go to your email to activate you account !!!")</script>';
 			}
 			unset($_SESSION['Rerror']);
-		}else if(isset($_SESSION['Lerror'])){
+		}else if(isset($_SESSION['Lerror'])){ // Login
 			echo '<script>alert("Invalid username or password !!!")</script>';
 			unset($_SESSION['Lerror']);
+		}else if(isset($_SESSION['deleteMsg'])){ // Delete account
+			echo '<script>alert("Delete account successfully !!!")</script>';
+			unset($_SESSION['deleteMsg']);
 		}
+			
 	?>
 <div class="container">
 
@@ -109,6 +114,7 @@
         <h1>Sign In</h1>
         <form class="more-padding" autocomplete="off" id="login" action="login.php" method="post">
 		<?php
+			//show the login information if cookie exists
 			if(isset($_COOKIE['account'])){
 				echo "<input type='text' name='user' value='{$_COOKIE['account']}' placeholder='Username'>";
 			}else{
@@ -147,28 +153,7 @@
       <button class="button" id="signup">Sign Up</button>
     </div>
   </div>
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    <script src="js/login.js"></script>

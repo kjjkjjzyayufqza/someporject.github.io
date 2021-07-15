@@ -4,14 +4,13 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
 
 	</head>
 	<body>
 <?php
+	//header of page
 	require_once("header.php");
 ?>
 	</div>
@@ -22,7 +21,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li class="colorlib-active"><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
@@ -54,13 +53,16 @@
 			<section class="ftco-section pt-4 mb-5 ftco-intro">
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row print-container">
-						<div class="col-md-12 mb-4">
-						</div>
+						
 							<div class="col-md-6">
 								<h1 class="font-weight-bolder" style="font-size: 70px;">Report</h1>
 							</div>
 							<div class="col-md-6">
+<<<<<<< HEAD
 								<img src="image/logo_3.png" class="float-right" width="300" height="200" />
+=======
+								<img src="image/logo_3.png" class="float-right" style="width:350px;height:150px;" />
+>>>>>>> 5ee4bb2d94e193fafa26416a867199d6d5aea496
 							</div>
 <?php
 //show data
@@ -71,13 +73,24 @@
 		$array = array("airWaybillNo", "staffID", "date");
 		$name = array("Air Waybill’s Number :", "Staff’s ID :", "Date :");
 		for($i = 0; $i < 3 ; $i++){
-			printf(
-			'<div class="col-md-4">
-			<br /><br />
-			<h2 class="h4">%s</h2>
-			<h2 class="h4">%s</h2>
-			</div>'
-			, $name[$i], $rc[$array[$i]]);
+			if($i == 2){ // show date
+				$dt = new DateTime($rc[$array[$i]]);
+				printf(
+				'<div class="col-md-4">
+				<br /><br />
+				<h2 class="h4">%s</h2>
+				<h2 class="h4">%s</h2>
+				</div>'
+				, $name[$i], $dt->format('Y-m-d'));
+			}else{ // show airwaybillno and staffID
+				printf(
+				'<div class="col-md-4">
+				<br /><br />
+				<h2 class="h4">%s</h2>
+				<h2 class="h4">%s</h2>
+				</div>'
+				, $name[$i], $rc[$array[$i]]);
+			}
 		}
 		
 		$array = array("customerEmail", "customerName");

@@ -4,16 +4,14 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
-	
 	<link rel="stylesheet" href="css/search.css">
 
 	</head>
 	<body>
 <?php
+	//header of page
 	require_once("header.php");
 ?>
 	</div>
@@ -24,7 +22,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
@@ -53,12 +51,13 @@
 		</aside> 
 
 <?php
-//check if error than show message
+//receive variable
+//check if error then show message
 if(isset($_SESSION['error'])){
 	if($_SESSION['error'] == true){
 		echo '<script>alert("Error in updating airwaybill !!!")</script>';
 	}else{
-		echo '<script>alert("Airwaybill is updated successfully !!!")</script>';
+		echo '<script>alert("Air Waybill is updated successfully !!!")</script>';
 	}
 	unset($_SESSION['error']);
 }
@@ -69,7 +68,7 @@ if(isset($_SESSION['error'])){
 				<div class="container-fluid px-3 px-md-0">
 					<div class="row my-5">
 						<div class="col-md-4 mb-4">
-							<h1 class="h2">Airway Bill</h1>
+							<h1 class="h2">Air Waybill</h1>
 						</div>
 						
 						<form id="tfnewsearch" method="get" action="">
@@ -78,7 +77,7 @@ if(isset($_SESSION['error'])){
 						
 						<table class="table table-hover">
 							<tr>
-								<th>Airway Bill No</th>
+								<th>Air Waybill’s Number</th>
 								<th>Sender Name</th>
 								<th>Date</th>
 								<th></th>
@@ -86,7 +85,7 @@ if(isset($_SESSION['error'])){
 
 <?php
 //check set
-if(isset($_GET['q']) && strlen($_GET['q'])!=0){
+if(isset($_GET['q']) && strlen($_GET['q'])!=0){ // show airwaybill with specific airWaybillNo
 	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo LIKE \"" . $_GET['q'] . "\"" ;
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "date");
@@ -95,9 +94,10 @@ if(isset($_GET['q']) && strlen($_GET['q'])!=0){
 		for($i = 0; $i < 3 ; $i++){
 		printf('<td>%s</td>', $rc[$array[$i]]);
 		}
+		//pass variable to AirwayBill_Detail.php
 		printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
 	}
-}else{
+}else{ // show all airwaybill
 	$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	$array = array("airWaybillNo", "customerName", "date");
@@ -106,6 +106,7 @@ if(isset($_GET['q']) && strlen($_GET['q'])!=0){
 		for($i = 0; $i < 3 ; $i++){
 		printf('<td>%s</td>', $rc[$array[$i]]);
 		}
+		//pass variable to AirwayBill_Detail.php
 		printf("<td><span><a href='AirwayBill_Detail.php?airWaybillNo=%s'></a></span></td></tr>", $rc["airWaybillNo"]);
 	}
 }

@@ -11,6 +11,7 @@
 </head>
 <body>
 <?php
+	// header of page
     require_once("header.php");
 ?>
 
@@ -58,8 +59,8 @@
 						<div class="col-md-12 mb-4">
 								<h1 class="h2">Track Delivery</h1>
 						</div>
-						<div class="col-md-2 my-4">
-							<h2 class="h4">Airway Bill No: </h2>
+						<div class="col-md-3 my-4">
+							<h2 class="h4">Air Waybill’s Number: </h2>
 						</div>
 						<form id="tfnewsearch" method="post" action="">
 								<input type="text" class="tftextinput" name="searchinput" size="21" maxlength="120"><input type="submit" name="search" value="search" class="tfbutton">
@@ -74,7 +75,7 @@
 if(isset($_POST['search'])){
 	//set value
 	$searchinput = $_POST['searchinput'];
-	if ($searchinput != null){
+	if ($searchinput != null){ // check whether searchinput is null
 		require_once("conn.php");
 		$sql = "SELECT * FROM airwaybill INNER JOIN customer ON airwaybill.customerEmail=customer.customerEmail WHERE airWaybillNo = '{$searchinput}'";
 		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));

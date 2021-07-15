@@ -9,7 +9,9 @@
 	<link rel="stylesheet" href="css/search.css">
 	</head>
 	<body>
+	
 <?php
+	// header of page
 	require_once("header.php");
 ?>
 	</div>
@@ -20,7 +22,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li ><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li class="colorlib-active"><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
@@ -54,8 +56,8 @@
 						<div class="col-md-12 mb-4">
 								<h1 class="h2">Update Delivery</h1>
 						</div>
-						<div class="col-md-2 my-4">
-							<h2 class="h4">Airway Bill No: </h2>
+						<div class="col-md-3 my-4">
+							<h2 class="h4">Air Waybill’s Number : </h2>
 						</div>
 						<form id="tfnewsearch" method="get" action="">
 								<input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
@@ -66,11 +68,11 @@
 				<form method="post" action="status.php" id="status">
 					<div class="row">
 						<div class="col-md-6">
-							<h2 class="h4">Airwaybill’s Number :</h2>
+							<h2 class="h4">Air Waybill’s Number :</h2>
 						</div>
 						<div class="col-md-6">
 <?php
-//check if set show data
+//check if show data
 if(isset($_GET["q"])){
 	$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
@@ -103,7 +105,7 @@ if(isset($_GET["q"])){
 						</div>
 						<div class="col-md-12">
 <?php
-//check if set show data
+//check if show update button
 if(isset($_GET["q"])){
 	$sql = "SELECT * FROM airwaybill WHERE airWaybillNo = \"". $_GET["q"] ."\"";
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
@@ -127,23 +129,42 @@ if(isset($_GET["q"])){
 						</tr>
 
 <?php
-//check if set show data
-if(isset($_GET["q"]) && $_GET["q"]!=""){
-	$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
-	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-	$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
-		while($rc = mysqli_fetch_assoc($rs)){
-			$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
-			echo "<tr>";
-			for($i = 0; $i < 3 ; $i++){
-				printf('<td>%s</td>', $array[$i]);
-			}
-			echo "</tr>";
+	// show update message
+	//receive variable from status.php
+	if(isset($_SESSION['error'])){
+		if($_SESSION['error'] == true){ // error in updating
+			printf('<br />
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Error occured when updating !!!</font></h1></div></div></div>');
+		}else{ // successfully update
+			printf('<br />
+					<div class="container-fluid px-3 px-md-0">
+					<div class="row">
+					<div class="col-md-12 mb-4">
+					<h1 class="h2"><font color="red">Updated successfully !!!</font></h1></div></div></div>');
 		}
-}
+		unset($_SESSION['error']);
+	}
 
-mysqli_free_result($rs);
-mysqli_close($conn);
+	//check if set show data
+	if(isset($_GET["q"]) && $_GET["q"]!=""){
+		$sql = "SELECT * FROM airwaybilldeliveryrecord WHERE airWaybillNo = ". $_GET["q"] ." ORDER BY recordDateTime DESC";
+		$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		$shipStatus = array("Waiting for Confirmation", "Confirmed", "In Transit", "Delivering", "Completed");
+			while($rc = mysqli_fetch_assoc($rs)){
+				$array = array($rc['recordDateTime'], $shipStatus[$rc['deliveryStatusID']-1], $rc['currentLocation']);
+				echo "<tr>";
+				for($i = 0; $i < 3 ; $i++){
+					printf('<td>%s</td>', $array[$i]);
+				}
+				echo "</tr>";
+			}
+	}
+
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 ?>
 
 					</table>

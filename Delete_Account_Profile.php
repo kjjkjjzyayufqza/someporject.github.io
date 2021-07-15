@@ -4,14 +4,14 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
 
 	</head>
 	<body>
+	
 <?php
+	// header of page
     require_once("header.php");
 ?>
 
@@ -66,7 +66,7 @@
 								<h2 class="h5">Password</h2>
 							</div>
 							<div class="col-12 col-sm-8 text-secondary font-weight-bold">
-								<input type="text" class="form-control" name="originalpass" value="">
+								<input type="password" class="form-control" name="originalpass" value="">
 							</div>
 						</div>
 						</div>
@@ -91,22 +91,20 @@ if(isset($_POST['submit']))
 	require_once("conn.php");
 	$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 	while($rc = mysqli_fetch_assoc($rs)){
-		//$name = array("Name :", "Email :", "Phone :", "Address :", "Account Create Date :");
 		$array = array("customerName", "customerEmail", "customerPassword","phoneNumber", "address", "accountCreationDate");
 		$arrarysave = $rc[$array[1]];
 		$arrarysavepass = $rc[$array[2]];
 	}
-							
-
+		
 	//check password
 	$originalpass = $_POST['originalpass'];
-	if(empty($originalpass)){
+	if(empty($originalpass)){ // check is the password empty
 		printf('<div id="colorlib-main">
 				<div class="container-fluid px-3 px-md-0">
 				<div class="row">
 				<div class="col-md-12 mb-4">
 				<h1 class="h2"><font color="red">Please fill in the password !!!</font></h1></div></div></div></div>');
-	}else if($originalpass != $arrarysavepass){
+	}else if($originalpass != $arrarysavepass){ // wrong password
 		printf('<div id="colorlib-main">
 				<div class="container-fluid px-3 px-md-0">
 				<div class="row">
@@ -135,22 +133,17 @@ if(isset($_POST['submit']))
 							
 		//delete customer
 		$Email = $arrarysave;
-		//$data = date_default_timezone_get();
 		$sql = "DELETE FROM `customer` WHERE `customer`.`customerEmail` = \"" . $_SESSION['user']. "\"";
 		if (mysqli_query($conn, $sql)) {
-			printf('<div id="colorlib-main">
-					<div class="container-fluid px-3 px-md-0">
-					<div class="row">
-					<div class="col-md-12 mb-4">
-					<h1 class="h2"><font color="red">Password change successfully !!!</font></h1></div></div></div></div>');
+			$_SESSION['deleteMsg'] = true;
+			header('Location: index.php');
 		}else {
-			 echo "Error updating record: " . mysqli_error($conn);
+			 echo "Error deleting record: " . mysqli_error($conn);
 		}
-		header('Location: Login_Page.html');
-		}
-		
-		mysqli_free_result($rs);
-		mysqli_close($conn);
+	}
+	
+	mysqli_free_result($rs);
+	mysqli_close($conn);
 	}
 ?>
 	<script src="js/jquery.min.js"></script>

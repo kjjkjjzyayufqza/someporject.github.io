@@ -4,14 +4,13 @@
   	<title>EDE Express</title>
     <meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="css/fontawesome/css/all.css">
-	
 	<link rel="stylesheet" href="css/Menu.css">
 
 	</head>
 	<body>
 <?php
+	//header of page
 	require_once("header.php");
 ?>
 	</div>
@@ -22,7 +21,7 @@
 				<ul>
 					<li ><i class="fas fa-home"></i><a href="Menu_Staff.php">Home</a></li>
 					<li class="colorlib-active"><i class="far fa-user-circle"></i><a href="Personal_Profile_Staff.php">Personal Profile</a></li>
-					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Airway Bill</a></li>
+					<li><i class="far fa-edit"></i><a href="Update_AirwayBill.php">Update Air Waybill</a></li>
 					<li><i class="far fa-edit"></i><a href="Update_Delivery.php">Update Delivery</a></li>
 					<li><i class="fas fa-scroll"></i><a href="Generate_Report.php">Generate Report</a></li>
 					<li><div class="brand">
