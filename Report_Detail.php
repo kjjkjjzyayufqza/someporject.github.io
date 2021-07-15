@@ -60,7 +60,7 @@
 								<h1 class="font-weight-bolder" style="font-size: 70px;">Report</h1>
 							</div>
 							<div class="col-md-6">
-								<img src="image/logo_3.png" class="float-right" width="300" height="150" />
+								<img src="image/logo_3.png" class="float-right" width="300" height="200" />
 							</div>
 <?php
 //show data
