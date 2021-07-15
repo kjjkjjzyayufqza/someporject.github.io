@@ -53,7 +53,8 @@ CREATE TABLE `AirWaybill` (
 
 INSERT INTO `AirWaybill` (`airWaybillNo`, `customerEmail`, `staffID`, `locationID`, `date`, `receiverName`, `receiverPhoneNumber`, `receiverAddress`, `weight`, `totalPrice`) VALUES
 (1, 'marcus@gmail.com', 'Mary112', 1, '2021-03-24 08:12:13', 'Peter', '23456454', 'Flat 8, Chates Farm Court, John Street, Brighton', 25.5, '1880.0'),
-(2, 'marcus@gmail.com', NULL, 2, '2021-03-25 09:20:30', 'John', '76548273', 'Flat 1, Trevena Court, Avenue Road, London', NULL, NULL);
+(2, 'marcus@gmail.com', NULL, 2, '2021-03-25 09:20:30', 'John', '76548273', 'Flat 1, Trevena Court, Avenue Road, London', NULL, NULL),
+(3, 'potatochipuncle@123.com', NULL, 3, '2021-07-14 09:20:30', 'Alvin', '12345678', 'IVELWL', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,8 @@ INSERT INTO `AirWaybillDeliveryRecord` (`airWaybillDeliveryRecordID`, `airWaybil
 (5, 1, 3, '2021-03-25 09:36:00', 'Shenzhen'),
 (6, 1, 3, '2021-03-26 09:36:00', 'Shanghai'),
 (7, 1, 4, '2021-03-27 09:36:00', 'Shanghai'),
-(8, 1, 5, '2021-03-28 09:36:00', 'Shanghai');
+(8, 1, 5, '2021-03-28 09:36:00', 'Shanghai'),
+(9, 3, 1, '2021-07-14 09:20:30', NULL);
 
 -- --------------------------------------------------------
 
