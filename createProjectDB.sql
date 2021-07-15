@@ -152,7 +152,10 @@ CREATE TABLE `Customer` (
 --
 
 INSERT INTO `Customer` (`customerEmail`, `customerName`, `customerPassword`, `accountCreationDate`, `phoneNumber`, `address`) VALUES
-('marcus@gmail.com', 'Marcus Cheung', 'a1234', '2021-03-21', '57685876', '2/F 7 Carmel Village Street HO MAN TIN KOWLOON');
+('marcus@gmail.com', 'Marcus Cheung', 'a1234', '2015-03-21', '57685876', '2/F 7 Carmel Village Street HO MAN TIN KOWLOON');
+INSERT INTO `Customer` (`customerEmail`, `customerName`, `customerPassword`, `accountCreationDate`, `phoneNumber`, `address`) VALUES
+('potatochipuncle@123.com', 'potatochipuncle', '123321', '2021-03-21', '12312312', '2/F LWL');
+
 
 -- --------------------------------------------------------
 
