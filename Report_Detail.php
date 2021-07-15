@@ -58,11 +58,7 @@
 								<h1 class="font-weight-bolder" style="font-size: 70px;">Report</h1>
 							</div>
 							<div class="col-md-6">
-<<<<<<< HEAD
 								<img src="image/logo_3.png" class="float-right" width="300" height="200" />
-=======
-								<img src="image/logo_3.png" class="float-right" style="width:350px;height:150px;" />
->>>>>>> 5ee4bb2d94e193fafa26416a867199d6d5aea496
 							</div>
 <?php
 //show data
