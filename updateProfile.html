@@ -1,0 +1,18 @@
+<?php
+
+	require_once("conn.html");
+
+
+	extract($_POST);
+
+	if(isset($submit)){
+		$qs = "UPDATE Customer SET customerName = '$name', customerEmail = '$email', phoneNumber = '$phone', address = '$address' WHERE customerName = '$name'";
+		$query = mysqli_query($conn, $qs) or die(mysqli_error($conn));
+
+		if (mysqli_affected_rows($conn)==1){
+			echo '<script>alert("Updated")</script>';
+		} else {
+			echo '<script>alert("Error")</script>';
+		}
+	}
+?>
